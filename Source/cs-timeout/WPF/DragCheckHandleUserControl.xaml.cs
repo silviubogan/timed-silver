@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace cs_timed_silver
+{
+    /// <summary>
+    /// Interaction logic for DragCheckHandleUserControl.xaml
+    /// </summary>
+    public partial class DragCheckHandleUserControl : UserControl
+    {
+        public DragCheckHandleUserControl()
+        {
+            InitializeComponent();
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var dc = DataContext as ClockVM;
+            (Application.Current.MainWindow as MainWindow).EnableMultipleSelection();
+        }
+
+        internal CheckBox MyCheckBox = null;
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //var dc = DataContext as ClockData;
+            //dc.Checked = MyCheckBox.IsChecked.Value;
+        }
+
+        private void MyCheckBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            MyCheckBox = sender as CheckBox;
+        }
+    }
+}

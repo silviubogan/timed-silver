@@ -1,0 +1,400 @@
+﻿<Window
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="cs_timed_silver.MainWindow"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" AllowDrop="True"
+        Title="Timed Silver" x:Name="MyWindow"
+        SizeChanged="Window_SizeChanged"
+        StateChanged="Window_StateChanged"
+    
+        Initialized="MyWindow_Initialized"
+        Loaded="Window_Loaded"
+    
+        PreviewDragEnter="MyWindow_DragEnter"
+        PreviewDrop="MyWindow_Drop"
+        PreviewDragLeave="MyWindow_DragLeave">
+    <Window.Resources>
+        <Style x:Key="MyCheckBoxStyle" TargetType="{x:Type CheckBox}"
+               BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New"
+                        CanExecute="CanExecute_ApplicationCommands_New"
+                        Executed="Executed_ApplicationCommands_New"/>
+        <CommandBinding Command="ApplicationCommands.Open"
+                        CanExecute="CanExecute_ApplicationCommands_Open"
+                        Executed="Executed_ApplicationCommands_Open"/>
+        <CommandBinding Command="ApplicationCommands.Properties"
+                        CanExecute="CanExecute_ApplicationCommands_Properties"
+                        Executed="Executed_ApplicationCommands_Properties"/>
+        <CommandBinding Command="ApplicationCommands.Help"
+                        CanExecute="CanExecute_ApplicationCommands_Help"
+                        Executed="Executed_ApplicationCommands_Help"/>
+        <CommandBinding Command="ApplicationCommands.SaveAs"
+                        CanExecute="CanExecute_ApplicationCommands_SaveAs"
+                        Executed="Executed_ApplicationCommands_SaveAs"/>
+        <CommandBinding Command="ApplicationCommands.Save"
+                        CanExecute="CanExecute_ApplicationCommands_Save"
+                        Executed="Executed_ApplicationCommands_Save"/>
+
+        <CommandBinding Command="local:CustomCommands.OpenContainingFolder"
+                        CanExecute="CanExecute_OpenContainingFolder"
+                        Executed="Executed_OpenContainingFolder"/>
+        <CommandBinding Command="local:CustomCommands.ShowStatusBar"
+                        CanExecute="CanExecute_ShowStatusBar"
+                        Executed="Executed_ShowStatusBar"/>
+        <CommandBinding Command="local:CustomCommands.Import"
+                        CanExecute="CanExecute_Import"
+                        Executed="Executed_Import"/>
+        <CommandBinding Command="local:CustomCommands.Exit"
+                        CanExecute="CanExecute_Exit"
+                        Executed="Executed_Exit"/>
+        <CommandBinding Command="local:CustomCommands.RemoveAllClocks"
+                        CanExecute="CanExecute_RemoveAllClocks"
+                        Executed="Executed_RemoveAllClocks"/>
+        <CommandBinding Command="local:CustomCommands.RemoveAllClocks"
+                        CanExecute="CanExecute_RemoveAllClocks"
+                        Executed="Executed_RemoveAllClocks"/>
+        <CommandBinding Command="local:CustomCommands.ListView"
+                        CanExecute="CanExecute_ListView"
+                        Executed="Executed_ListView"/>
+        <CommandBinding Command="local:CustomCommands.DataGridView"
+                        CanExecute="CanExecute_DataGridView"
+                        Executed="Executed_DataGridView"/>
+        <CommandBinding Command="local:CustomCommands.HorizontalSplitView"
+                        CanExecute="CanExecute_HorizontalSplitView"
+                        Executed="Executed_HorizontalSplitView"/>
+        <CommandBinding Command="local:CustomCommands.VerticalSplitView"
+                        CanExecute="CanExecute_VerticalSplitView"
+                        Executed="Executed_VerticalSplitView"/>
+        <CommandBinding Command="local:CustomCommands.About"
+                        CanExecute="CanExecute_About"
+                        Executed="Executed_About"/>
+        <CommandBinding Command="local:CustomCommands.MultipleSelectionInListView"
+                        CanExecute="CanExecute_MultipleSelectionInListView"
+                        Executed="Executed_MultipleSelectionInListView"/>
+        <CommandBinding Command="local:CustomCommands.RestoreToPreviousDay"
+                        CanExecute="CanExecute_RestoreToPreviousDay"
+                        Executed="Executed_RestoreToPreviousDay"/>
+        <CommandBinding Command="local:CustomCommands.ClearOpenFile"
+                        CanExecute="CanExecute_ClearOpenFile"
+                        Executed="Executed_ClearOpenFile"/>
+        <CommandBinding Command="local:CustomCommands.ReloadOpenFileFromFileSystem"
+                        CanExecute="CanExecute_ReloadOpenFileFromFileSystem"
+                        Executed="Executed_ReloadOpenFileFromFileSystem"/>
+        <CommandBinding Command="local:CustomCommands.ShowGroupListView"
+                        CanExecute="CanExecute_ShowGroupListView"
+                        Executed="Executed_ShowGroupListView"/>
+
+        <CommandBinding Command="local:CustomCommands.StopAllTimers"
+                        CanExecute="CommandBinding_CanExecute"
+                        Executed="CommandBinding_Executed"/>
+
+        <CommandBinding Command="local:CustomCommands.KeepOnTopAlways"
+                        Executed="Executed_KeepOnTopAlways"/>
+        <CommandBinding Command="local:CustomCommands.KeepOnTopUntilNextRestart"
+                        Executed="Executed_KeepOnTopUntilNextRestart"/>
+        <CommandBinding Command="local:CustomCommands.KeepOnTopFor1Min"
+                        Executed="Executed_KeepOnTopFor1Min"/>
+        <CommandBinding Command="local:CustomCommands.KeepOnTopFor5Min"
+                        Executed="Executed_KeepOnTopFor5Min"/>
+        <CommandBinding Command="local:CustomCommands.KeepOnTopFor15Min"
+                        Executed="Executed_KeepOnTopFor15Min"/>
+        <CommandBinding Command="local:CustomCommands.KeepOnTopFor1Hour"
+                        Executed="Executed_KeepOnTopFor1Hour"/>
+
+        <CommandBinding Command="ApplicationCommands.SelectAll"
+                        CanExecute="CanExecute_SelectAll"
+                        Executed="Executed_SelectAll"/>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.SelectAll"
+                    Gesture="Ctrl+A"/>
+    </Window.InputBindings>
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ProgressState="None" ProgressValue="0" x:Name="MyTaskbarItemInfo" x:FieldModifier="public"/>
+    </Window.TaskbarItemInfo>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- TODO: put handlers to events! -->
+
+        <Menu Grid.Row="0" Style="{DynamicResource MenuStyle}">
+            <MenuItem Header="_File" Template="{DynamicResource TopLevelHeaderMenuItemTemplate}">
+                <MenuItem Command="ApplicationCommands.New" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-document-new.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="ApplicationCommands.Open" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-document-open.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="ApplicationCommands.Save" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-document-save.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="ApplicationCommands.SaveAs" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="ApplicationCommands.Properties" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Categories-preferences-system.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator Style="{DynamicResource MenuSeparatorStyle}"/>
+                <local:RecentFilesMenuItem Header="_Recent Files..." x:Name="MyRecentFilesContextMenu"/>
+                <MenuItem Command="local:CustomCommands.OpenContainingFolder" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Command="local:CustomCommands.RestoreToPreviousDay" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Header="_Advanced..." Template="{DynamicResource MenuItemTemplate}">
+                    <MenuItem Command="local:CustomCommands.ClearOpenFile" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem Command="local:CustomCommands.ReloadOpenFileFromFileSystem" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem Command="local:CustomCommands.Import" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Command="local:CustomCommands.Exit" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-application-exit.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit" Template="{DynamicResource TopLevelHeaderMenuItemTemplate}">
+                <MenuItem Command="local:CustomCommands.RemoveAllClocks" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-project-development-close-all.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.MultipleSelectionInListView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="MiMultipleSelection"
+                           Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/multiselect.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.StopAllTimers" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image>
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing>
+                                                <GeometryDrawing.Pen>
+                                                    <Pen Brush="White"/>
+                                                </GeometryDrawing.Pen>
+                                                <GeometryDrawing.Geometry>
+                                                    <EllipseGeometry Center="1,1" RadiusX="0.8" RadiusY="0.8"/>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+                                            <GeometryDrawing>
+                                                <GeometryDrawing.Pen>
+                                                    <Pen Brush="Red"/>
+                                                </GeometryDrawing.Pen>
+                                                <GeometryDrawing.Geometry>
+                                                    <EllipseGeometry Center="1,1" RadiusX="0.5" RadiusY="0.5"/>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+                                        </DrawingGroup>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View" Template="{DynamicResource TopLevelHeaderMenuItemTemplate}">
+                <MenuItem Command="local:CustomCommands.ListView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="CbListView" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-view-list-icons.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.DataGridView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="CbDataGridView" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/data-grid-view.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.HorizontalSplitView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="CbHorizontalSplitView" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/horizontal-split-view.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.VerticalSplitView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="CbVerticalSplitView" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/vertical-split-view.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Command="local:CustomCommands.ShowGroupListView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True"
+                          x:Name="CbShowGroupListView" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <Separator/>
+                <MenuItem Command="local:CustomCommands.FocusListView" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Command="local:CustomCommands.FocusDataGridView" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Command="local:CustomCommands.FocusGroupListView" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <Separator/>
+                <MenuItem Header="_Toolbars" Template="{DynamicResource MenuItemTemplate}">
+                    <MenuItem
+                          Command="local:CustomCommands.ShowToolBarZoomListView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem
+                          Command="local:CustomCommands.ShowToolBarZoomDataGridView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem
+                          Command="local:CustomCommands.ShowToolBarZoomGroupListView"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem
+                          Command="local:CustomCommands.ShowToolBarZoomGlobal"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.ShowStatusBar"
+                          CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                          IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <!-- TODO: load default IsChecked for all command menu items somewhere in the Loaded handler -->
+                <Separator Visibility="Collapsed" Style="{DynamicResource MenuSeparatorStyle}"/>
+                <MenuItem Header="[BETA] _Use advanced views" Visibility="Collapsed" IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Header="_Split focused view horizontally" Visibility="Collapsed" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Header="S_plit focused view vertically" Visibility="Collapsed" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Header="_Remove focused split" Visibility="Collapsed" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                <MenuItem Header="Replace view with..." Visibility="Collapsed" Template="{DynamicResource MenuItemTemplate}">
+                    <MenuItem Header="List view" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem Header="Data grid" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem Header="Group list" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                </MenuItem>
+                <MenuItem Header="Fo_cused split view orientation..." Visibility="Collapsed" Template="{DynamicResource MenuItemTemplate}">
+                    <MenuItem Header="Hor_izontal" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                    <MenuItem Header="_Vertical" Template="{DynamicResource LeafMenuItemTemplate}"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Window" Template="{DynamicResource TopLevelHeaderMenuItemTemplate}">
+                <local:KeepOnTopMenuItem Header="_Keep on Top..." x:Name="MiKeepOnTop"/>
+            </MenuItem>
+            <MenuItem Header="_Help" Template="{DynamicResource TopLevelHeaderMenuItemTemplate}">
+                <MenuItem Command="ApplicationCommands.Help" Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Categories-system-help.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="local:CustomCommands.About"
+                          ToolTip="Click this button to see the version of the program and the credits including the credits for used resources." Template="{DynamicResource LeafMenuItemTemplate}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-help-about.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Grid.Row="1" Style="{DynamicResource ToolBarTrayStyle}">
+            <ToolBar Band="1" Style="{DynamicResource ToolBarStyle}">
+                <CheckBox Style="{StaticResource MyCheckBoxStyle}" x:Name="CbDarkTheme" ToolTip="Check if you want to use the dark theme instead of the default theme." Margin="5,0,5,0" Checked="CbDarkTheme_Checked" Unchecked="CbDarkTheme_Unchecked">
+                    <AccessText Text="_Dark theme"/>
+                </CheckBox>
+                <CheckBox Style="{StaticResource MyCheckBoxStyle}" x:Name="CbFullScreen" ToolTip="Check if you want the program to occupy the full screen."
+                          Checked="CbFullScreen_Checked" Unchecked="CbFullScreen_Unchecked">
+                    <AccessText Text="F_ull-screen"/>
+                </CheckBox>
+            </ToolBar>
+            <!-- FocusManager.IsFocusScope="False" (just on this ToolBar) BECAUSE: https://stackoverflow.com/a/57844838/258462 -->
+            <ToolBar x:Name="TbEdit" Band="1" Style="{DynamicResource ToolBarStyle}" FocusManager.IsFocusScope="False">
+                <Label VerticalAlignment="Center" Content="Edit"/>
+                <Button ToolTip="Click this button to open the settings dialog where you can control the behavior of the program."
+                        Style="{StaticResource {x:Type Button}}"
+                        Padding="2,2,2,2"
+                        Command="ApplicationCommands.Properties">
+                    <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Categories-preferences-system.ico" Height="22"/>
+                        <AccessText VerticalAlignment="Center" Text="_Properties"/>
+                    </StackPanel>
+                </Button>
+                <local:CustomSplitButton
+                          Margin="3,3,3,3"
+                          ToolTip="Click here to add a new timer at the end of the list below."
+                    CountRequested="NewTimers_CustomSplitButton_CountRequested">
+                    <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                        <local:ClepsidraIcon Height="22"/>
+                        <AccessText VerticalAlignment="Center" Text="_New Timer"/>
+                    </StackPanel>
+                </local:CustomSplitButton>
+                <local:CustomSplitButton Margin="0,3,3,3" ToolTip="Click here to add a new alarm at the end of the list below." CountRequested="NewAlarms_CustomSplitButton_CountRequested">
+                    <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                        <local:AlarmClockIcon Height="22"/>
+                        <AccessText VerticalAlignment="Center" Text="New _Alarm"/>
+                    </StackPanel>
+                </local:CustomSplitButton>
+            </ToolBar>
+            <ToolBar x:Name="TbSort" Band="2" Style="{DynamicResource ToolBarStyle}">
+                <Label VerticalAlignment="Center" Content="Sort"/>
+                <ComboBox SelectedIndex="0" Style="{StaticResource {x:Type ComboBox}}"
+                          x:Name="CmbAutomaticSort">
+                    <ComboBoxItem Content="No automatic sort"/>
+                    <ComboBoxItem Content="By closest ringing moment"/>
+                    <ComboBoxItem Content="Alphabetically"/>
+                </ComboBox>
+            </ToolBar>
+            <!--<local:ZoomToolBar Title="List" Visibility="Collapsed" x:Name="TbZoomList"
+                               ValueChanged="TbZoomList_ValueChanged"
+                               /> -->
+            <!-- rename to Flow view -->
+            <!--
+            <local:ZoomToolBar Title="Data grid" Visibility="Collapsed" x:Name="TbZoomDataGrid"
+                               ValueChanged="TbZoomDataGrid_ValueChanged"
+                               /> -->
+            <!-- TODO: these non-global zoom toolbars are not functional -->
+            <!--
+            <local:ZoomToolBar Title="Group list" Visibility="Collapsed" x:Name="TbZoomGroupList"
+                               ValueChanged="TbZoomGroupList_ValueChanged"/>-->
+            <local:ZoomToolBar Title="Global" Band="2" x:Name="TbZoomGlobal"
+                               ValueChanged="TbZoomGlobal_ValueChanged"
+                               Style="{DynamicResource ToolBarStyle}"/>
+        </ToolBarTray>
+        <TextBlock Grid.Row="2" TextAlignment="Center"
+                   Background="Yellow" Foreground="Black"
+                   Padding="5,5,5,5" x:Name="LblFirstStart"><Run Text="Please use the menu "/><InlineUIContainer>
+                <TextBlock FontWeight="Bold"><Run Text="File &gt; Save as..."/></TextBlock>
+            </InlineUIContainer><Run Text=" to create a data file and start using the program."/></TextBlock>
+        <local:ViewsGrid Grid.Row="3" x:Name="MyViewsGrid" DataFile="{Binding DataContext, ElementName=MyWindow}" ScrollChanged="MyViewsGrid_ScrollChanged"/>
+        <local:CustomStatusBar Grid.Row="4" x:Name="MyStatusBar" DataFile="{Binding DataContext, ElementName=MyWindow}"/>
+
+        <local:DropOverlay Grid.RowSpan="5" Visibility="Collapsed" x:Name="MyDropOverlay"/>
+    </Grid>
+</Window>

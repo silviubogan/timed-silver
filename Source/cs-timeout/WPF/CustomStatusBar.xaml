@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="cs_timed_silver.CustomStatusBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="28" d:DesignWidth="662" Name="MyCustomStatusBar"
+             Initialized="MyCustomStatusBar_Initialized">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConv"/>
+    </UserControl.Resources>
+    <Grid Name="MyStatusBar" Style="{DynamicResource CustomStatusBarGridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="{Binding Path=CurrentIcon}" Name="MyImage"
+                Height="{Binding ElementName=MyTimeTextBlock, Path=ActualHeight}"
+                Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
+
+        <TextBlock Foreground="Gray" Margin="0,0,5,0" Name="MyTimeTextBlock" Grid.Column="1" VerticalAlignment="Center">
+                29.04.2019 10:44
+        </TextBlock>
+
+        <TextBlock Name="MyMessageTextBlock" TextTrimming="CharacterEllipsis" Grid.Column="2"
+                   VerticalAlignment="Center">
+            Program started successfully.
+        </TextBlock>
+
+        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding Mode=OneWay, Path=DataFile.ClockVMCollection.RemainingTimeStatusString}"
+                           ToolTip="Taking into account the soonest ringing clock from all the clocks."
+                               VerticalAlignment="Center" Margin="5,0,5,0"></TextBlock>
+            <Button Margin="1,1,1,1" Name="MyShowLogButton" Click="MyShowLogButton_Click">
+                <Viewbox>
+                    <TextBlock>Show log...</TextBlock>
+                </Viewbox>
+            </Button>
+            <Viewbox Margin="5,1,1,1" ToolTip="This clock is synchronized with the system clock."
+                             Visibility="{Binding ShowTimeDate, Converter={StaticResource BoolToVisConv}}">
+                <TextBlock TextAlignment="Center">
+                    <TextBlock
+                        Text="{Binding Path=CurrentSystemTime,
+                            Mode=OneWay,
+                            UpdateSourceTrigger=PropertyChanged}">
+                    </TextBlock>
+                    <LineBreak/>
+                    <TextBlock
+                        Text="{Binding Path=CurrentSystemDate,
+                            Mode=OneWay,
+                            UpdateSourceTrigger=PropertyChanged}">
+                    </TextBlock>
+                </TextBlock>
+            </Viewbox>
+        </StackPanel>
+    </Grid>
+</UserControl>

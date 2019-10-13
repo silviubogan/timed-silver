@@ -1,0 +1,46 @@
+﻿<Canvas x:Class="wpf_timespanpicker.TimeSpanPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:wpf_timespanpicker"
+        mc:Ignorable="d" 
+        d:DesignHeight="170" d:DesignWidth="365"
+        Name="MyUC"
+             
+        KeyboardNavigation.TabNavigation="Continue"
+
+        Focusable="True"
+             
+        GotKeyboardFocus="UserControl_GotKeyboardFocus"
+        LostKeyboardFocus="UserControl_LostKeyboardFocus"
+        KeyDown="UserControl_KeyDown"
+        PreviewKeyDown="UserControl_PreviewKeyDown"
+        PreviewMouseDown="UserControl_PreviewMouseDown"
+        MouseDown="UserControl_MouseDown"
+        MouseLeave="UserControl_MouseLeave"
+        PreviewMouseUp="UserControl_PreviewMouseUp"
+        GotFocus="UserControl_GotFocus"
+        LostFocus="UserControl_LostFocus"
+        IsEnabledChanged="UserControl_IsEnabledChanged"
+        MouseWheel="UserControl_MouseWheel">
+    <!--  incompatible with switching to Panel from Canvas: IsTabStop="True" -->
+
+    <local:ArrowButton x:Name="hPlusBtn" State="True"/>
+    <local:TwoDigitsDisplay x:Name="tdd1" MouseUp="Tdd1_MouseUp"/>
+    <local:ArrowButton x:Name="hMinusBtn" State="False"/>
+
+    <local:ColonDisplay x:Name="tbc1"
+                        Pulse="{Binding ElementName=MyUC, Path=ColonPulse}"/>
+
+    <local:ArrowButton x:Name="mPlusBtn" State="True"/>
+    <local:TwoDigitsDisplay x:Name="tdd2" MouseUp="Tdd2_MouseUp"/>
+    <local:ArrowButton x:Name="mMinusBtn" State="False"/>
+
+    <local:ColonDisplay x:Name="tbc2"
+                        Pulse="{Binding ElementName=MyUC, Path=ColonPulse}"/>
+
+    <local:ArrowButton x:Name="sPlusBtn" State="True"/>
+    <local:TwoDigitsDisplay x:Name="tdd3" MouseUp="Tdd3_MouseUp"/>
+    <local:ArrowButton x:Name="sMinusBtn" State="False"/>
+</Canvas>

@@ -1,0 +1,40 @@
+﻿<MenuItem x:Class="cs_timed_silver.KeepOnTopMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200"
+          Template="{DynamicResource TimerMenuItemWithSubitems}">
+    <MenuItem.Items>
+        <MenuItem Command="local:CustomCommands.KeepOnTopAlways"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"
+                x:Name="MiKeepOnTopAlways"/>
+        <MenuItem Command="local:CustomCommands.KeepOnTopUntilNextRestart"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"
+                Name="MiKeepOnTopUntilNextRestart"/>
+        <MenuItem IsCheckable="True"
+                Command="local:CustomCommands.KeepOnTopFor1Min"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                x:Name="MiKeepOnTopFor1Min" Template="{DynamicResource LeafMenuItemTemplate}"/>
+        <MenuItem IsCheckable="True"
+                Command="local:CustomCommands.KeepOnTopFor5Min"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                x:Name="MiKeepOnTopFor5Min" Template="{DynamicResource LeafMenuItemTemplate}"/>
+        <MenuItem IsCheckable="True"
+                Command="local:CustomCommands.KeepOnTopFor15Min"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                x:Name="MiKeepOnTopFor15Min" Template="{DynamicResource LeafMenuItemTemplate}"/>
+        <MenuItem IsCheckable="True"
+                Command="local:CustomCommands.KeepOnTopFor1Hour"
+                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
+                x:Name="MiKeepOnTopFor1Hour" Template="{DynamicResource LeafMenuItemTemplate}"/>
+    </MenuItem.Items>
+
+    <MenuItem.Icon>
+        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-go-top.ico"/>
+    </MenuItem.Icon>
+</MenuItem>

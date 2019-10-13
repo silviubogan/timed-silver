@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7AAF5572-EF22-40AE-8675-285DD7162ADB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>cs_timed_silver</RootNamespace>
+    <AssemblyName>Timed Silver</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Timed Silver</ProductName>
+    <PublisherName>Silviu Bogan</PublisherName>
+    <ApplicationRevision>114</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>02.10.2018 final.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>584BAEBB4F380E124B4B1AB266850F2DD9279381</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetProjects.Wpf.Extended.Toolkit, Version=4.5.71.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetProjects.Extended.Wpf.Toolkit.4.5.71\lib\net40\DotNetProjects.Wpf.Extended.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="GongSolutions.WPF.DragDrop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=91f1945125b7a587, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.2.1.0\lib\net47\GongSolutions.WPF.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="Prism, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1367\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1367\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1367\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dirkster.AvalonDock.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dirkster.AvalonDock.Themes.VS2010.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="AppResources.xaml.cs">
+      <DependentUpon>AppResources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BindableBaseExtended.cs" />
+    <Compile Include="EventArgs subclasses\FilterEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\IntEventArgs.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Interfaces\IClocksView.cs" />
+    <None Include="Interfaces\IClocksViewProvider.cs" />
+    <Compile Include="Interfaces\IMultipleViewTypesForm.cs" />
+    <Compile Include="MainFormRectangleComputation.cs" />
+    <Compile Include="Models\ClockGroupM.cs" />
+    <Compile Include="EventArgs subclasses\ClocksEventArgs.cs" />
+    <Compile Include="Models\Computation.cs" />
+    <Compile Include="EventArgs subclasses\DoubleEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\SettingValueChangedEventArgs.cs" />
+    <Compile Include="Models\FilterMCollection.cs" />
+    <Compile Include="Models\LogMessageM.cs" />
+    <Compile Include="Models\TimeOutWindowM.cs" />
+    <Compile Include="ObservableCollectionSynchronizer.cs" />
+    <Compile Include="OcPropertyChangedListener{T}.cs" />
+    <Compile Include="PictureAnalysis.cs" />
+    <Compile Include="Prompt dialogs\DateTimePromptWindow.xaml.cs">
+      <DependentUpon>DateTimePromptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prompt dialogs\TimeSpanPromptWindow.xaml.cs">
+      <DependentUpon>TimeSpanPromptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prompt dialogs\TextPromptWindow.xaml.cs">
+      <DependentUpon>TextPromptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleInstanceApplicationWrapper.cs" />
+    <Compile Include="TimeOutFormsManager.cs" />
+    <Compile Include="Beep.cs" />
+    <Compile Include="ViewModels\ClockGroupVMCollection.cs" />
+    <Compile Include="ViewModels\ClockGroupVM.cs" />
+    <Compile Include="ViewModels\ClockVM.cs" />
+    <Compile Include="ViewModels\ClockVMCollection.cs" />
+    <Compile Include="ViewModels\FilterVMCollection.cs" />
+    <Compile Include="ViewModels\ImportWindowVM.cs" />
+    <Compile Include="ViewModels\LogMessageVM.cs" />
+    <Compile Include="ViewModels\NamedCommandVM.cs" />
+    <Compile Include="ViewModels\SettingDataVMs\IntegerSettingDataVM.cs" />
+    <Compile Include="ViewModels\SettingDataVMs\ImageFileSettingDataVM.cs" />
+    <Compile Include="ViewModels\SettingDataVMs\AudioFileSettingDataVM.cs" />
+    <Compile Include="ViewModels\SettingDataVMs\TimeSpanSettingDataVM.cs" />
+    <Compile Include="ViewModels\SettingDataVMs\CheckBoxSettingDataVM.cs" />
+    <Compile Include="Views\ClockContextMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DailyBackupSystem.cs" />
+    <Compile Include="Models\BeepCollection.cs" />
+    <Compile Include="EventArgs subclasses\ContextMenuRequestedEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\FilePathEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\FocusLostEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\PathValidationEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\StringEventArgs.cs" />
+    <Compile Include="Interfaces\IDateTimeProvider.cs" />
+    <None Include="Views\ImageFileChooser.cs">
+      <SubType>UserControl</SubType>
+    </None>
+    <None Include="Views\ImageFileChooser.Designer.cs">
+      <DependentUpon>ImageFileChooser.cs</DependentUpon>
+    </None>
+    <Compile Include="Models\FilterM.cs" />
+    <Compile Include="Interfaces\ISaveable.cs" />
+    <Compile Include="Interfaces\IUnsavedStatusCapable.cs" />
+    <Compile Include="Models\AlarmData.cs" />
+    <Compile Include="Models\BeepTimerCollection.cs" />
+    <Compile Include="Models\SettingDataM.cs" />
+    <Compile Include="Models\SettingDataMCollection.cs" />
+    <Compile Include="Models\TimerData.cs" />
+    <Compile Include="Pointer.cs" />
+    <Compile Include="Interfaces\IClockView.cs" />
+    <Compile Include="Models\ClockGroupMCollection.cs" />
+    <Compile Include="Models\DataFile.cs" />
+    <None Include="ToolStrip-related\EditToolStrip.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="SystemClockTimer.cs" />
+    <Compile Include="Models\ClockMCollection.cs" />
+    <None Include="ToolStrip-related\ToolStripTrackBarItem.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="EventArgs subclasses\FileClosedEventArgs.cs" />
+    <Compile Include="WinFormsUtils.cs" />
+    <Compile Include="WPF\AudioFileMenuItem.xaml.cs">
+      <DependentUpon>AudioFileMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\AudioFileSelector.xaml.cs">
+      <DependentUpon>AudioFileSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\BeepsDataGrid.xaml.cs">
+      <DependentUpon>BeepsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\FilterClocksByTypeConverter.cs" />
+    <Compile Include="WPF\Converters\StringToStringListConverter.cs" />
+    <Compile Include="WPF\CustomSlider.xaml.cs">
+      <DependentUpon>CustomSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\DropOverlay.xaml.cs">
+      <DependentUpon>DropOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Graphics\AlarmClockIcon.xaml.cs">
+      <DependentUpon>AlarmClockIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Graphics\ClepsidraIcon.xaml.cs">
+      <DependentUpon>ClepsidraIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ImageFileSelector.xaml.cs">
+      <DependentUpon>ImageFileSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\KeepOnTopMenuItem.xaml.cs">
+      <DependentUpon>KeepOnTopMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\SmallClockUserControl.xaml.cs">
+      <DependentUpon>SmallClockUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\DateToBoolIsInPastConverter.cs" />
+    <Compile Include="WPF\Converters\PlayingBoolToBtnIconConverter.cs" />
+    <Compile Include="WPF\CustomCommands.cs" />
+    <Compile Include="WPF\CustomSplitButton.xaml.cs">
+      <DependentUpon>CustomSplitButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\IZoomableControl.cs" />
+    <Compile Include="WPF\NotifyIconPopup.xaml.cs">
+      <DependentUpon>NotifyIconPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\RecentAudioFilesContextMenu.xaml.cs">
+      <DependentUpon>RecentAudioFilesContextMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\RecentFilesContextMenu.xaml.cs">
+      <DependentUpon>RecentFilesContextMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\RecentFilesMenuItem.xaml.cs">
+      <DependentUpon>RecentFilesMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\TimeOutWindow.xaml.cs">
+      <DependentUpon>TimeOutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prompt dialogs\UniformGridSizePrompt.xaml.cs">
+      <DependentUpon>UniformGridSizePrompt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ZoomableScrollViewer.cs" />
+    <Compile Include="WPF\ZoomableStackPanel.cs" />
+    <Compile Include="WPF\ZoomToolBar.xaml.cs">
+      <DependentUpon>ZoomToolBar.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Resources\naudio-license.rtf" />
+    <EmbeddedResource Include="Resources\oxygen-icons-license.rtf" />
+    <EmbeddedResource Include="Resources\xceed-wpftoolkit-license.rtf" />
+    <None Include="Views\MainForm.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Views\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </None>
+    <Compile Include="MultiAudioPlayer.cs" />
+    <None Include="ToolStrip-related\MyProfessionalColorTable.cs" />
+    <Compile Include="NAudioPlayer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EventArgs subclasses\PropertyChangedClockEventArgs.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Models\ClockM.cs" />
+    <Compile Include="EventArgs subclasses\ClockEventArgs.cs" />
+    <Compile Include="EventArgs subclasses\ClockMovedEventArgs.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Enums.cs" />
+    <None Include="ToolStrip-related\ZoomToolStrip.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="Windows-specific\WinAPI.cs" />
+    <Compile Include="WPF\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\BoolToInvisibilityConverter.cs" />
+    <Compile Include="WPF\ClockDataGrid.xaml.cs">
+      <DependentUpon>ClockDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\ClockDataToUserClockTypeConverter.cs" />
+    <Compile Include="WPF\Converters\ClockDataToClockTypeConverter.cs" />
+    <Compile Include="WPF\ClockFlowLayoutPanel.xaml.cs">
+      <DependentUpon>ClockFlowLayoutPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ClockGroupListView.xaml.cs">
+      <DependentUpon>ClockGroupListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ClockMenuItem.xaml.cs">
+      <DependentUpon>ClockMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\ClockToButtonIconPathConverter.cs" />
+    <Compile Include="WPF\ClockUserControlPlaceholder.xaml.cs">
+      <DependentUpon>ClockUserControlPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ClockUserControl.xaml.cs">
+      <DependentUpon>ClockUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ClockValueScreen.xaml.cs">
+      <DependentUpon>ClockValueScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ClockWindow.xaml.cs">
+      <DependentUpon>ClockWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\CustomStatusBar.xaml.cs">
+      <DependentUpon>CustomStatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\DataGridScrollExtensions.cs" />
+    <Compile Include="WPF\Converters\DateToDayDateConverter.cs" />
+    <Compile Include="WPF\DragAdorner.cs" />
+    <Compile Include="WPF\DragCheckHandleUserControl.xaml.cs">
+      <DependentUpon>DragCheckHandleUserControl.xaml</DependentUpon>
+    </Compile>
+    <None Include="WPF\DragDropService.cs" />
+    <Compile Include="WPF\Converters\DrawingColorToColorConverter.cs" />
+    <Compile Include="WPF\Converters\DrawingColorToStringConverter.cs" />
+    <Compile Include="ViewModels\FilterVM.cs" />
+    <Compile Include="WPF\LicenseWindow.xaml.cs">
+      <DependentUpon>LicenseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ImportWindow.xaml.cs">
+      <DependentUpon>ImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\InverseBooleanConverter.cs" />
+    <None Include="WPF\ListViewDragDropManager.cs" />
+    <Compile Include="WPF\LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\MouseUtilities.cs" />
+    <Compile Include="WPF\Converters\MultipleSelectedToVisibleConverter.cs" />
+    <Compile Include="WPF\Converters\DarkThemeToActualBackColorConverter.cs" />
+    <Compile Include="WPF\NotifyIconContextMenu.xaml.cs">
+      <DependentUpon>NotifyIconContextMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\RelayCommand.cs" />
+    <Compile Include="WPF\ScrollDataGrid.cs" />
+    <Compile Include="WPF\SelectionHeader.xaml.cs">
+      <DependentUpon>SelectionHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TimeOutWindowVM.cs" />
+    <Compile Include="ViewModels\SettingDataVM.cs" />
+    <Compile Include="WPF\Converters\TodayDateStringToBooleanConverter.cs" />
+    <Compile Include="WPF\Converters\UserBackColorToActualBackColor.cs" />
+    <Compile Include="WPF\Converters\DarkThemeToActualBorderColorConverter.cs" />
+    <Compile Include="WPF\Converters\UserBackColorToActualBorderColorConverter.cs" />
+    <Compile Include="WPF\ViewsGrid.xaml.cs">
+      <DependentUpon>ViewsGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\WatermarkAdorner.cs" />
+    <Compile Include="WPF\WatermarkService.cs" />
+    <None Include="Views\ImageFileChooser.resx">
+      <DependentUpon>ImageFileChooser.cs</DependentUpon>
+    </None>
+    <None Include="Views\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ToolStrip-related\ZoomToolStrip.resx">
+      <DependentUpon>ZoomToolStrip.cs</DependentUpon>
+    </None>
+    <None Include="cs-timed_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="02.10.2018 final.ico" />
+    <Content Include="chimes.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\zoom reset icon based on zoom out from oxygen icons.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-stop.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-help-about.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Categories-system-help.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-go-top.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-save.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-open.ico" />
+    <Resource Include="Resources\naudio-logo.png" />
+    <Resource Include="Resources\xceed-wpf-toolkit-logo.png" />
+    <Resource Include="Resources\windows-7-logo.png" />
+    <Resource Include="Resources\pictograma folder cu continut.png" />
+    <Resource Include="Resources\pictograma folder 2.png" />
+    <Resource Include="Resources\show-all-icon.png" />
+    <Resource Include="Resources\icons8-move-50.png" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-find.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico" />
+    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico" />
+    <Resource Include="Resources\multiselect.ico" />
+    <None Include="Resources\set_current_value.ico" />
+    <None Include="Resources\remove_custom_color.ico" />
+    <None Include="Resources\folder-menuitem.ico" />
+    <None Include="Resources\path1092 16.png" />
+    <None Include="Resources\path1129.png" />
+    <None Include="Resources\image990.png" />
+    <None Include="Resources\Iconsmind-Outline-ID-2.ico" />
+    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-edit.ico" />
+    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico" />
+    <None Include="Resources\path1092.png" />
+    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-window-new.ico" />
+    <Resource Include="Resources\rect833.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Status-audio-volume-muted.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Status-audio-volume-high.ico" />
+    <Resource Include="Resources\timers filter %28clepsidra 4%29.ico" />
+    <Resource Include="Resources\on filter.ico" />
+    <Resource Include="Resources\off filter.ico" />
+    <Resource Include="Resources\folder.ico" />
+    <None Include="Resources\desen pictograma 09.12.2018.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-go-first-view.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-arrow-right.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-rename.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-application-exit.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-new.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-project-development-close-all.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-start - disabled.ico" />
+    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-delete - disabled.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Categories-preferences-system.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-clear-locationbar-rtl.ico" />
+    <Resource Include="Resources\Apps-oxygen-icon.png" />
+    <None Include="Resources\fill-columns-icon.png" />
+    <Resource Include="Resources\data-grid-view.png" />
+    <Resource Include="Resources\horizontal-split-view.png" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-view-list-icons.ico" />
+    <Resource Include="Resources\vertical-split-view.png" />
+    <Content Include="Resources\Help.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-zoom-out.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-zoom-in.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\alarms filter %28alarm clock 5%29.ico" />
+    <Resource Include="Resources\02.10.2018 final.ico" />
+    <Content Include="Resources\Apps-clock-icon.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-list-add.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-window-close.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-pause.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\wpf-timespanpicker\wpf-timespanpicker.csproj">
+      <Project>{f2a04701-ae77-474c-b7bf-d38ec8ef4c9d}</Project>
+      <Name>wpf-timespanpicker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AppResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prompt dialogs\DateTimePromptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prompt dialogs\TimeSpanPromptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prompt dialogs\TextPromptWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Light.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\AudioFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\BeepsDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ClockDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ClockFlowLayoutPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ClockGroupListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\AudioFileMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\ClockMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\CustomSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\DropOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Graphics\AlarmClockIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\Graphics\ClepsidraIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ImageFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\KeepOnTopMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SmallClockUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\ClockUserControlPlaceholder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\ClockUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ClockValueScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ClockWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\CustomSplitButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\CustomStatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\DragCheckHandleUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <None Include="WPF\Graphics\ShowAllIcon.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <Page Include="WPF\LicenseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ImportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\LogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\MyDataGridStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\NotifyIconContextMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\NotifyIconPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\RecentAudioFilesContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\RecentFilesContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\RecentFilesMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SelectionHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\TimeOutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prompt dialogs\UniformGridSizePrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ViewsGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ZoomToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+  </Target>
+</Project>

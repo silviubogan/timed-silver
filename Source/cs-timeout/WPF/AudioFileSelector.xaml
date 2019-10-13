@@ -1,0 +1,17 @@
+﻿<ContentControl x:Class="cs_timed_silver.AudioFileSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="26.758" d:DesignWidth="303.519"
+             Loaded="UserControl_Loaded"
+             AllowDrop="True"
+             Initialized="UserControl_Initialized"
+             PreviewDragEnter="UserControl_PreviewDragEnter"
+             PreviewDragLeave="UserControl_PreviewDragLeave"
+             PreviewDrop="UserControl_PreviewDrop"
+             
+             Template="{DynamicResource AudioFileSelectorTemplate}">
+</ContentControl>

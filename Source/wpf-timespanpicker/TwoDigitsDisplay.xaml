@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="wpf_timespanpicker.TwoDigitsDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wpf_timespanpicker"
+             mc:Ignorable="d" 
+             d:DesignHeight="334.5" d:DesignWidth="575">
+    <UserControl.Resources>
+        <!--<Style x:Key="myStyle" TargetType="{x:Type Label}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Grid>
+                            --><!-- to make the Label focusable: --><!--
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF760D0D"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF675A88"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" BorderBrush="#FF5A8876" BorderThickness="3" Background="#FFF4EDED"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+        <DropShadowEffect x:Key="MyDropShadowEffect" Color="Gray" BlurRadius="2"
+                                          Opacity="1" ShadowDepth="0"/>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+          ClipToBounds="True">
+        <Viewbox Name="vb" Margin="0">
+            <StackPanel Orientation="Horizontal">
+                <Label Name="tb1"
+                       Padding="0" FontFamily="Segoe" Content="0" Effect="{StaticResource MyDropShadowEffect}"/>
+                <Label Name="tb2"
+                       Padding="1,0,0,0" FontFamily="Segoe" Content="0"
+                        Effect="{StaticResource MyDropShadowEffect}"/>
+            </StackPanel>
+     
+            <!--Margin="0,-2,0,0"-->
+        </Viewbox>
+        <!--LineHeight="12"-->
+        <!--LineStackingStrategy="BlockLineHeight"-->
+    </Grid>
+</UserControl>

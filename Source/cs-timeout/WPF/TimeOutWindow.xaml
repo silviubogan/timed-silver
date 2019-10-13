@@ -1,0 +1,195 @@
+﻿<Window x:Class="cs_timed_silver.TimeOutWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+        xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
+        xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="728" d:DesignWidth="1024"
+        WindowStyle="None" AllowsTransparency="True"
+        Topmost="True" WindowStartupLocation="Manual"
+        WindowState="Maximized"
+        Loaded="Window_Loaded"
+        Unloaded="Window_Unloaded"
+        Closing="Window_Closing"
+        IsVisibleChanged="Window_IsVisibleChanged">
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Offset="0.6" Color="LightGreen"/>
+            <GradientStop Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonBaseControlTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextElement.Foreground="Black"/>
+                <!--  TextElement.Foreground="{Binding RelativeSource={RelativeSource Self}, Path=(TextElement.Foreground)}"-->
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFFFFFFF"/>
+                    <!--<Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>-->
+                    <!--<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Black"/>-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFEEEEEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <!--<Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>-->
+                <!--<Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="Foreground" Value="#FF838383"/>
+                </Trigger>-->
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Template" Value="{StaticResource ButtonBaseControlTemplate1}"/>
+            <!-- 
+            this.btnMinimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGreen;
+            
+            use bindings instead of code-behind
+            -->
+        </Style>
+
+        <Style TargetType="AccessText">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="1" Opacity="1" ShadowDepth="2" Color="White" RenderingBias="Quality"></DropShadowEffect>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="4" Name="MyRootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel HorizontalAlignment="Center"
+                    Orientation="Vertical" Grid.ColumnSpan="2" Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                <local:AlarmClockIcon Height="150" RenderTransformOrigin="0.5 0.5" x:Name="MyAlarmClockIcon" Visibility="Collapsed">
+                </local:AlarmClockIcon>
+                <local:ClepsidraIcon Height="150" x:Name="MyClepsidraIcon" Visibility="Collapsed">
+                </local:ClepsidraIcon>
+                <TextBlock FontSize="75" Name="LblFirst"
+                       Foreground="White" VerticalAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="1" Opacity="0.4"></DropShadowEffect>
+                    </TextBlock.Effect>
+                Time out!
+                </TextBlock>
+            </StackPanel>
+            <TextBlock TextAlignment="Center"
+                       Foreground="White"
+                       FontSize="20"
+                       Name="TbElapsed">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="3"></DropShadowEffect>
+                </TextBlock.Effect>
+                Ringed for 00:00:00
+            </TextBlock>
+            <TextBlock TextAlignment="Center"
+                       Foreground="Blue"
+                       FontSize="20">
+                <LineBreak></LineBreak>
+                <TextBlock Name="TbTag">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="2"></DropShadowEffect>
+                    </TextBlock.Effect>
+                    Label
+                </TextBlock>
+                <LineBreak></LineBreak>
+            </TextBlock>
+
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="BtnResetAndClose" Click="BtnResetAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-go-first-view.ico" Height="150" HorizontalAlignment="Center"/>
+                        <AccessText HorizontalAlignment="Center" Name="BtnResetAndCloseAccessText">_Reset &amp; Close</AccessText>
+                    </StackPanel>
+                </Button>
+                <Button Name="BtnRestartAndClose" Grid.Column="1" Click="BtnRestartAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-arrow-right.ico" Height="150" HorizontalAlignment="Center"/>
+                        <AccessText HorizontalAlignment="Center" Name="BtnRestartAndCloseAccessText">R_estart &amp; Close</AccessText>
+                    </StackPanel>
+                </Button>
+                <Button Name="BtnBack" Grid.Column="2" Click="BtnBack_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-application-exit.ico" Height="150"
+                               HorizontalAlignment="Center"/>
+                        <AccessText HorizontalAlignment="Center" Name="BtnBackAccessText">_Close without Reset</AccessText>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Column="1" HorizontalAlignment="Right"
+              VerticalAlignment="Top"
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Name="BtnMinimize" Click="BtnMinimize_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="3" Color="White"></DropShadowEffect>
+                </Button.Effect>
+                <AccessText>_Minimize</AccessText>
+            </Button>
+            <Button Grid.Row="1" Name="BtnMute" Click="BtnMute_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                <StackPanel Orientation="Vertical">
+                    <Image Name="BtnMuteImage" Height="100"
+                               HorizontalAlignment="Center"
+                           Source="/Resources/Oxygen-Icons.org-Oxygen-Status-audio-volume-high.ico"/>
+                    <AccessText HorizontalAlignment="Center" Name="BtnMuteAccessText">M_ute</AccessText>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+              Background="#2200FFFF">
+            <StackPanel Orientation="Horizontal">
+                <wpf:TimeSpanPicker Width="250" Height="100" Name="MyTimeSpanPicker"></wpf:TimeSpanPicker>
+                
+                <xceed:DateTimePicker Name="MyDateTimePicker" FontSize="45"/>
+
+                <TextBlock FontSize="50" Foreground="White" VerticalAlignment="Center" Margin="25">➱</TextBlock>
+                <Button Name="BtnSnooze" Click="BtnSnooze_Click" Padding="25" FontSize="45" Template="{DynamicResource GlassButton}">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="3" Color="White"></DropShadowEffect>
+                    </Button.Effect>
+                    <AccessText>_Snooze</AccessText>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
+
+    

@@ -1,0 +1,220 @@
+﻿<ResourceDictionary x:Class="cs_timed_silver.AppResources"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Theme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- not sure if these 2 are used: -->
+    <local:ClockToButtonIconPathConverter x:Key="ClockToBtn"/>
+    <local:PlayingBoolToBtnIconConverter x:Key="PlayingBoolToBtnIconConv"/>
+
+    
+    
+    
+    
+    
+    
+    
+    <ControlTemplate x:Key="GlassButton" TargetType="{x:Type Button}">
+        <ControlTemplate.Resources>
+            <Storyboard x:Key="Timeline1">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="glow" Storyboard.TargetProperty="(UIElement.Opacity)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="Timeline2">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="glow" Storyboard.TargetProperty="(UIElement.Opacity)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ControlTemplate.Resources>
+        <Border BorderBrush="#FFFFFFFF" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4" Padding="5,5,5,5">
+            <Border x:Name="border" Background="#7F666666" BorderBrush="#FF000000" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4" Padding="5,5,5,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.507*"/>
+                        <RowDefinition Height="0.493*"/>
+                    </Grid.RowDefinitions>
+                    <Border Opacity="0" HorizontalAlignment="Stretch" x:Name="glow" Width="Auto" Grid.RowSpan="2" CornerRadius="4,4,4,4">
+                        <Border.Background>
+                            <RadialGradientBrush>
+                                <RadialGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.702" ScaleY="2.243"/>
+                                        <SkewTransform AngleX="0" AngleY="0"/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform X="-0.368" Y="-0.152"/>
+                                    </TransformGroup>
+                                </RadialGradientBrush.RelativeTransform>
+                                <GradientStop Color="#B28DFFFF" Offset="0"/>
+                                <GradientStop Color="#008DFFFF" Offset="1"/>
+                            </RadialGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Grid.RowSpan="2"/>
+                    <Border HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="shine" Width="Auto" CornerRadius="4,4,0,0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.494,0.889" StartPoint="0.494,0.028">
+                                <GradientStop Color="#99FFFFFF" Offset="0"/>
+                                <GradientStop Color="#33FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Border>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" TargetName="shine" Value="0.4"/>
+                <Setter Property="Background" TargetName="border" Value="#CC000000"/>
+                <Setter Property="Visibility" TargetName="glow" Value="Hidden"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource Timeline1}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard x:Name="Timeline2_BeginStoryboard" Storyboard="{StaticResource Timeline2}"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+
+    <DrawingImage x:Key="alarmClockDrawingImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36.806789 H33.597134 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="1,0,0,1,-101.83764,-36.514352">
+                    <DrawingGroup Opacity="1" Transform="0.338719938676752,0.94088724252315,-0.94088724252315,0.338719938676752,132.75252280926,-72.3757452009168">
+                        <GeometryDrawing Brush="#FF000000">
+                            <GeometryDrawing.Geometry>
+                                <EllipseGeometry RadiusX="0.2172" RadiusY="0.2172" Center="105.5548,37.0804" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="#FFFFFF9A" Geometry="F1 M33.597134,36.806789z M0,0z M110.17472,41.700107C110.70467,42.855351,110.70589,42.775499,111.18093,43.641463 M106.4996,43.863379C106.83998,44.802593,107.05942,45.560205,107.58482,46.890097 M112.18071,41.172014C109.25112,41.4773 107.31874,43.468245 105.04092,44.807741 98.437429,38.754716 110.49634,31.828768 112.18065,41.172015">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="#FF0D0000" Thickness="0.065" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="#FFFFFF00" Geometry="F1 M33.597134,36.806789z M0,0z M106.21116,37.831134C104.01679,39.758753 104.83189,44.195869 109.27296,41.918482 109.83046,41.594798 111.41186,41.31947 112.00266,41.022635 112.09826,40.974575 112.00466,40.771273 111.99216,40.681033 111.93696,40.292297 111.50015,39.258935 111.09351,38.639692 110.79093,38.178913 110.29859,37.947053 110.15881,37.78513 109.38117,36.884307 107.2075,37.197226 106.21112,37.83113z" />
+                    </DrawingGroup>
+                    <DrawingGroup Opacity="1" Transform="0.986522139126254,-0.163627836915851,0.163627836915851,0.986522139126254,-6.47963356638495,19.7705126390646">
+                        <GeometryDrawing Brush="#FF000000">
+                            <GeometryDrawing.Geometry>
+                                <EllipseGeometry RadiusX="0.2172" RadiusY="0.2172" Center="105.5548,37.0804" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="#FFFFFF9A" Geometry="F1 M33.597134,36.806789z M0,0z M110.17472,41.700107C110.70467,42.855351,110.70589,42.775499,111.18093,43.641463 M106.4996,43.863379C106.83998,44.802593,107.05942,45.560205,107.58482,46.890097 M112.18071,41.172014C109.25112,41.4773 107.31874,43.468245 105.04092,44.807741 98.437429,38.754716 110.49634,31.828768 112.18065,41.172015">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="#FF0D0000" Thickness="0.065" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="#FFFFFF00" Geometry="F1 M33.597134,36.806789z M0,0z M106.21116,37.831134C104.01679,39.758753 104.83189,44.195869 109.27296,41.918482 109.83046,41.594798 111.41186,41.31947 112.00266,41.022635 112.09826,40.974575 112.00466,40.771273 111.99216,40.681033 111.93696,40.292297 111.50015,39.258935 111.09351,38.639692 110.79093,38.178913 110.29859,37.947053 110.15881,37.78513 109.38117,36.884307 107.2075,37.197226 106.21112,37.83113z" />
+                    </DrawingGroup>
+                    <GeometryDrawing Brush="#FF964200" Geometry="F1 M33.597134,36.806789z M0,0z M118.07029,42.128013C117.45849,42.271733 117.8062,38.35178 117.8062,38.35178 117.8062,38.35178 116.32229,38.32804 116.31472,37.394671 116.30472,36.253379 120.56024,36.308696 120.55693,37.321761 120.55293,38.357645 119.07643,38.271514 119.07643,38.271514 119.07643,38.271514 119.30207,41.48866 119.22088,41.882975 118.96168,42.317625 118.51467,42.130967 118.07029,42.128013z">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.0719329" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FFBDFFC9">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.29999995" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter">
+                                <Pen.Brush>
+                                    <SolidColorBrush Color="#FFFF8100" Opacity="0.78571424" />
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <EllipseGeometry RadiusX="15.6388" RadiusY="15.6388" Center="118.4483,57.0324" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M118.44829,42.960313L118.44829,46.000503">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M33.597134,36.806789z M0,0z M118.44336,47.400391C118.25932,47.402791,118.24588,47.554251,118.24886,47.738281L118.24886,56.748047 112.11914,56.748047C111.6514,56.722307,111.6514,57.437846,112.11914,57.412109L118.64762,57.412109 118.64762,47.738281C118.65062,47.55042,118.63122,47.39734,118.44336,47.400391z" />
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M119.11991,45.86179C120.0171,49.022973 118.30904,47.143567 119.51705,48.273063 121.99221,50.881628 121.9326,53.075027 126.1968,54.988467 130.06744,58.128986 128.71973,59.975492 132.64235,57.154379 132.15146,52.923052 131.99596,52.189835 129.35002,47.015207 126.1968,44.842631 122.24928,43.104374 118.50781,42.75 119.04036,43.815104 118.58731,44.796686 119.11991,45.86179z">
+                        <GeometryDrawing.Brush>
+                            <SolidColorBrush Color="#FFFFFFFF" Opacity="0.79299999" />
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF000000">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF27352A" Thickness="0.065" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <EllipseGeometry RadiusX="0.4271" RadiusY="0.4271" Center="118.441,57.1392" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M111.35126,44.861959L112.87135,47.49484">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M106.15587,50.057348L108.78875,51.577441">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M106.15587,64.251408L108.78875,62.73132">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M111.35126,69.446796L112.87135,66.813921">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M125.54532,69.446796L124.02523,66.813921">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M130.74071,64.251409L128.10783,62.731319">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M130.74071,50.057348L128.10783,51.57744">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M125.54532,44.86196L124.02523,47.494839">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M132.64235,57.154379L129.60217,57.154379">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M104.25423,57.154379L107.29441,57.154379">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M33.597134,36.806789z M0,0z M118.44829,71.34844L118.44829,68.308257">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF000000" Thickness="0.26458332" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+
+
+</ResourceDictionary>

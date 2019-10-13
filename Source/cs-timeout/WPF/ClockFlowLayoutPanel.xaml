@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="cs_timed_silver.ClockFlowLayoutPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
+             xmlns:gdd="urn:gong-wpf-dragdrop"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="190" d:DesignWidth="345"
+             Name="MyUserControl"
+             Focusable="True"
+             AllowDrop="True"
+             
+             Loaded="MyUserControl_Loaded"
+             Initialized="MyUserControl_Initialized"
+             DragLeave="UserControl_DragLeave"
+             PreviewMouseWheel="MyUserControl_MouseWheel">
+    <UserControl.Resources>
+        <local:StringToStringListConverter x:Key="StringToStringList"/>
+
+        <!--<DataTemplate x:Key="ItemTemplate">
+            <local:ClockUserControl DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelectedTemplate">
+            <TextBlock Text="{Binding Tag}" Foreground="Blue" />
+        </DataTemplate>-->
+
+        <!--<Style TargetType="{x:Type ListBoxItem}" x:Key="ContainerStyle">
+            <Setter Property="ContentTemplate" Value="{StaticResource ItemTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="ContentTemplate" Value="{StaticResource SelectedTemplate}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+
+        <Style TargetType="{x:Type local:ClockUserControl}" x:Key="CustomClockUserControlStyle">
+            <EventSetter Event="PreviewMouseDown"
+                        Handler="ClockUserControl_PreviewMouseDown"/>
+            <EventSetter Event="MouseMove"
+                        Handler="ClockUserControl_MouseMove"/>
+            <EventSetter Event="MouseUp"
+                        Handler="ClockUserControl_MouseUp"/>
+            <EventSetter Event="Drop"
+                        Handler="ClockUserControl_Drop"/>
+
+            <Setter Property="AllowDrop" Value="True"/>
+
+            <Style.Triggers>
+                <!--<Trigger Property="local:ListViewItemDragState.IsBeingDragged" Value="True">
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+                <Trigger Property="local:ListViewItemDragState.IsUnderDragCursor" Value="True">
+                    <Setter Property="Background" Value="Gray" />
+                </Trigger>-->
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <local:SelectionHeader Grid.Row="0"
+                               HorizontalAlignment="Stretch"
+                               Visibility="Collapsed"
+            Clocks="{Binding Path=MyClocks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ClockFlowLayoutPanel}}"
+            x:Name="MySelectionHeader"/>
+
+        <Grid Grid.Row="1" AllowDrop="True">
+            <!--ItemContainerStyle="{StaticResource ContainerStyle}"-->
+            <ScrollViewer Name="MyScrollViewer" AllowDrop="True"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                DragOver="MyScrollViewer_DragOver"
+                Drop="MyScrollViewer_Drop"
+                          ScrollChanged="MyScrollViewer_ScrollChanged"
+                          CanContentScroll="False"
+            >
+                <!--CanContentScroll="False"
+                local:DragDropService.ScrollWhileDragging="True"
+                AllowDrop="True"-->
+                <ItemsControl ItemsSource="{Binding Path=VMs, Mode=OneWay}" Name="MyItemsControl"
+                            AllowDrop="True"
+                              
+                              gdd:DragDrop.IsDragSource="True"
+                              gdd:DragDrop.IsDropTarget="True"
+                              gdd:DragDrop.DropHandler="{Binding .}"
+                              gdd:DragDrop.UseDefaultDragAdorner="False"
+                              
+                              HorizontalContentAlignment="Stretch" 
+                              VerticalContentAlignment="Stretch"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                    <gdd:DragDrop.DragAdornerTemplate>
+                        <DataTemplate DataType="{x:Type local:ClockVM}">
+                            <!--<local:ClockUserControl Width="100" Height="100"
+                                ClockTag="{Binding Path=Tag, Mode=OneTime}"
+                                ClockID="{Binding Path=ID, Mode=OneTime}"
+                                ZoomFactor="{Binding ElementName=MyUserControl, Path=ZoomFactor, Mode=OneTime}"
+                                RoundedCorners="{Binding ElementName=MyUserControl, Path=RoundedCorners, Mode=OneTime}"
+                                DarkTheme="{Binding ElementName=MyUserControl, Path=DarkTheme, Mode=OneTime}"
+                                ClockStyle="{Binding Path=Style, Mode=OneTime}"
+                                Style="{StaticResource CustomClockUserControlStyle}">
+                            </local:ClockUserControl>-->
+                            <local:ClockUserControlPlaceholder
+                                ZoomFactor="{Binding ElementName=MyUserControl, Path=ZoomFactor, Mode=OneTime}"
+                                RoundedCorners="{Binding ElementName=MyUserControl, Path=RoundedCorners, Mode=OneTime}"
+                                DarkTheme="{Binding ElementName=MyUserControl, Path=DarkTheme, Mode=OneTime}"
+                                
+                                Text="1"
+                                Details="{Binding Tag, Converter={StaticResource StringToStringList}}">
+                            </local:ClockUserControlPlaceholder>
+                        </DataTemplate>
+                    </gdd:DragDrop.DragAdornerTemplate>
+                    
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                       AllowDrop="True"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:ClockUserControl
+                                ClockTag="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ClockID="{Binding Path=ID, Mode=OneWay}"
+                                ZoomFactor="{Binding ElementName=MyUserControl, Path=ZoomFactor, Mode=OneWay}"
+                                RoundedCorners="{Binding ElementName=MyUserControl, Path=RoundedCorners, Mode=OneWay}"
+                                DarkTheme="{Binding ElementName=MyUserControl, Path=DarkTheme, Mode=OneWay}"
+                                ClockStyle="{Binding Path=Style, Mode=OneWay}"
+                                Style="{StaticResource CustomClockUserControlStyle}"
+                                x:Name="MyClockUserControl">
+                            </local:ClockUserControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

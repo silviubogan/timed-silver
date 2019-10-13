@@ -1,0 +1,96 @@
+﻿<DataGrid x:Class="cs_timed_silver.BeepsDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="168.272" d:DesignWidth="364.023"
+          AutoGenerateColumns="False"
+          SelectionMode="Extended"
+          SelectionUnit="FullRow"
+          InitializingNewItem="DataGrid_InitializingNewItem"
+          CanUserAddRows="True"
+          CanUserDeleteRows="True"
+          Style="{DynamicResource DataGridDarkStyle}"
+          >
+    <DataGrid.Resources>
+        <Style TargetType="DataGrid" x:Key="DataGridDarkStyle">
+            <Setter Property="Background" Value="Gray"/>
+        </Style>
+        
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridColumnHeaderDarkStyle">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="TextElement.Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+        </Style>
+
+        <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Padding" Value="-2"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="ToolTip" 
+                Value="{Binding RelativeSource={RelativeSource Self},
+                  Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </DataGrid.Resources>
+
+    <DataGrid.ContextMenu>
+        <ContextMenu>
+            <MenuItem Name="MiDeleteSelectedRows" Click="MiDeleteSelectedRows_Click" Header="_Delete selected row/s">
+                <MenuItem.Icon>
+                    <Image Height="16" Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+    </DataGrid.ContextMenu>
+    <DataGrid.RowValidationRules>
+        <local:BeepValidationRule ValidationStep="UpdatedValue"/>
+    </DataGrid.RowValidationRules>
+    <DataGrid.RowValidationErrorTemplate>
+        <ControlTemplate>
+            <Grid Margin="0,-2,0,-2"
+            ToolTip="{Binding RelativeSource={RelativeSource
+            FindAncestor, AncestorType={x:Type DataGridRow}},
+            Path=(Validation.Errors)[0].ErrorContent}">
+                <Ellipse StrokeThickness="0" Fill="Red" 
+              Width="{TemplateBinding FontSize}" 
+              Height="{TemplateBinding FontSize}" />
+                <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+              FontWeight="Bold" Foreground="White" 
+              HorizontalAlignment="Center"  />
+            </Grid>
+        </ControlTemplate>
+    </DataGrid.RowValidationErrorTemplate>
+    <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding MsBeforeRinging, ValidatesOnExceptions=True}" EditingElementStyle="{StaticResource errorStyle}" CanUserSort="False" Header="Ms Before Ringing" Width="*">
+            <DataGridTextColumn.HeaderStyle>
+                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderDarkStyle}">
+                    <Setter Property="ToolTip" Value="Milliseconds before the clock starts ringing when the beep will start to sound."/>
+                </Style>
+            </DataGridTextColumn.HeaderStyle>
+        </DataGridTextColumn>
+
+        <DataGridTextColumn Binding="{Binding BeepDuration, ValidatesOnExceptions=True}" EditingElementStyle="{StaticResource errorStyle}" CanUserSort="False" Header="Beep Duration Is Ms" Width="*">
+            <DataGridTextColumn.HeaderStyle>
+                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderDarkStyle}">
+                    <Setter Property="ToolTip" Value="The duration of the beep measured in milliseconds."/>
+                </Style>
+            </DataGridTextColumn.HeaderStyle>
+        </DataGridTextColumn>
+
+        <DataGridTextColumn Binding="{Binding BeepFrequency, ValidatesOnExceptions=True}" EditingElementStyle="{StaticResource errorStyle}" CanUserSort="False" Header="Beep Frequency" Width="*">
+            <DataGridTextColumn.HeaderStyle>
+                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderDarkStyle}">
+                    <Setter Property="ToolTip" Value="The frequency of the beep, ranging from 37 to 32767 hertz."/>
+                </Style>
+            </DataGridTextColumn.HeaderStyle>
+        </DataGridTextColumn>
+    </DataGrid.Columns>
+</DataGrid>

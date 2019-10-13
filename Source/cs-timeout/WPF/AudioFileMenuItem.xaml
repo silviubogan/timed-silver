@@ -1,0 +1,20 @@
+﻿<MenuItem x:Class="cs_timed_silver.AudioFileMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200"
+          
+              Loaded="MenuItem_Loaded"
+              Unloaded="MenuItem_Unloaded"
+          
+              Template="{DynamicResource AudioMenuItemTemplate}">
+    <MenuItem.CommandBindings>
+        <CommandBinding Command="local:AudioFileMenuItem.ToggleCommand"
+                        Executed="Executed_Toggle"/>
+        <CommandBinding Command="local:AudioFileMenuItem.OpenCommand"
+                        Executed="Executed_Open"/>
+    </MenuItem.CommandBindings>
+</MenuItem>

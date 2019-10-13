@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="cs_timed_silver.ClockValueScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             xmlns:xwpf="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="MyUserControl"
+             DataContext="{Binding Mode=OneWay}">
+
+    <UserControl.Resources>
+        <local:ClockDataToClockTypeConverter x:Key="ClockToType"/>
+        <local:InverseBooleanConverter x:Key="InverseBoolCvt"/>
+        <local:DateToBoolIsInPastConverter x:Key="DateToBoolIsInPastConv"/>
+
+        <ControlTemplate x:Key="timeSpanTemplate">
+            <wpf:TimeSpanPicker
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Margin="0,0,7,0"
+                Loaded="MyTimeSpanPicker_Loaded"
+                DataContext="{Binding Mode=OneWay}"
+                IsEnabled="{Binding Path=IsActive,
+                    UpdateSourceTrigger=PropertyChanged,
+                    Converter={StaticResource InverseBoolCvt},
+                 Mode=OneWay}"
+                Value="{Binding Path=CurrentValue,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged}"/>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="dateTimeTemplate">
+            <Viewbox>
+                <xwpf:DateTimePicker Name="MyDateTimePicker"
+                    Value="{Binding Path=CurrentValue,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged}"
+                    Loaded="DateTimePicker_Loaded">
+                </xwpf:DateTimePicker>
+            </Viewbox>
+
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding ElementName=MyDateTimePicker, Path=Value, Converter={StaticResource DateToBoolIsInPastConv}}" Value="True">
+                    <Setter TargetName="MyDateTimePicker" Property="Background" Value="LightPink"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <UserControl.Style>
+        <Style TargetType="{x:Type local:ClockValueScreen}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ClockType, Mode=OneWay}"
+                             Value="Timer">
+                    <Setter Property="Template" Value="{StaticResource timeSpanTemplate}"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Path=ClockType, Mode=OneWay}"
+                             Value="Alarm">
+                    <Setter Property="Template" Value="{StaticResource dateTimeTemplate}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+</UserControl>

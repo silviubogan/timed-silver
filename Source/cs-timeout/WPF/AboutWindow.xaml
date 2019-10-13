@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:cs_timed_silver"
+    x:Class="cs_timed_silver.AboutWindow"
+        mc:Ignorable="d"  
+        Width="448" Height="200" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+    
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+    
+        Style="{DynamicResource AboutWindowStyle}">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:AboutWindow.NavigateCommand}"
+                        CanExecute="CommandBinding_CanExecute"
+                        Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+</Window>

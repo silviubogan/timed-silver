@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="cs_timed_silver.SmallClockUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+             xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
+             xmlns:diag="clr-namespacse:System.Diagnostics;assembly=WindowsBase"
+             mc:Ignorable="d" 
+             Name="MyClockUC"
+             d:DesignHeight="41.3" d:DesignWidth="261.2"
+             PreviewMouseDoubleClick="MyClockUC_MouseDoubleClick">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="DarkThemeNormalBackBrush" Color="#ff555555"/>
+        <SolidColorBrush x:Key="LightThemeNormalBackBrush" Color="White"/>
+        <SolidColorBrush x:Key="DarkThemeActiveBackBrush" Color="DarkGreen"/>
+        <SolidColorBrush x:Key="LightThemeActiveBackBrush" Color="Yellow"/>
+
+        <SolidColorBrush x:Key="FocusedBorderBrush" Color="Yellow"/>
+        <SolidColorBrush x:Key="CheckedBorderBrush" Color="Purple"/>
+        <SolidColorBrush x:Key="DarkThemeBorderBrush" Color="White"/>
+        <SolidColorBrush x:Key="LightThemeBorderBrush" Color="DarkGray"/>
+
+        <local:BoolToInvisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <local:ClockToButtonIconPathConverter x:Key="ClockToBtn"/>
+        <local:ClockDataToClockTypeConverter x:Key="ClockToType"/>
+        <local:UserBackColorToActualBorderColorConverter
+            FocusedBrush="{StaticResource FocusedBorderBrush}"
+            CheckedBrush="{StaticResource CheckedBorderBrush}"
+            DarkThemeBrush="{StaticResource DarkThemeBorderBrush}"
+            LightThemeBrush="{StaticResource LightThemeBorderBrush}"
+            x:Key="ClockToBorderConv"/>
+
+        <Style x:Key="darkTheme">
+            <Setter Property="Control.Foreground" Value="White"/>
+            <Setter Property="Grid.Background" Value="#FF555555"/>
+        </Style>
+        <Style x:Key="lightTheme">
+            <Setter Property="Control.Foreground" Value="Black"/>
+            <Setter Property="Grid.Background" Value="LightCyan"/>
+        </Style>
+
+        <Style x:Key="darkBorderTheme">
+        </Style>
+        <Style x:Key="lightBorderTheme">
+        </Style>
+
+        <Style x:Key="darkTextBoxTheme">
+            <Setter Property="TextBox.Background" Value="Black"/>
+            <Setter Property="TextBox.Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="TextBox.IsFocused" Value="True">
+                    <Setter Property="TextBox.BorderBrush" Value="Blue"/>
+                </Trigger>
+                <Trigger Property="TextBox.IsFocused" Value="False">
+                    <Setter Property="TextBox.BorderBrush" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="lightTextBoxTheme">
+            <Setter Property="TextBox.Background" Value="White"/>
+            <Setter Property="TextBox.Foreground" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="TextBox.IsFocused" Value="True">
+                    <Setter Property="TextBox.BorderBrush" Value="Blue"/>
+                </Trigger>
+                <Trigger Property="TextBox.IsFocused" Value="False">
+                    <Setter Property="TextBox.BorderBrush" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="MySecondGridStyle">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightBlue"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <local:FilterClocksByTypeConverter x:Key="FilterClocksByTypeConv"/>
+    </UserControl.Resources>
+    <UserControl.Visibility>
+        <Binding Path="." Converter="{StaticResource FilterClocksByTypeConv}"
+                 ConverterParameter="Timer">
+        </Binding>
+    </UserControl.Visibility>
+    <Grid ClipToBounds="True" Name="MySecondGrid" Style="{StaticResource MySecondGridStyle}">
+        <!--<Grid.Background>
+            <MultiBinding Converter="{StaticResource UserToActualColor}">
+                <Binding Path="UserBackColor" Mode="OneWay">
+                </Binding>
+                <Binding Path="IsActive" Mode="OneWay">
+                </Binding>
+                <Binding Path="DarkTheme" RelativeSource="{RelativeSource
+                        Mode=FindAncestor, AncestorType=local:ClockUserControl}"
+                            Mode="OneWay"/>
+            </MultiBinding>
+        </Grid.Background>-->
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <!--<ColumnDefinition Width="Auto"/>-->
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Name="MyImage" Width="30"
+                Source="{Binding Path=IconSource,
+            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                ToolTipService.InitialShowDelay="0"
+                ToolTipService.ShowDuration="2147483647">
+            <Image.ToolTip>
+                <Image Source="{Binding Path=IconSource,
+            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Image.ToolTip>
+        </Image>
+        <Viewbox Grid.Column="1" Width="30">
+            <TextBlock Foreground="#FF2196f3"
+                        Padding="5,5,5,5" Name="MyIDTextBlock"
+                                Text="{Binding Path=ID, Mode=OneWay,
+                        UpdateSourceTrigger=PropertyChanged}"/>
+        </Viewbox>
+
+
+        <TextBox Grid.Column="2"
+                    AcceptsReturn="True" Name="MyTextBox"
+                    TextWrapping="Wrap"
+                    Text="{Binding ElementName=MyClockUC, UpdateSourceTrigger=PropertyChanged,
+            Path=ClockTag, Mode=TwoWay}"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <!--<local:WatermarkService.Watermark>
+                <TextBlock Foreground="Gray" FontStyle="Italic">Type here...</TextBlock>
+            </local:WatermarkService.Watermark>-->
+        </TextBox>
+
+
+        <local:ClockValueScreen Grid.Row="0" Grid.Column="3"
+                                    x:Name="MyClockValueScreen"/>
+
+        <Button Grid.Column="4" Grid.Row="0" Width="30"
+                Margin="0,0,0,0"
+                Command="{Binding MyToggleCommand}">
+            <Image Name="MyToggleButtonImage">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource ClockToBtn}">
+                        <!--<diag:PresentationTraceSources.TraceLevel>
+                            High
+                        </diag:PresentationTraceSources.TraceLevel>-->
+                        <Binding Path="ClockType"
+                                    Mode="OneWay"/>
+                        <Binding Path="IsActive"
+                                    Mode="OneWay"/>
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
+        </Button>
+    </Grid>
+</UserControl>

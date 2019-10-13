@@ -1,0 +1,52 @@
+﻿<Window x:Class="cs_timed_silver.UniformGridSizePrompt"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:cs_timed_silver"
+             mc:Ignorable="d" 
+        Height="133" Width="237"
+             d:DesignHeight="133.623" d:DesignWidth="237.093"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner" WindowState="Normal" ResizeMode="NoResize"
+        Title="Uniform Grid Size"
+        Closing="Window_Closing">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5,5,5,5"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">Rows:</Label>
+
+            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Columns:</Label>
+
+            <xctk:IntegerUpDown Name="MyRowsIntegerUpDown" Value="5" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5"/>
+
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" Name="MyColumnsIntegerUpDown" Value="5"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button IsCancel="True" Click="Button_Click_1">_Cancel</Button>
+            <Button IsDefault="True" Click="Button_Click">_OK</Button>
+        </StackPanel>
+    </Grid>
+</Window>
