@@ -15,7 +15,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="MyDataGridStyles.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate x:Key="ButtonsColumnCellTemplate">
                         <Grid>

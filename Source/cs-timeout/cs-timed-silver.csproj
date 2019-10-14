@@ -95,6 +95,9 @@
     <Reference Include="GongSolutions.WPF.DragDrop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=91f1945125b7a587, processorArchitecture=MSIL">
       <HintPath>..\packages\gong-wpf-dragdrop.2.1.0\lib\net47\GongSolutions.WPF.DragDrop.dll</HintPath>
     </Reference>
+    <Reference Include="HandyControl, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControls.2.4.1\lib\net47\HandyControl.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
@@ -237,6 +240,7 @@
       <DependentUpon>BeepsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\Converters\FilterClocksByTypeConverter.cs" />
+    <Compile Include="WPF\Converters\RootClockUserControlGridActualHeightToInnerGridHeightConverter.cs" />
     <Compile Include="WPF\Converters\StringToStringListConverter.cs" />
     <Compile Include="WPF\CustomSlider.xaml.cs">
       <DependentUpon>CustomSlider.xaml</DependentUpon>
@@ -680,8 +684,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\MyDataGridStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\NotifyIconContextMenu.xaml">
       <SubType>Designer</SubType>

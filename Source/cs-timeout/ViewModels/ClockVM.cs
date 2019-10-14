@@ -32,6 +32,13 @@ namespace cs_timed_silver
             }
         }
 
+        private double _ProgressPercent = double.NaN;
+        public double ProgressPercent
+        {
+            get { return _ProgressPercent; }
+            set { SetProperty(ref _ProgressPercent, value); }
+        }
+
         public bool IsActive
         {
             get
@@ -489,6 +496,16 @@ namespace cs_timed_silver
             {
                 RaisePropertyChanged("IsActive");
             }
+
+            if (ClockType == ClockTypes.Timer && ResetToValue != null && IsActive)
+            {
+                ProgressPercent = TotalSeconds /
+                    ((TimeSpan)ResetToValue).TotalSeconds * 100d;
+            }
+            else
+            {
+                ProgressPercent = 0d;
+            }
         }
 
         public RelayCommand MyToggleCommand { get; set; } = null;
@@ -505,7 +522,7 @@ namespace cs_timed_silver
 
         public override string ToString()
         {
-            return $"{Tag} | {CurrentValue} | {DateTime.Now}";
+            return $"ClockVM: {Tag} | {CurrentValue} | {DateTime.Now}";
         }
 
         ~ClockVM() // TODO: this is never called because of strong event handler references,

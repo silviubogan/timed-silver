@@ -8,19 +8,21 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Theme.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+        <!--<ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>-->
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Styles/ProgressBar.xaml"/>
+        <ResourceDictionary Source="WPF/MyDataGridStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- not sure if these 2 are used: -->
     <local:ClockToButtonIconPathConverter x:Key="ClockToBtn"/>
     <local:PlayingBoolToBtnIconConverter x:Key="PlayingBoolToBtnIconConv"/>
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
     <ControlTemplate x:Key="GlassButton" TargetType="{x:Type Button}">
         <ControlTemplate.Resources>
             <Storyboard x:Key="Timeline1">
