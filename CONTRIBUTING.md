@@ -81,3 +81,7 @@ Someone can take over the issue from the reporter, when:
 - has some sample code
 - has more time/information to assist in the resolution
 - responds to requests by a project developer
+
+## Thank you, [OxyPlot](https://github.com/oxyplot/oxyplot)
+
+Thank you for the lots of ideas copied to this file.
