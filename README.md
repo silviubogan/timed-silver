@@ -97,6 +97,7 @@ I also used other software components and applications to create Timed Silver. S
     * AvalonDock
     * NAudio
     * gong-wpf-dragdrop
+	* [HandyControls](https://github.com/ghost1372/HandyControls)
     * Prism
 
 ## Donate
