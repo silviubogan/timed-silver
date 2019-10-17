@@ -56,7 +56,7 @@ Yes, this may become a platform, about time. No problem about complexity, extens
 
 ## User guidelines
 
-The user documentation is [here](Source/cs-timeout/Docs/Help.md). Please open an issue if you have any question, suggestion etc.
+The user documentation is [here](Source/cs-timeout/Resources/Docs/Help.md). Please open an issue if you have any question, suggestion etc.
 
 ## Contributor guidelines
 
