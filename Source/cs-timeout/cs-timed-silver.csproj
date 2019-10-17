@@ -155,6 +155,8 @@
     <None Include="Interfaces\IClocksViewProvider.cs" />
     <Compile Include="Interfaces\IMultipleViewTypesForm.cs" />
     <Compile Include="MainFormRectangleComputation.cs" />
+    <Compile Include="Markdown.Xaml\Markdown.cs" />
+    <Compile Include="Markdown.Xaml\TextToFlowDocumentConverter.cs" />
     <Compile Include="Models\ClockGroupM.cs" />
     <Compile Include="EventArgs subclasses\ClocksEventArgs.cs" />
     <Compile Include="Models\Computation.cs" />
@@ -202,6 +204,9 @@
     <Compile Include="EventArgs subclasses\PathValidationEventArgs.cs" />
     <Compile Include="EventArgs subclasses\StringEventArgs.cs" />
     <Compile Include="Interfaces\IDateTimeProvider.cs" />
+    <None Include="Resources\Docs\Help.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Views\ImageFileChooser.cs">
       <SubType>UserControl</SubType>
     </None>
@@ -452,6 +457,78 @@
     <Content Include="chimes.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Docs\Images\2019-10-15_15-59-41.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-16_15-35-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-16_15-37-23.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-16_15-39-43.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-16_15-44-22.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-16_15-47-26.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-17_14-51-51.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\2019-10-17_14-53-46.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\screenshot 13.10.2019 2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_15-54-52.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_15-57-23.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_16-02-37.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_16-09-54.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_16-16-04 copy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_16-16-04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-15_16-19-25.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_15-21-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_16-02-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_16-07-40.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_16-10-51.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_16-13-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\Timed_Silver_2019-10-16_16-19-31.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\very-old-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Docs\Images\very-old.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\zoom reset icon based on zoom out from oxygen icons.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-stop.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-help-about.ico" />
@@ -506,9 +583,6 @@
     <Resource Include="Resources\horizontal-split-view.png" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-view-list-icons.ico" />
     <Resource Include="Resources\vertical-split-view.png" />
-    <Content Include="Resources\Help.rtf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-zoom-out.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-zoom-in.ico" />
   </ItemGroup>

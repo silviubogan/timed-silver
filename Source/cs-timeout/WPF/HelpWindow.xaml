@@ -969,6 +969,14 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="NavigationCommands.GoToPage"
+            Executed="PerformGoToPage"
+            CanExecute="CanGoToPage"/>
+    </Window.CommandBindings>
+
     <FlowDocumentReader Name="MyReader"
                         ViewingMode="Scroll" Template="{DynamicResource FlowDocumentReaderControlTemplate1}">
         <FlowDocument>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +26,9 @@ namespace cs_timed_silver
         {
             InitializeComponent();
 
-            var r = new TextRange(MyReader.Document.ContentStart, MyReader.Document.ContentEnd);
+            var d = (FlowDocument)new Markdown.Xaml.TextToFlowDocumentConverter().Convert(File.ReadAllText("Resources\\Docs\\Help.md", Encoding.UTF8), null, null, CultureInfo.InvariantCulture);
 
-            r.Load(
-                new System.IO.FileStream("Resources\\Help.rtf", System.IO.FileMode.Open),
-                DataFormats.Rtf);
+            MyReader.Document = d;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -40,6 +40,16 @@ namespace cs_timed_silver
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void PerformGoToPage(object sender, ExecutedRoutedEventArgs e)
+        {
+            Utils.OpenUrlInDefaultApp((string)e.Parameter);
+        }
+
+        private void CanGoToPage(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

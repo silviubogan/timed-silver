@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Screenshot 13.10.2019](screenshot%2013.10.2019.png)](screenshot%2013.10.2019.png)
+[![Screenshot 14.10.2019](screenshot%2014.10.2019.png)](screenshot%2014.10.2019.png)
 
 [![Screenshot 13.10.2019 2](screenshot%2013.10.2019%202.jpg)](screenshot%2013.10.2019%202.jpg)
 
@@ -56,7 +56,7 @@ Yes, this may become a platform, about time. No problem about complexity, extens
 
 ## User guidelines
 
-Please open an issue if you have any question.
+The user documentation is [here](Source/cs-timeout/Docs/Help.md). Please open an issue if you have any question, suggestion etc.
 
 ## Contributor guidelines
 
@@ -92,6 +92,7 @@ I also used other software components and applications to create Timed Silver. S
 * [icons mind](https://iconsmind.com/)
 * Inkscape
 * Visual Studio
+* [Markdown.Xaml](https://github.com/theunrepentantgeek/Markdown.XAML)
 * other NuGet dependencies
     * Extended WPF Toolkit
     * AvalonDock
