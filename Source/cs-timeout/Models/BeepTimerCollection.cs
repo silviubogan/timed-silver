@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Threading;
 
 namespace cs_timed_silver
@@ -26,9 +21,16 @@ namespace cs_timed_silver
             }
 
             t.Stop();
+
+
+            // tangent beeps are sometimes not played when using Task.Run
+            // (also not played when using the class Thread; see https://stackoverflow.com/a/2751716/258462):
+            //Task.Run(new Action(() =>
+            //{
             Console.Beep(
                 BeepFrequecies[index],
                 BeepDurations[index]);
+            //}));
 
             CheckIfDone();
         }
