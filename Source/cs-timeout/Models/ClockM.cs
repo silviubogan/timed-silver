@@ -684,7 +684,7 @@ namespace cs_timed_silver
 
         public override string ToString()
         {
-            return $"{Tag} | {CurrentValue} | {DateTime.Now}";
+            return $"ClockM {Tag} | {CurrentValue} | {DateTime.Now}";
         }
 
         public bool IsActive
