@@ -9,27 +9,34 @@ namespace cs_timed_silver
 {
     public class Beep : BindableBase
     {
-        protected int _MsBeforeRinging = -1;
+        private int _MsBeforeRinging = -1;
         public int MsBeforeRinging {
             get { return _MsBeforeRinging; }
             set { SetProperty(ref _MsBeforeRinging, value); }
         }
 
-        protected int _BeepDuration = -1;
+        private int _BeepDuration = -1;
         public int BeepDuration
         {
             get { return _BeepDuration; }
             set { SetProperty(ref _BeepDuration, value); }
         }
 
-        protected int _BeepFrequency = -1;
+        private int _BeepFrequency = -1;
         public int BeepFrequency
         {
             get { return _BeepFrequency; }
             set { SetProperty(ref _BeepFrequency, value); }
         }
 
-        public Beep(int a = -1, int b = -1, int c = -1)
+        /// <summary>
+        /// Needed for usage in DataGrid so that the new-row row is visible and editable.
+        /// </summary>
+        public Beep()
+        {
+        }
+
+        public Beep(int a = -1, int b = -1, int c = -1) : this()
         {
             MsBeforeRinging = a;
             BeepDuration = b;
