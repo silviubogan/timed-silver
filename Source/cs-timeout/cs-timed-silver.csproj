@@ -262,6 +262,9 @@
     <Compile Include="WPF\ImageFileSelector.xaml.cs">
       <DependentUpon>ImageFileSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\ImportControl.xaml.cs">
+      <DependentUpon>ImportControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\KeepOnTopMenuItem.xaml.cs">
       <DependentUpon>KeepOnTopMenuItem.xaml</DependentUpon>
     </Compile>
@@ -687,6 +690,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\ImageFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ImportControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

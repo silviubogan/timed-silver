@@ -255,6 +255,11 @@ namespace cs_timed_silver
 
         internal void RingPassedAlarms()
         {
+            if (VMs == null)
+            {
+                return;
+            }
+
             for (int i = VMs.Count - 1; i >= 0; --i)
             {
                 ClockVM cd = VMs[i];

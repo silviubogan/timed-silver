@@ -861,93 +861,125 @@
 
 
 
-    <DataTemplate x:Key="ImportWindowTemplate">
-        <Grid Background="Gray" TextElement.Foreground="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="BtnChooseXMLFile" Style="{DynamicResource ButtonStyle}">
-                    Choose XML _file...
-                </Button>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Center"
+
+
+
+
+
+
+
+    <Style x:Key="ImportWindowStyle" TargetType="local:ImportWindow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ImportWindow">
+                    <Border>
+                        <AdornerDecorator>
+                            <local:ImportControl x:Name="PART_ImportControl" Style="{DynamicResource ImportControlStyle}"/>
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+    <Style x:Key="ImportControlStyle" TargetType="local:ImportControl">
+        <Setter Property="TextElement.Foreground" Value="White"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ImportControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Name="BtnChooseXMLFile" Style="{DynamicResource ButtonStyle}">
+                                Choose XML _file...
+                            </Button>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center"
                        VerticalAlignment="Center" TextWrapping="Wrap"
                        TextTrimming="CharacterEllipsis" Name="LblSelectedFilePath"
                        Text="{Binding SelectedFilePath, Mode=OneWay}">
-                </TextBlock>
-                <Button Grid.Column="2" Name="BtnResetChosenFile" Style="{DynamicResource ButtonStyle}">
-                    _Reset chosen file
-                </Button>
-            </Grid>
-            <GroupBox Grid.Row="1" Header="Import settings">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0"
+                            </TextBlock>
+                            <Button Grid.Column="2" Name="BtnResetChosenFile" Style="{DynamicResource ButtonStyle}">
+                                _Reset chosen file
+                            </Button>
+                        </Grid>
+                        <GroupBox Grid.Row="1" Header="Import settings" Style="{DynamicResource GroupBoxStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0"
                     Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Name="BtnCheckAllSettings" Style="{DynamicResource ButtonStyle}">_Check all</Button>
-                        <Button Name="BtnUncheckAllSettings" Style="{DynamicResource ButtonStyle}">_Uncheck all</Button>
-                    </StackPanel>
-                    <ListView Name="MyImportSettingsListView"
-                          Grid.Row="1" ItemsSource="{Binding SettingVMs}"
-                                  Background="Black">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
-                                      Content="{Binding DisplayString}" Foreground="White"/>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
-                </Grid>
-            </GroupBox>
-            <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="5"/>
-            <GroupBox Grid.Row="3" Header="Import clocks">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" VerticalAlignment="Center" Name="CbDeleteExistingClocks"
-                                  Foreground="White">
-                        _Delete existing clocks
-                    </CheckBox>
-                    <StackPanel Grid.Row="0"
+                                    <Button Name="BtnCheckAllSettings" Style="{DynamicResource ButtonStyle}">_Check all</Button>
+                                    <Button Name="BtnUncheckAllSettings" Style="{DynamicResource ButtonStyle}">_Uncheck all</Button>
+                                </StackPanel>
+                                <ListView Name="MyImportSettingsListView"
+                          Grid.Row="1" ItemsSource="{Binding SettingVMs}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                      Content="{Binding DisplayString}"/>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </Grid>
+                        </GroupBox>
+                        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="5"/>
+                        <GroupBox Grid.Row="3" Header="Import clocks" Style="{DynamicResource GroupBoxStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <CheckBox Grid.Row="0" VerticalAlignment="Center" Name="CbDeleteExistingClocks"
+                                          Style="{DynamicResource CheckBoxStyle}" Foreground="White">
+                                    _Delete existing clocks
+                                </CheckBox>
+                                <StackPanel Grid.Row="0"
                     Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Name="BtnCheckAllClocks" Style="{DynamicResource ButtonStyle}">_Check all</Button>
-                        <Button Name="BtnUncheckAllClocks" Style="{DynamicResource ButtonStyle}">_Uncheck all</Button>
-                    </StackPanel>
-                    <local:ClockDataGrid x:Name="MyImportClocksDataGrid"
+                                    <Button Name="BtnCheckAllClocks" Style="{DynamicResource ButtonStyle}">_Check all</Button>
+                                    <Button Name="BtnUncheckAllClocks" Style="{DynamicResource ButtonStyle}">_Uncheck all</Button>
+                                </StackPanel>
+                                <local:ClockDataGrid x:Name="MyImportClocksDataGrid"
                           Grid.Row="1" ImportMode="True"
                                              Clocks="{Binding DataContext.ClockVMs, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                             DarkTheme="True">
-                    </local:ClockDataGrid>
-                </Grid>
-            </GroupBox>
-            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="BtnCancel" Style="{DynamicResource ButtonStyle}">C_ancel</Button>
-                <Button Name="BtnImportAll" Style="{DynamicResource ButtonStyle}">Im_port all</Button>
-                <Button Name="BtnImportSelected" Style="{DynamicResource ButtonStyle}">Import _selected</Button>
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
+                                             DarkTheme="False">
+                                </local:ClockDataGrid>
+                            </Grid>
+                        </GroupBox>
+                        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Name="BtnCancel" Style="{DynamicResource ButtonStyle}">C_ancel</Button>
+                            <Button Name="BtnImportAll" Style="{DynamicResource ButtonStyle}">Im_port all</Button>
+                            <Button Name="BtnImportSelected" Style="{DynamicResource ButtonStyle}">Import _selected</Button>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
 
