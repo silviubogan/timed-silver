@@ -965,7 +965,7 @@
                                 </StackPanel>
                                 <local:ClockDataGrid x:Name="MyImportClocksDataGrid"
                           Grid.Row="1" ImportMode="True"
-                                             Clocks="{Binding DataContext.ClockVMs, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                             Clocks="{Binding DataContext.ClockVMs, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ImportControl}}}"
                                              DarkTheme="False">
                                 </local:ClockDataGrid>
                             </Grid>

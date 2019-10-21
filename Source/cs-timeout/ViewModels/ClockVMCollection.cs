@@ -23,8 +23,7 @@ namespace cs_timed_silver
     {
         public ClockMCollection Model { get; set; }
 
-        public ObservableCollection<ClockVM> SelectedClocks { get; set; } =
-            new ObservableCollection<ClockVM>();
+        public ObservableCollection<ClockVM> SelectedClocks { get; set; }
 
         internal DispatcherTimer AlarmsTimer;
 
@@ -34,18 +33,24 @@ namespace cs_timed_silver
 
         protected bool SynchDisabled = false;
 
-        public ObservableCollection<ClockVM> VMs { get; set; }
+        private ObservableCollection<ClockVM> _VMs;
+        public ObservableCollection<ClockVM> VMs
+        {
+            get { return _VMs; }
+            set { SetProperty(ref _VMs, value); }
+        }
 
         public ClockVMCollection(DataFile df)
         {
             MyDataFile = df;
+
+            SelectedClocks = new ObservableCollection<ClockVM>();
 
             AlarmsTimer = new DispatcherTimer(DispatcherPriority.Send)
             {
                 Interval = TimeSpan.FromSeconds(0.5)
             };
             AlarmsTimer.Tick += AlarmsTimer_Tick;
-            AlarmsTimer.Start();
         }
 
         public void Init()
@@ -83,6 +88,8 @@ namespace cs_timed_silver
             //{
             //    return 
             //}));
+
+            AlarmsTimer.Start();
         }
 
         private void Model_BeforeRemoveAllClocks(object sender, EventArgs e)

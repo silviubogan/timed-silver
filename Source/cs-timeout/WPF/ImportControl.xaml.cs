@@ -203,9 +203,6 @@ namespace cs_timed_silver
 
         private void Initialize()
         {
-            InitializeComponent();
-
-
             VM = new ImportWindowVM();
 
             VM.Reset(ImportedDataFile);

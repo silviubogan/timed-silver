@@ -16,6 +16,9 @@ namespace cs_timed_silver
         public ImportWindowVM()
         {
             MyMainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+
+            SettingVMs = new ObservableCollection<SettingDataVM>();
+            ClockVMs = new ClockVMCollection(null);
         }
 
         private string _SelectedFilePath = "";
@@ -32,8 +35,7 @@ namespace cs_timed_silver
             set { SetProperty(ref _DisplayFilePath, value); }
         }
 
-        private ObservableCollection<SettingDataVM> _SettingVMs =
-            new ObservableCollection<SettingDataVM>();
+        private ObservableCollection<SettingDataVM> _SettingVMs;
         public ObservableCollection<SettingDataVM> SettingVMs
         {
             get { return _SettingVMs; }
@@ -73,23 +75,30 @@ namespace cs_timed_silver
                     SettingVMs.Add(s);
                 }
 
-                ClockVMs.VMs.Clear();
-                foreach (ClockVM vm in idf.ClockVMCollection.VMs)
-                {
-                    ClockVMs.VMs.Add(vm);
-                }
+                ClockVMs = idf.ClockVMCollection;
+                //ClockVMs.Init();
+
+                //foreach (ClockVM vm in idf.ClockVMCollection.VMs)
+                //{
+                //    ClockVMs.VMs.Add(vm);
+                //}
             }
             else
             {
                 SettingVMs.Clear();
-                ClockVMs.VMs.Clear();
+
+                ClockVMs = new ClockVMCollection(null);
+                ClockVMs.Init();
             }
         }
 
         internal void Reset(DataFile importDataFile)
         {
             SelectedFilePath = "";
+
             ClockVMs = new ClockVMCollection(importDataFile);
+            ClockVMs.Init();
+
             SettingVMs = new ObservableCollection<SettingDataVM>();
         }
     }
