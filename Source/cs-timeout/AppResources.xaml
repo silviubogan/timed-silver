@@ -17,6 +17,7 @@
     <!-- not sure if these 2 are used: -->
     <local:ClockToButtonIconPathConverter x:Key="ClockToBtn"/>
     <local:PlayingBoolToBtnIconConverter x:Key="PlayingBoolToBtnIconConv"/>
+    <local:DrawingColorToSolidColorBrushConverter x:Key="DrawingColorToSolidColorBrushConv"/>
 
 
 

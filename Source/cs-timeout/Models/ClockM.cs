@@ -315,9 +315,22 @@ namespace cs_timed_silver
                     IsUnsaved = true;
                     if (!SupressPropertyChangedEvents)
                     {
+                        RaisePropertyChanged(nameof(BlackWhiteSuggestedForeground));
                         OnPropertyChanged();
                     }
                 }
+            }
+        }
+
+        public System.Drawing.Color BlackWhiteSuggestedForeground
+        {
+            get
+            {
+                if (UserBackColor.GetBrightness() < 0.5)
+                {
+                    return System.Drawing.Color.White;
+                }
+                return System.Drawing.Color.Black;
             }
         }
 

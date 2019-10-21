@@ -267,7 +267,16 @@ namespace cs_timed_silver
                     return;
                 }
                 Model.UserBackColor = value;
+                RaisePropertyChanged(nameof(BlackWhiteSuggestedForeground));
                 RaisePropertyChanged();
+            }
+        }
+
+        public System.Drawing.Color BlackWhiteSuggestedForeground
+        {
+            get
+            {
+                return Model.BlackWhiteSuggestedForeground;
             }
         }
 

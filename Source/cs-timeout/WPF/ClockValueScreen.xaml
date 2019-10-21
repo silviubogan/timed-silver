@@ -23,6 +23,7 @@
                 Margin="0,0,7,0"
                 Loaded="MyTimeSpanPicker_Loaded"
                 DataContext="{Binding Mode=OneWay}"
+                Foreground="{Binding Mode=OneWay, Path=BlackWhiteSuggestedForeground, Converter={StaticResource DrawingColorToSolidColorBrushConv}}"
                 IsEnabled="{Binding Path=IsActive,
                     UpdateSourceTrigger=PropertyChanged,
                     Converter={StaticResource InverseBoolCvt},
