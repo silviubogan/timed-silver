@@ -8,6 +8,7 @@
              d:DesignHeight="50" d:DesignWidth="200"
           Template="{DynamicResource TimerMenuItemWithSubitems}">
     <MenuItem.Items>
+        <!-- TODO: move KeepOnTop commands into a separate class (from CustomCommands). -->
         <MenuItem Command="local:CustomCommands.KeepOnTopAlways"
                 CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Mode=Self}}"
                 IsCheckable="True" Template="{DynamicResource LeafMenuItemTemplate}"
