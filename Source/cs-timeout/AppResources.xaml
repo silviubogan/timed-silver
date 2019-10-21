@@ -89,7 +89,29 @@
     </ControlTemplate>
 
 
-
+    <DrawingImage x:Key="stopAllTimersImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="White"/>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry Center="1,1" RadiusX="0.8" RadiusY="0.8"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="Red"/>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry Center="1,1" RadiusX="0.5" RadiusY="0.5"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
 
     <DrawingImage x:Key="alarmClockDrawingImage">
         <DrawingImage.Drawing>
