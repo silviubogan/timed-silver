@@ -8,6 +8,7 @@
              xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
              xmlns:gdd="urn:gong-wpf-dragdrop"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="190" d:DesignWidth="345"
              Name="MyUserControl"
@@ -118,7 +119,7 @@
                             </local:ClockUserControlPlaceholder>
                         </DataTemplate>
                     </gdd:DragDrop.DragAdornerTemplate>
-                    
+
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel IsItemsHost="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -142,6 +143,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
+            <hc:GotoTop Animated="True" AutoHiding="True" Target="{Binding ElementName=MyScrollViewer}"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"
+                        Style="{StaticResource GotoTopBaseStyle}"/>
         </Grid>
     </Grid>
 </UserControl>

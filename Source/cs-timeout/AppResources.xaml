@@ -8,9 +8,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Theme.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
-        <!--<ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>-->
-        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Styles/ProgressBar.xaml"/>
+       
+        <ResourceDictionary Source="HandyControlsModifications.xaml"/>
+        
         <ResourceDictionary Source="WPF/MyDataGridStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
@@ -20,7 +20,7 @@
     <local:DrawingColorToSolidColorBrushConverter x:Key="DrawingColorToSolidColorBrushConv"/>
 
 
-
+    
 
 
 
@@ -112,7 +112,7 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
-    
+
 
     <DrawingImage x:Key="alarmClockDrawingImage">
         <DrawingImage.Drawing>
@@ -239,7 +239,4 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
-
-
-
 </ResourceDictionary>
