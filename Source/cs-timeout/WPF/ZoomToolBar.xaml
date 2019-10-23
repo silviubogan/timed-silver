@@ -12,7 +12,8 @@
     
     <Label Content="{Binding ElementName=MyZoomToolBar, Path=Title}" Name="LblTitle"
            VerticalAlignment="Center"></Label>
-    <RepeatButton Name="BtnZoomIn" Margin="3,3,3,3" Click="BtnZoomIn_Click">
+    <RepeatButton Name="BtnZoomIn" Margin="3,3,3,3" Click="BtnZoomIn_Click"
+                  Style="{DynamicResource RepeatButtonStyle}">
         <StackPanel Orientation="Horizontal">
             <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-zoom-in.ico" Height="22"></Image>
             <AccessText VerticalAlignment="Center">
@@ -20,7 +21,8 @@
             </AccessText>
         </StackPanel>
     </RepeatButton>
-    <RepeatButton Name="BtnZoomOut" Margin="0,3,3,3" Click="BtnZoomOut_Click">
+    <RepeatButton Name="BtnZoomOut" Margin="0,3,3,3" Click="BtnZoomOut_Click"
+                  Style="{DynamicResource RepeatButtonStyle}">
         <StackPanel Orientation="Horizontal">
             <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-zoom-out.ico" Height="22"></Image>
             <AccessText VerticalAlignment="Center">
@@ -31,7 +33,7 @@
     <Button Name="BtnZoomReset" Margin="0,3,3,3"
             VerticalAlignment="Stretch"
             Click="BtnZoomReset_Click"
-            Style="{StaticResource {x:Type Button}}">
+            Style="{DynamicResource ButtonStyle}">
         <StackPanel Orientation="Horizontal">
             <Image Source="/Resources/zoom reset icon based on zoom out from oxygen icons.ico" Height="22"></Image>
             <AccessText VerticalAlignment="Center">
@@ -58,7 +60,8 @@
         <sys:Int32>200</sys:Int32>
         <sys:Int32>300</sys:Int32>
     </ComboBox>
-    <ToggleButton Name="BtnZoomToFit" Checked="BtnZoomToFit_Checked" Unchecked="BtnZoomToFit_Unchecked">
+    <ToggleButton Name="BtnZoomToFit" Checked="BtnZoomToFit_Checked" Unchecked="BtnZoomToFit_Unchecked" 
+                  Style="{DynamicResource ToggleButtonStyle}">
         Zoom to Fit
     </ToggleButton>
 </ToolBar>

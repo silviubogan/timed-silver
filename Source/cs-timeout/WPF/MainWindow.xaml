@@ -313,7 +313,7 @@
             <ToolBar x:Name="TbEdit" Band="1" Style="{DynamicResource ToolBarStyle}" FocusManager.IsFocusScope="False">
                 <Label VerticalAlignment="Center" Content="Edit"/>
                 <Button ToolTip="Click this button to open the settings dialog where you can control the behavior of the program."
-                        Style="{StaticResource {x:Type Button}}"
+                        Style="{DynamicResource ButtonStyle}"
                         Padding="2,2,2,2"
                         Command="ApplicationCommands.Properties">
                     <StackPanel Orientation="Horizontal" IsHitTestVisible="False">

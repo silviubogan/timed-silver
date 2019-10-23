@@ -5,12 +5,16 @@
              xmlns:local="clr-namespace:cs_timed_silver"
              xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-             xmlns:xtkThemes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
                     xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
              mc:Ignorable="d">
-    
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ToggleButton/Light.xaml"/>
+        <ResourceDictionary Source="RepeatButton/Light.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
     <ControlTemplate x:Key="AudioMenuItemTemplate" TargetType="{x:Type MenuItem}">
         <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid x:Name="Grid" Margin="-1">
