@@ -787,7 +787,7 @@ namespace cs_timed_silver
             //}
         }
 
-        private void ApplyFilters_Click(object sender, RoutedEventArgs e)
+        public FilterM GetSelectionFilter()
         {
             if (MyListView.SelectedItems.Count > 0)
             {
@@ -806,7 +806,20 @@ namespace cs_timed_silver
                     f = f.Clone();
                 }
                 f.SearchString = MySearchTextBox.Text;
-                //MyTimerGroupListView.AppliedFilter = f;
+
+                return f;
+            }
+
+            return null;
+        }
+
+        private void ApplyFilters_Click(object sender, RoutedEventArgs e)
+        {
+            var f = GetSelectionFilter();
+
+            if (f != null)
+            {
+                AppliedFilter = f;
             }
         }
 
@@ -1082,6 +1095,19 @@ namespace cs_timed_silver
                 return true;
             }
             return false;
+        }
+
+        private void ActivateAll_Click(object sender, RoutedEventArgs e)
+        {
+            var f = GetSelectionFilter();
+
+            foreach (ClockM c in f.Clocks.OneTimeFilter(f))
+            {
+                if (!c.IsActive)
+                {
+                    c.ActivateOrDeactivate();
+                }
+            }
         }
 
         void IDragSource.Dropped(IDropInfo dropInfo)
