@@ -657,7 +657,7 @@ namespace cs_timed_silver
 
         internal void EnableMultipleSelection()
         {
-            MiMultipleSelection.IsChecked = true;
+            CustomCommands.MultipleSelectionInListView.Execute(true, MiMultipleSelection);
         }
 
         public DataFile VM
