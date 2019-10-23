@@ -1475,14 +1475,14 @@ namespace cs_timed_silver
             }
 
 
-            if (MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
-            {
+            //if (MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+            //{
                 HandleContainersGenerated();
-            }
-            else
-            {
-                MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
-            }
+            //}
+            //else
+            //{
+            //    MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
+            //}
         }
 
         private void HandleContainersGenerated()
@@ -1496,14 +1496,14 @@ namespace cs_timed_silver
             IsBeingLoaded = false;
         }
 
-        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
-        {
-            if (MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
-            {
-                MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.StatusChanged -= ItemContainerGenerator_StatusChanged;
-                HandleContainersGenerated();
-            }
-        }
+        //private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
+        //{
+        //    if (MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+        //    {
+        //        MySettingsWindow.MyControl.MyItemsControl.ItemContainerGenerator.StatusChanged -= ItemContainerGenerator_StatusChanged;
+        //        HandleContainersGenerated();
+        //    }
+        //}
 
         private void MyViewsGrid_FocusedZoomableSubcontrolChanged(object sender, ViewsGrid.ZoomableControlEventArgs e)
         {
