@@ -13,6 +13,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ToggleButton/Light.xaml"/>
         <ResourceDictionary Source="RepeatButton/Light.xaml"/>
+        <ResourceDictionary Source="CustomSplitButton/Light.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="AudioMenuItemTemplate" TargetType="{x:Type MenuItem}">
@@ -1304,133 +1305,6 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-
-
-
-    <SolidColorBrush x:Key="SplitButtonBackground" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="SplitButtonBorderBrush" Color="#FF707070"/>
-    <Style x:Key="AddCountSplitButtonStyle" TargetType="{x:Type xtk:SplitButton}">
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{DynamicResource SplitButtonBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource SplitButtonBorderBrush}"/>
-        <Setter Property="DropDownContentBackground">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                    <GradientStop Color="#FFE5E5E5" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Padding" Value="3"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type xtk:SplitButton}">
-                    <Grid x:Name="MainGrid" SnapsToDevicePixels="True">
-                        <xtk:ButtonChrome x:Name="ControlChrome" BorderThickness="0" Background="{TemplateBinding Background}" RenderEnabled="{TemplateBinding IsEnabled}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="PART_ActionButton" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" Padding="{TemplateBinding Padding}" Style="{x:Null}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="{x:Type Button}">
-                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                    <Grid>
-                                        <xtk:ButtonChrome x:Name="ActionButtonChrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" RenderMouseOver="{Binding IsMouseOver, ElementName=PART_ActionButton}" RenderPressed="{Binding IsPressed, ElementName=PART_ActionButton}" RenderEnabled="{TemplateBinding IsEnabled}">
-                                            <xtk:ButtonChrome.BorderThickness>
-                                                <Binding ConverterParameter="2" Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}">
-                                                    <Binding.Converter>
-                                                        <xtk:ThicknessSideRemovalConverter/>
-                                                    </Binding.Converter>
-                                                </Binding>
-                                            </xtk:ButtonChrome.BorderThickness>
-                                            <ContentPresenter x:Name="ActionButtonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                        </xtk:ButtonChrome>
-                                    </Grid>
-                                </Button>
-                                <ToggleButton x:Name="PART_ToggleButton" Grid.Column="1" IsChecked="{Binding IsOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                                    <ToggleButton.IsHitTestVisible>
-                                        <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}">
-                                            <Binding.Converter>
-                                                <xtk:InverseBoolConverter/>
-                                            </Binding.Converter>
-                                        </Binding>
-                                    </ToggleButton.IsHitTestVisible>
-                                    <ToggleButton.Template>
-                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
-                                        </ControlTemplate>
-                                    </ToggleButton.Template>
-                                    <Grid>
-                                        <xtk:ButtonChrome x:Name="ToggleButtonChrome" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1,0" RenderMouseOver="{Binding IsMouseOver, ElementName=PART_ToggleButton}" RenderPressed="{Binding IsPressed, ElementName=PART_ToggleButton}" RenderChecked="{TemplateBinding IsOpen}" RenderEnabled="{TemplateBinding IsEnabled}">
-                                            <Grid x:Name="arrowGlyph" IsHitTestVisible="False" Margin="4,3">
-                                                <Path x:Name="Arrow" Data="M0,0L3,0 4.5,1.5 6,0 9,0 4.5,4.5z" Fill="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" Height="5" Margin="0,1,0,0" Width="9"/>
-                                            </Grid>
-                                        </xtk:ButtonChrome>
-                                    </Grid>
-                                </ToggleButton>
-                            </Grid>
-                        </xtk:ButtonChrome>
-                        <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="1" Placement="{TemplateBinding DropDownPosition}" VerticalOffset="1" StaysOpen="True" IsOpen="False"
-                                    >
-                            <!-- ... not yet: MinWidth="{TemplateBinding ActualWidth}"     IsOpen=-->
-                            <!--IsOpen="{Binding IsChecked, ElementName=PART_ToggleButton}" StaysOpen="False"-->
-                            <!-- TODO: Create Popup Styles that can be reused on all popups in the toolkit-->
-                            <Border BorderThickness="{DynamicResource DefaultBorderThickness}" Margin="10,0,10,10" Background="{DynamicResource DarkerBaseBrush}" BorderBrush="{DynamicResource PopupBorderBrush}" CornerRadius="{DynamicResource DefaultCornerRadius}" Name="PART_ContentPresenter">
-                                <Grid MinWidth="100">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Button x:Name="PART_ButtonWith1" Grid.Row="0" Grid.ColumnSpan="2">
-                                        1
-                                    </Button>
-                                    <Button x:Name="PART_ButtonWith5" Grid.Row="1" Grid.ColumnSpan="2">
-                                        5
-                                    </Button>
-                                    <Button x:Name="PART_ButtonWith10" Grid.Row="2" Grid.ColumnSpan="2">
-                                        10
-                                    </Button>
-                                    <xtk:IntegerUpDown Grid.Row="3" Value="1"
-                                                                Increment="1" ClipValueToMinMax="True"
-                                                                x:Name="MyCustomIntegerUpDown">
-                                    </xtk:IntegerUpDown>
-                                    <Button x:Name="PART_ButtonWithCustom" Grid.Row="3" Grid.Column="1" Padding="2,2,2,2">
-                                        &gt;
-                                    </Button>
-                                </Grid>
-
-                                <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="{DynamicResource Base6Color}" />
-                                </Border.Effect>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Fill" TargetName="Arrow" Value="#FFAFAFAF"/>
-                            <Setter Property="Foreground" TargetName="ActionButtonChrome" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-
 
 
 
