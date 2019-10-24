@@ -43,6 +43,12 @@
                     <Image Source="/Resources/on filter.ico"/>
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem Header="Deact_ivate All"
+                      Click="DeactivateAll_Click">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/off filter.ico"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <Separator/>
             <MenuItem Header="_Set icons..."
                       Click="SetIcon_Click">

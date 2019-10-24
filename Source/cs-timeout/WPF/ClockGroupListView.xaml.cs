@@ -1110,6 +1110,19 @@ namespace cs_timed_silver
             }
         }
 
+        private void DeactivateAll_Click(object sender, RoutedEventArgs e)
+        {
+            var f = GetSelectionFilter();
+
+            foreach (ClockM c in f.Clocks.OneTimeFilter(f))
+            {
+                if (c.IsActive)
+                {
+                    c.ActivateOrDeactivate();
+                }
+            }
+        }
+
         void IDragSource.Dropped(IDropInfo dropInfo)
         {
             //throw new NotImplementedException();
