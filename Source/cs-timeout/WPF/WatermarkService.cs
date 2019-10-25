@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using Xceed.Wpf.Toolkit;
 
 namespace cs_timed_silver
 {
@@ -71,6 +72,12 @@ namespace cs_timed_silver
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
                 control.LostKeyboardFocus += Control_Loaded;
                 ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
+            }
+            else if (d is Xceed.Wpf.Toolkit.RichTextBox rtb)
+            {
+                control.GotKeyboardFocus += Control_GotKeyboardFocus;
+                control.LostKeyboardFocus += Control_Loaded;
+                rtb.TextChanged += Control_GotKeyboardFocus;
             }
 
             if (d is ItemsControl && !(d is ComboBox))
@@ -214,6 +221,8 @@ namespace cs_timed_silver
             }
         }
 
+        private static PlainTextFormatter ptf = new PlainTextFormatter();
+
         /// <summary>
         /// Indicates whether or not the watermark should be shown on the specified control
         /// </summary>
@@ -224,6 +233,12 @@ namespace cs_timed_silver
             if (c is ComboBox cb)
             {
                 return cb.Text == string.Empty;
+            }
+            else if (c is Xceed.Wpf.Toolkit.RichTextBox)
+            {
+                return WatermarkService.ptf.
+                        GetText((c as Xceed.Wpf.Toolkit.RichTextBox).Document).
+                            Trim('\n', '\r', ' ', '\t').Length == 0;
             }
             else if (c is TextBoxBase) // if c is TextBoxBase but not TextBox, runtime error: Text not accessible
             {

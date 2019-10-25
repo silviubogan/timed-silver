@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:cs_timed_silver"
              xmlns:wpf="clr-namespace:wpf_timespanpicker;assembly=wpf-timespanpicker"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Name="MyClockUC"
              d:DesignHeight="200" d:DesignWidth="400"
@@ -207,20 +208,28 @@
                 <local:ClockValueScreen Grid.Row="1" Grid.Column="2"
                                         x:Name="MyClockValueScreen"/>
 
-                <TextBox Grid.Column="2" Margin="0,7,7,0"
+                <xtk:RichTextBox Grid.Column="2" Margin="0,7,7,0"
                          AcceptsReturn="True" Name="MyTextBox"
                          AllowDrop="True"
                          PreviewDragOver="MyTextBox_PreviewDragOver"
                          DragOver="MyTextBox_DragOver"
                          PreviewDragEnter="MyTextBox_PreviewDragEnter"
                          DragEnter="MyTextBox_DragEnter"
-                         TextWrapping="Wrap"
                          Text="{Binding ElementName=MyClockUC, UpdateSourceTrigger=PropertyChanged,
                     Path=ClockTag, Mode=TwoWay}">
+                    
                     <local:WatermarkService.Watermark>
                         <TextBlock Foreground="Gray" FontStyle="Italic">Type here...</TextBlock>
                     </local:WatermarkService.Watermark>
-                </TextBox>
+
+                    <xtk:RichTextBoxFormatBarManager.FormatBar>
+                        <xtk:RichTextBoxFormatBar/>
+                    </xtk:RichTextBoxFormatBarManager.FormatBar>
+
+                    <xtk:RichTextBox.TextFormatter>
+                        <xtk:RtfFormatter/>
+                    </xtk:RichTextBox.TextFormatter>
+                </xtk:RichTextBox>
 
                 <Button Grid.Column="3" Grid.Row="1"
                         Margin="0,0,0,0"
