@@ -100,6 +100,7 @@ I also used other software components and applications to create Timed Silver. S
     * gong-wpf-dragdrop
 	* [HandyControls](https://github.com/ghost1372/HandyControls)
     * Prism
+* used code from [OxyPlot](https://github.com/oxyplot/oxyplot/blob/13c686502ebba28eeca1011ad77eb25ea5788723/Source/Examples/ExampleLibrary/Utilities/Sun.cs) for computing the sunrise DateTime
 
 ## Donate
 

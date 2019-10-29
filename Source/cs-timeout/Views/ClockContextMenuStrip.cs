@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Device.Location;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -28,7 +29,8 @@ namespace cs_timed_silver
             tsmiSetRandomColors, tsmiConvertToOtherType,
             tsmiAdvanced, tsmiSaveIconAs, tsmiOpenTimeOutBackgroundImageFile,
             tsmiRemoveTimeOutBackgroundImageFile,
-            tsmiChooseTimeOutBackgroundImageFile;
+            tsmiChooseTimeOutBackgroundImageFile,
+            tsmiSetToSunrise;
 
         internal HashSet<ClockVM> _MyClocks = null;
         internal HashSet<ClockVM> MyClocks
@@ -264,6 +266,10 @@ namespace cs_timed_silver
             tsmiChooseTimeOutBackgroundImageFile.Text = "Choose a Time-out Background Image File...";
             tsmiChooseTimeOutBackgroundImageFile.Click += TsmiChooseTimeOutBackgroundImageFile_Click;
 
+            tsmiSetToSunrise = new ToolStripMenuItem();
+            tsmiSetToSunrise.Text = "Set to sunrise";
+            tsmiSetToSunrise.Click += TsmiSetToSunrise_Click;
+
             tsmiAdvanced.Text = "Advanced...";
             tsmiAdvanced.DropDownItems.Add(tsmiSaveIconAs);
             tsmiAdvanced.DropDownItems.Add(tsmiSelectSuggestedColor);
@@ -271,6 +277,58 @@ namespace cs_timed_silver
             tsmiAdvanced.DropDownItems.Add(tsmiOpenTimeOutBackgroundImageFile);
             tsmiAdvanced.DropDownItems.Add(tsmiRemoveTimeOutBackgroundImageFile);
             tsmiAdvanced.DropDownItems.Add(tsmiChooseTimeOutBackgroundImageFile);
+            tsmiAdvanced.DropDownItems.Add(new ToolStripSeparator());
+            tsmiAdvanced.DropDownItems.Add(tsmiSetToSunrise);
+        }
+
+        public void ApplySunrise(double Lat, double Long)
+        {
+            if (Lat < 0 || Long < 0)
+            {
+                return;
+            }
+
+            foreach (ClockVM c in MyClocks)
+            {
+                if (c.ClockType == ClockVM.ClockTypes.Alarm)
+                {
+                    DateTime sunrise =
+                        Sun.Calculate(c.CurrentDateTime, Lat, Long, true,
+                            new Func<DateTime, DateTime>((DateTime dt) =>
+                            {
+                                return dt.ToLocalTime();
+                            }));
+
+                    c.CurrentDateTime = sunrise;
+                }
+            }
+        }
+
+        private void TsmiSetToSunrise_Click(object sender, EventArgs e)
+        {
+            double Lat = -1, Long = -1;
+
+            if (MyClocks.Count > 0)
+            {
+                var w = new GeoCoordinateWatcher();
+
+                w.PositionChanged += (object s2, GeoPositionChangedEventArgs<GeoCoordinate> e2) =>
+                {
+                    GeoCoordinate coord = e2.Position.Location;
+                    if (coord.IsUnknown)
+                    {
+                        return;
+                    }
+                    Lat = coord.Latitude;
+                    Long = coord.Longitude;
+
+                    ApplySunrise(Lat, Long);
+
+                    w.Dispose();
+                };
+
+                w.TryStart(false, TimeSpan.FromMilliseconds(10000));
+            }
         }
 
         private void UpdateTimeOutBackgroundItems()
