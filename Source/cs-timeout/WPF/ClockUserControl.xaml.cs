@@ -22,6 +22,11 @@ namespace cs_timed_silver
     /// </summary>
     public partial class ClockUserControl : UserControl
     {
+        static ClockUserControl()
+        {
+            rtff = new Xceed.Wpf.Toolkit.RtfFormatter();
+        }
+
         public ClockUserControl()
         {
             var conv = new UserBackColorToActualBackColor();
@@ -40,8 +45,25 @@ namespace cs_timed_silver
             UpdateImageVisibility();
         }
 
+        protected bool isChangingClockTag = false;
+
         public static readonly DependencyProperty ClockTagProperty = DependencyProperty.Register("ClockTag", typeof(string),
-            typeof(ClockUserControl), new PropertyMetadata(""));
+            typeof(ClockUserControl), new PropertyMetadata("", OnClockTagChanged));
+
+        private static void OnClockTagChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var o = (ClockUserControl)d;
+
+            if (o.isChangingVMTag)
+            {
+                return;
+            }
+
+            o.isChangingClockTag = true;
+            o.MyTextBox.Text = (o.DataContext as ClockVM).Tag;
+            o.isChangingClockTag = false;
+        }
+
         public string ClockTag
         {
             get
@@ -267,6 +289,22 @@ namespace cs_timed_silver
 
         private void MyTextBox_DragEnter(object sender, DragEventArgs e)
         {
+        }
+
+        private static Xceed.Wpf.Toolkit.RtfFormatter rtff;
+
+        protected bool isChangingVMTag = false;
+
+        private void MyTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isChangingClockTag)
+            {
+                return;
+            }
+
+            isChangingVMTag = true;
+            (DataContext as ClockVM).Tag = rtff.GetText(MyTextBox.Document);
+            isChangingVMTag = false;
         }
     }
 }

@@ -215,8 +215,7 @@
                          DragOver="MyTextBox_DragOver"
                          PreviewDragEnter="MyTextBox_PreviewDragEnter"
                          DragEnter="MyTextBox_DragEnter"
-                         Text="{Binding ElementName=MyClockUC, UpdateSourceTrigger=PropertyChanged,
-                    Path=ClockTag, Mode=TwoWay}">
+                                 TextChanged="MyTextBox_TextChanged">
                     
                     <local:WatermarkService.Watermark>
                         <TextBlock Foreground="Gray" FontStyle="Italic">Type here...</TextBlock>
