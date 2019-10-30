@@ -30,7 +30,7 @@ namespace cs_timed_silver
             tsmiAdvanced, tsmiSaveIconAs, tsmiOpenTimeOutBackgroundImageFile,
             tsmiRemoveTimeOutBackgroundImageFile,
             tsmiChooseTimeOutBackgroundImageFile,
-            tsmiSetToSunrise;
+            tsmiSetToSunrise, tsmiSetToSunset;
 
         internal HashSet<ClockVM> _MyClocks = null;
         internal HashSet<ClockVM> MyClocks
@@ -267,8 +267,12 @@ namespace cs_timed_silver
             tsmiChooseTimeOutBackgroundImageFile.Click += TsmiChooseTimeOutBackgroundImageFile_Click;
 
             tsmiSetToSunrise = new ToolStripMenuItem();
-            tsmiSetToSunrise.Text = "Set to sunrise";
+            tsmiSetToSunrise.Text = "Set to Sunrise";
             tsmiSetToSunrise.Click += TsmiSetToSunrise_Click;
+
+            tsmiSetToSunset = new ToolStripMenuItem();
+            tsmiSetToSunset.Text = "Set to Sunset";
+            tsmiSetToSunset.Click += TsmiSetToSunset_Click;
 
             tsmiAdvanced.Text = "Advanced...";
             tsmiAdvanced.DropDownItems.Add(tsmiSaveIconAs);
@@ -279,9 +283,15 @@ namespace cs_timed_silver
             tsmiAdvanced.DropDownItems.Add(tsmiChooseTimeOutBackgroundImageFile);
             tsmiAdvanced.DropDownItems.Add(new ToolStripSeparator());
             tsmiAdvanced.DropDownItems.Add(tsmiSetToSunrise);
+            tsmiAdvanced.DropDownItems.Add(tsmiSetToSunset);
         }
 
-        public void ApplySunrise(double Lat, double Long)
+        private void TsmiSetToSunset_Click(object sender, EventArgs e)
+        {
+            GetLocationThenApply(false);
+        }
+
+        public void ApplySunriseSunset(bool sunrise, double Lat, double Long)
         {
             if (Lat < 0 || Long < 0)
             {
@@ -292,19 +302,24 @@ namespace cs_timed_silver
             {
                 if (c.ClockType == ClockVM.ClockTypes.Alarm)
                 {
-                    DateTime sunrise =
-                        Sun.Calculate(c.CurrentDateTime, Lat, Long, true,
+                    DateTime sunriseOrSunset =
+                        Sun.Calculate(c.CurrentDateTime, Lat, Long, sunrise,
                             new Func<DateTime, DateTime>((DateTime dt) =>
                             {
                                 return dt.ToLocalTime();
                             }));
 
-                    c.CurrentDateTime = sunrise;
+                    c.CurrentDateTime = sunriseOrSunset;
                 }
             }
         }
 
         private void TsmiSetToSunrise_Click(object sender, EventArgs e)
+        {
+            GetLocationThenApply(true);
+        }
+
+        private void GetLocationThenApply(bool sunrise)
         {
             double Lat = -1, Long = -1;
 
@@ -322,7 +337,7 @@ namespace cs_timed_silver
                     Lat = coord.Latitude;
                     Long = coord.Longitude;
 
-                    ApplySunrise(Lat, Long);
+                    ApplySunriseSunset(sunrise, Lat, Long);
 
                     w.Dispose();
                 };
