@@ -226,7 +226,7 @@
                     </xtk:RichTextBoxFormatBarManager.FormatBar>
 
                     <xtk:RichTextBox.TextFormatter>
-                        <xtk:RtfFormatter/>
+                        <xtk:XamlFormatter/>
                     </xtk:RichTextBox.TextFormatter>
                 </xtk:RichTextBox>
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -316,6 +317,24 @@ namespace cs_timed_silver
                         yield return childOfChild;
                 }
             }
+        }
+
+        public static FlowDocument Clone(this FlowDocument f)
+        {
+            if (f == null)
+            {
+                throw new ArgumentNullException(nameof(f));
+            }
+
+            var d = new FlowDocument();
+            Utils.CopyDocument(f, d);
+            return d;
+        }
+
+        public static string ToPlainText(this FlowDocument f)
+        {
+            var r = new TextRange(f.ContentStart, f.ContentEnd);
+            return r.Text.Trim();
         }
     }
 }

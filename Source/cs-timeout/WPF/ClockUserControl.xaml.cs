@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -47,8 +48,8 @@ namespace cs_timed_silver
 
         protected bool isChangingClockTag = false;
 
-        public static readonly DependencyProperty ClockTagProperty = DependencyProperty.Register("ClockTag", typeof(string),
-            typeof(ClockUserControl), new PropertyMetadata("", OnClockTagChanged));
+        public static readonly DependencyProperty ClockTagProperty = DependencyProperty.Register("ClockTag", typeof(FlowDocument),
+            typeof(ClockUserControl), new PropertyMetadata(null, OnClockTagChanged));
 
         private static void OnClockTagChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -60,15 +61,15 @@ namespace cs_timed_silver
             }
 
             o.isChangingClockTag = true;
-            o.MyTextBox.Text = (o.DataContext as ClockVM).Tag;
+            o.MyTextBox.Document = (o.DataContext as ClockVM).Tag.Clone();
             o.isChangingClockTag = false;
         }
 
-        public string ClockTag
+        public FlowDocument ClockTag
         {
             get
             {
-                return (string)GetValue(ClockTagProperty);
+                return (FlowDocument)GetValue(ClockTagProperty);
             }
             set
             {
@@ -302,8 +303,9 @@ namespace cs_timed_silver
                 return;
             }
 
+            // TODO: should I clone the document, or the right-member reference is enough?
             isChangingVMTag = true;
-            (DataContext as ClockVM).Tag = rtff.GetText(MyTextBox.Document);
+            (DataContext as ClockVM).Tag = MyTextBox.Document.Clone();
             isChangingVMTag = false;
         }
     }

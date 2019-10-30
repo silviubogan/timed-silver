@@ -80,7 +80,7 @@ namespace cs_timed_silver
         {
             if (MyForms.ContainsKey(cd))
             {
-                MyForms[cd].Close();
+                MyForms[cd].Close(); // TODO: bug here when window is already in the process of closing
                 MyForms.Remove(cd);
             }
         }

@@ -7,7 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Markup;
 
 namespace cs_timed_silver
 {
@@ -620,18 +622,18 @@ namespace cs_timed_silver
                 return;
             }
 
-            var p = new TextPromptWindow();
+            var p = new RichTextPromptWindow();
 
             // TODO: get the correct MainWindow, not the first one (I will implement multiple Document windows):
             p.Owner = System.Windows.Application.Current.MainWindow;
-            p.UserString = MyClock.Tag;
+            p.UserString = XamlWriter.Save(MyClock.Tag);
 
             if ((bool)p.ShowDialog())
             {
                 var hs = new HashSet<ClockVM>(MyClocks);
                 foreach (ClockVM c in hs)
                 {
-                    c.Tag = p.UserString;
+                    c.Tag = XamlReader.Parse(p.UserString) as FlowDocument;
                 }
             }
         }

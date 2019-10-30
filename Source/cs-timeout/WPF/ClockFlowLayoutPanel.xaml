@@ -115,7 +115,7 @@
                                 DarkTheme="{Binding ElementName=MyUserControl, Path=DarkTheme, Mode=OneTime}"
                                 
                                 Text="1"
-                                Details="{Binding Tag, Converter={StaticResource StringToStringList}}">
+                                Details="{Binding Tag, Converter={StaticResource StringToStringList}}"> <!-- TODO: correct converter -->
                             </local:ClockUserControlPlaceholder>
                         </DataTemplate>
                     </gdd:DragDrop.DragAdornerTemplate>

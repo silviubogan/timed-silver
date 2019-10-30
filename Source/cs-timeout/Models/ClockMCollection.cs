@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Markup;
 
 namespace cs_timed_silver
 {
@@ -304,7 +305,7 @@ namespace cs_timed_silver
                 r = true;
             }
 
-            if (!td.Tag.ToLower().Contains(f.SearchString.ToLower()))
+            if (!td.Tag.ToPlainText().ToLower().Contains(f.SearchString.ToLower()))
             {
                 r = true;
             }
@@ -869,7 +870,7 @@ namespace cs_timed_silver
             // (1) in model:
             Comparison<ClockM> comparison = delegate (ClockM td1, ClockM td2)
             {
-                return td1.Tag.CompareTo(td2.Tag);
+                return td1.Tag.ToPlainText().CompareTo(td2.Tag.ToPlainText());
             };
             SortTheList(comparison);
 

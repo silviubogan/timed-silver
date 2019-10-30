@@ -278,17 +278,17 @@ namespace cs_timed_silver
                 return;
             }
 
-            // NOTE: not all properties' settings below are needed
-
             rtbTag.Background = Brushes.Transparent;
-            rtbTag.Foreground = Brushes.Blue;
             rtbTag.IsReadOnly = true;
-            rtbTag.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
-            rtbTag.Text = Clock.Tag;
 
+            rtbTag.Document = Clock.Tag.Clone();
             rtbTag.Document.TextAlignment = TextAlignment.Center;
             rtbTag.Document.Foreground = Brushes.Blue;
-            rtbTag.Document.FontSize = 25;
+
+            foreach (Block b in rtbTag.Document.Blocks)
+            {
+                b.FontSize = b.FontSize * 3;
+            }
 
             t.Start();
 

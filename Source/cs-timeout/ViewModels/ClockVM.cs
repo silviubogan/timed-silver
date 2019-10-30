@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace cs_timed_silver
@@ -150,7 +152,7 @@ namespace cs_timed_silver
             }
         }
 
-        public string Tag
+        public FlowDocument Tag
         {
             get
             {
@@ -158,7 +160,8 @@ namespace cs_timed_silver
             }
             set
             {
-                if (value == Model.Tag)
+                if (value == Model.Tag ||
+                    XamlWriter.Save(value) == XamlWriter.Save(Model.Tag))
                 {
                     return;
                 }
