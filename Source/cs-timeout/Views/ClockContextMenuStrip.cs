@@ -307,7 +307,7 @@ namespace cs_timed_silver
                             new Func<DateTime, DateTime>((DateTime dt) =>
                             {
                                 return dt.ToLocalTime();
-                            }));
+                            }), 91.0);
 
                     c.CurrentDateTime = sunriseOrSunset;
                 }
