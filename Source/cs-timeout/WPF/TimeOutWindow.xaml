@@ -112,15 +112,20 @@
                        Foreground="Blue"
                        FontSize="20">
                 <LineBreak></LineBreak>
-                <TextBlock Name="TbTag">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="2"></DropShadowEffect>
-                    </TextBlock.Effect>
-                    Label
-                </TextBlock>
-                <LineBreak></LineBreak>
             </TextBlock>
 
+            <xceed:RichTextBox Name="rtbTag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Width="300">
+                <RichTextBox.Effect>
+                    <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="2"></DropShadowEffect>
+                </RichTextBox.Effect>
+            </xceed:RichTextBox>
+            
+            <TextBlock TextAlignment="Center"
+                       Foreground="Blue"
+                       FontSize="20">
+                <LineBreak></LineBreak>
+            </TextBlock>
+            
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

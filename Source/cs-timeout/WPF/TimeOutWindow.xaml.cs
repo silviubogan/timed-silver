@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -276,7 +278,18 @@ namespace cs_timed_silver
                 return;
             }
 
-            TbTag.Text = Clock.Tag;
+            // NOTE: not all properties' settings below are needed
+
+            rtbTag.Background = Brushes.Transparent;
+            rtbTag.Foreground = Brushes.Blue;
+            rtbTag.IsReadOnly = true;
+            rtbTag.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
+            rtbTag.Text = Clock.Tag;
+
+            rtbTag.Document.TextAlignment = TextAlignment.Center;
+            rtbTag.Document.Foreground = Brushes.Blue;
+            rtbTag.Document.FontSize = 25;
+
             t.Start();
 
             if (HasFadeInAnimation)
