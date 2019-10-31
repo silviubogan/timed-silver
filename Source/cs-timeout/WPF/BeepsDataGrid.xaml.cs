@@ -52,6 +52,7 @@ namespace cs_timed_silver
 
     public class BeepValidationRule : ValidationRule
     {
+        // TODO: use math symbols instead of C# operators `>=`, `<=` in strings in this method
         public override ValidationResult Validate(object value,
             System.Globalization.CultureInfo cultureInfo)
         {
