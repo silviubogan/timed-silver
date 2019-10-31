@@ -12,7 +12,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Linq;
@@ -1410,6 +1412,16 @@ namespace cs_timed_silver
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        public static void CopyDocument(FlowDocument source, FlowDocument target)
+        {
+            TextRange sourceRange = new TextRange(source.ContentStart, source.ContentEnd);
+            MemoryStream stream = new MemoryStream();
+            XamlWriter.Save(sourceRange, stream);
+            sourceRange.Save(stream, System.Windows.DataFormats.XamlPackage);
+            TextRange targetRange = new TextRange(target.ContentStart, target.ContentEnd);
+            targetRange.Load(stream, System.Windows.DataFormats.XamlPackage);
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -22,6 +23,11 @@ namespace cs_timed_silver
     /// </summary>
     public partial class ClockUserControl : UserControl
     {
+        static ClockUserControl()
+        {
+            rtff = new Xceed.Wpf.Toolkit.RtfFormatter();
+        }
+
         public ClockUserControl()
         {
             var conv = new UserBackColorToActualBackColor();
@@ -40,13 +46,30 @@ namespace cs_timed_silver
             UpdateImageVisibility();
         }
 
-        public static readonly DependencyProperty ClockTagProperty = DependencyProperty.Register("ClockTag", typeof(string),
-            typeof(ClockUserControl), new PropertyMetadata(""));
-        public string ClockTag
+        protected bool isChangingClockTag = false;
+
+        public static readonly DependencyProperty ClockTagProperty = DependencyProperty.Register("ClockTag", typeof(FlowDocument),
+            typeof(ClockUserControl), new PropertyMetadata(null, OnClockTagChanged));
+
+        private static void OnClockTagChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var o = (ClockUserControl)d;
+
+            if (o.isChangingVMTag)
+            {
+                return;
+            }
+
+            o.isChangingClockTag = true;
+            o.MyTextBox.Document = (o.DataContext as ClockVM).Tag.Clone();
+            o.isChangingClockTag = false;
+        }
+
+        public FlowDocument ClockTag
         {
             get
             {
-                return (string)GetValue(ClockTagProperty);
+                return (FlowDocument)GetValue(ClockTagProperty);
             }
             set
             {
@@ -267,6 +290,23 @@ namespace cs_timed_silver
 
         private void MyTextBox_DragEnter(object sender, DragEventArgs e)
         {
+        }
+
+        private static Xceed.Wpf.Toolkit.RtfFormatter rtff;
+
+        protected bool isChangingVMTag = false;
+
+        private void MyTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isChangingClockTag)
+            {
+                return;
+            }
+
+            // TODO: should I clone the document, or the right-member reference is enough?
+            isChangingVMTag = true;
+            (DataContext as ClockVM).Tag = MyTextBox.Document.Clone();
+            isChangingVMTag = false;
         }
     }
 }

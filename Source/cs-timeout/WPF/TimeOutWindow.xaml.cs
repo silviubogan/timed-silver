@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -276,7 +278,45 @@ namespace cs_timed_silver
                 return;
             }
 
-            TbTag.Text = Clock.Tag;
+            rtbTag.Background = Brushes.Transparent;
+            rtbTag.IsReadOnly = true;
+
+            FlowDocument d = Clock.Tag.Clone();
+            d.Foreground = Brushes.Blue;
+
+            var tr = new TextRange(d.ContentStart, d.ContentEnd);
+            tr.ApplyPropertyValue(TextElement.FontSizeProperty, 25d);
+
+            const string ellipsisChars = "...";
+
+            int ip = 0;
+            Block cb = d.Blocks.FirstBlock;
+            for (int i = 0; i < d.Blocks.Count; ++i)
+            {
+                if (cb == null)
+                {
+                    break;
+                }
+
+                if (cb is Paragraph p)
+                {
+                    if (ip == 3)
+                    {
+                        var tr2 = new TextRange(p.ContentStart, d.ContentEnd);
+                        if (d.Blocks.OfType<Paragraph>().Count() > 3)
+                        {
+                            tr2.Text = ellipsisChars;
+                        }
+                        break;
+                    }
+
+                    ++ip;
+                }
+                cb = cb.NextBlock;
+            }
+
+            rtbTag.Document = d;
+
             t.Start();
 
             if (HasFadeInAnimation)

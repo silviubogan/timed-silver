@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Color = System.Drawing.Color;
@@ -218,10 +220,12 @@ namespace cs_timed_silver
         /// </summary>
         internal void ShowTimeOutForm()
         {
+            string pt = Tag.ToPlainText();
+
             if ((bool)MyDataFile.Settings.GetValue("EnableRingingNotification"))
             {
                 MyDataFile.MainWindow.MyNotifyIcon.ShowBalloonTip(5000, "Time out!",
-                    Tag.Length == 0 ? "-" : Tag,
+                    pt.Length == 0 ? "-" : pt,
                     ToolTipIcon.Info);
             }
 
@@ -229,7 +233,7 @@ namespace cs_timed_silver
 
             string t = GetType() == typeof(AlarmData) ? "Alarm" : "Timer";
             MyDataFile.MainWindow.MyStatusBar.PostMessage(
-                $"{t} #{ID} <{Tag}> started ringing.",
+                $"{t} #{ID} <{pt}> started ringing.",
                 LogCategory.Information);
         }
 
@@ -244,8 +248,8 @@ namespace cs_timed_silver
 
         internal bool SupressPropertyChangedEvents { get; set; } = false;
 
-        internal string _Tag = "";
-        public string Tag
+        internal FlowDocument _Tag;
+        public FlowDocument Tag
         {
             get
             {
@@ -253,9 +257,11 @@ namespace cs_timed_silver
             }
             set
             {
-                if (value != _Tag)
+                if (value != _Tag &&
+                    XamlWriter.Save(value) != XamlWriter.Save(_Tag))
                 {
-                    _Tag = value;
+                    _Tag = value.Clone();
+
                     IsUnsaved = true;
                     if (!SupressPropertyChangedEvents)
                     {
@@ -466,6 +472,8 @@ namespace cs_timed_silver
 
         internal ClockM(DataFile df, MultiAudioPlayer map)
         {
+            _Tag = new FlowDocument();
+
             MyTimerViews = new List<IClockView>();
 
             MultiAudioPlayer = map;
@@ -581,7 +589,7 @@ namespace cs_timed_silver
                 IsUnsavedLocked == other.IsUnsavedLocked &&
                 ResetToValueLocked == other.ResetToValueLocked &&
                 Style == other.Style &&
-                Tag == other.Tag &&
+                XamlWriter.Save(Tag) == XamlWriter.Save(other.Tag) &&
                 Utils.ColorsAreTheSame(UserBackColor, other.UserBackColor);
         }
 
@@ -697,7 +705,7 @@ namespace cs_timed_silver
 
         public override string ToString()
         {
-            return $"ClockM {Tag} | {CurrentValue} | {DateTime.Now}";
+            return $"ClockM {Tag.ToPlainText()} | {CurrentValue} | {DateTime.Now}";
         }
 
         public bool IsActive

@@ -8,7 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using System.Windows.Shell;
 using System.Windows.Threading;
 using System.Xml;
@@ -771,7 +773,7 @@ namespace cs_timed_silver
 
             cd.IsUnsavedLocked = true;
 
-            cd.Tag = el.GetAttribute("Tag");
+            cd.Tag = XamlReader.Parse(el.GetAttribute("Tag")) as FlowDocument;
 
             string color = el.GetAttribute("UserBackColor");
             if (!string.IsNullOrEmpty(color))
@@ -1172,7 +1174,7 @@ namespace cs_timed_silver
                     );
 
                 XmlAttribute attrTag = doc.CreateAttribute("Tag");
-                attrTag.Value = td.Tag;
+                attrTag.InnerText = XamlWriter.Save(td.Tag);
 
                 XmlAttribute attrBackgroundPath = doc.CreateAttribute("TimeOutBackgroundImageRelativePath");
                 attrBackgroundPath.Value = td.TimeOutBackgroundImageRelativePath ?? "";

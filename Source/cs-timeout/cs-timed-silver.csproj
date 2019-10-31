@@ -175,6 +175,9 @@
     <Compile Include="Prompt dialogs\DateTimePromptWindow.xaml.cs">
       <DependentUpon>DateTimePromptWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Prompt dialogs\RichTextPromptWindow.xaml.cs">
+      <DependentUpon>RichTextPromptWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prompt dialogs\TimeSpanPromptWindow.xaml.cs">
       <DependentUpon>TimeSpanPromptWindow.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,7 @@
     <Compile Include="WPF\Converters\DrawingColorToSolidColorBrushConverter.cs" />
     <Compile Include="WPF\Converters\FilterClocksByTypeConverter.cs" />
     <Compile Include="WPF\Converters\RootClockUserControlGridActualHeightToInnerGridHeightConverter.cs" />
+    <Compile Include="WPF\Converters\FlowDocToStringListConverter.cs" />
     <Compile Include="WPF\Converters\StringToStringListConverter.cs" />
     <Compile Include="WPF\CustomSlider.xaml.cs">
       <DependentUpon>CustomSlider.xaml</DependentUpon>
@@ -633,6 +637,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prompt dialogs\DateTimePromptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prompt dialogs\RichTextPromptWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

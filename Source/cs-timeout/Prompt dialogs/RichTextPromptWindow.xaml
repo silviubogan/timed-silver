@@ -1,0 +1,59 @@
+﻿<Window x:Class="cs_timed_silver.RichTextPromptWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cs_timed_silver"
+        xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner" WindowState="Normal" ResizeMode="CanResizeWithGrip"
+        Width="450" Height="150"
+        Title="Text prompt"
+        
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        >
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5,5,5,5"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Enter text here:</Label>
+
+        <xtk:RichTextBox Name="MyTextBox" Text="" Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" AcceptsReturn="True"
+                 VerticalContentAlignment="Center">
+
+            <xtk:RichTextBox.Resources>
+                <Style TargetType="Paragraph">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </xtk:RichTextBox.Resources>
+            
+            <xtk:RichTextBoxFormatBarManager.FormatBar>
+                <xtk:RichTextBoxFormatBar/>
+            </xtk:RichTextBoxFormatBarManager.FormatBar>
+            
+            <xtk:RichTextBox.TextFormatter>
+                <xtk:XamlFormatter/>
+            </xtk:RichTextBox.TextFormatter>
+        </xtk:RichTextBox>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button IsCancel="True" x:Name="BtnCancel" Click="BtnCancel_Click">_Cancel</Button>
+            <Button IsDefault="True" x:Name="BtnOK" Click="BtnOK_Click">_OK</Button>
+        </StackPanel>
+    </Grid>
+</Window>

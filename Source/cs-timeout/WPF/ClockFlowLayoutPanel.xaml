@@ -20,7 +20,7 @@
              DragLeave="UserControl_DragLeave"
              PreviewMouseWheel="MyUserControl_MouseWheel">
     <UserControl.Resources>
-        <local:StringToStringListConverter x:Key="StringToStringList"/>
+        <local:FlowDocToStringListConverter x:Key="FlowDocToStringListConv"/>
 
         <!--<DataTemplate x:Key="ItemTemplate">
             <local:ClockUserControl DataContext="{Binding}"/>
@@ -115,7 +115,7 @@
                                 DarkTheme="{Binding ElementName=MyUserControl, Path=DarkTheme, Mode=OneTime}"
                                 
                                 Text="1"
-                                Details="{Binding Tag, Converter={StaticResource StringToStringList}}">
+                                Details="{Binding Tag, Converter={StaticResource FlowDocToStringListConv}}">
                             </local:ClockUserControlPlaceholder>
                         </DataTemplate>
                     </gdd:DragDrop.DragAdornerTemplate>
