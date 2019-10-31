@@ -272,6 +272,9 @@ namespace cs_timed_silver
 
             tsmiSetToSunset = new ToolStripMenuItem();
             tsmiSetToSunset.Text = "Set to Sunset";
+            tsmiSetToSunset.Image = Utils.ResizeToFitBoundingBox(
+                Properties.Resources.sunset,
+                new Rectangle(Point.Empty, new Size(32, 32)));
             tsmiSetToSunset.Click += TsmiSetToSunset_Click;
 
             tsmiAdvanced.Text = "Advanced...";

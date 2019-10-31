@@ -481,6 +481,16 @@ namespace cs_timed_silver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sunset {
+            get {
+                object obj = ResourceManager.GetObject("sunset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a user-specified text description of this timer that appears on the full screen window that opens when the time has elapsed..
         /// </summary>
         public static string TimerControl_TbTag_ToolTip {

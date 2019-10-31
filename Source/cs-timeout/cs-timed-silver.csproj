@@ -538,6 +538,7 @@
     <Content Include="Resources\Docs\Images\very-old.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\sunset.png" />
     <Resource Include="Resources\zoom reset icon based on zoom out from oxygen icons.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-stop.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-help-about.ico" />
