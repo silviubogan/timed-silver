@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -39,14 +40,14 @@ namespace cs_timed_silver
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            UserString = MyTextBox.Text;
+            UserString = XamlWriter.Save(MyTextBox.Document);
 
             DialogResult = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MyTextBox.Text = UserString;
+            MyTextBox.Document = (FlowDocument)XamlReader.Parse(UserString);
             MyTextBox.Focus();
             MyTextBox.SelectAll();
         }

@@ -7,7 +7,7 @@
         xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="500"
-        ShowInTaskbar="False" WindowStartupLocation="CenterOwner" WindowState="Normal" ResizeMode="NoResize"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner" WindowState="Normal" ResizeMode="CanResizeWithGrip"
         Width="450" Height="150"
         Title="Text prompt"
         
@@ -34,6 +34,13 @@
 
         <xtk:RichTextBox Name="MyTextBox" Text="" Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" AcceptsReturn="True"
                  VerticalContentAlignment="Center">
+
+            <xtk:RichTextBox.Resources>
+                <Style TargetType="Paragraph">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </xtk:RichTextBox.Resources>
             
             <xtk:RichTextBoxFormatBarManager.FormatBar>
                 <xtk:RichTextBoxFormatBar/>

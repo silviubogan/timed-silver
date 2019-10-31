@@ -281,14 +281,41 @@ namespace cs_timed_silver
             rtbTag.Background = Brushes.Transparent;
             rtbTag.IsReadOnly = true;
 
-            rtbTag.Document = Clock.Tag.Clone();
-            rtbTag.Document.TextAlignment = TextAlignment.Center;
-            rtbTag.Document.Foreground = Brushes.Blue;
+            FlowDocument d = Clock.Tag.Clone();
+            d.Foreground = Brushes.Blue;
 
-            foreach (Block b in rtbTag.Document.Blocks)
+            var tr = new TextRange(d.ContentStart, d.ContentEnd);
+            tr.ApplyPropertyValue(TextElement.FontSizeProperty, 25d);
+
+            const string ellipsisChars = "...";
+
+            int ip = 0;
+            Block cb = d.Blocks.FirstBlock;
+            for (int i = 0; i < d.Blocks.Count; ++i)
             {
-                b.FontSize = b.FontSize * 3;
+                if (cb == null)
+                {
+                    break;
+                }
+
+                if (cb is Paragraph p)
+                {
+                    if (ip == 3)
+                    {
+                        var tr2 = new TextRange(p.ContentStart, d.ContentEnd);
+                        if (d.Blocks.OfType<Paragraph>().Count() > 3)
+                        {
+                            tr2.Text = ellipsisChars;
+                        }
+                        break;
+                    }
+
+                    ++ip;
+                }
+                cb = cb.NextBlock;
             }
+
+            rtbTag.Document = d;
 
             t.Start();
 

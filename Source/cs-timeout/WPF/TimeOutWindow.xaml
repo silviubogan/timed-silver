@@ -84,71 +84,86 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel HorizontalAlignment="Center"
-                    Orientation="Vertical" Grid.ColumnSpan="2" Margin="0,5,0,0">
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                <local:AlarmClockIcon Height="150" RenderTransformOrigin="0.5 0.5" x:Name="MyAlarmClockIcon" Visibility="Collapsed">
-                </local:AlarmClockIcon>
-                <local:ClepsidraIcon Height="150" x:Name="MyClepsidraIcon" Visibility="Collapsed">
-                </local:ClepsidraIcon>
-                <TextBlock FontSize="75" Name="LblFirst"
+        <ScrollViewer Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center"
+                    Orientation="Vertical" Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                    <local:AlarmClockIcon Height="150" RenderTransformOrigin="0.5 0.5" x:Name="MyAlarmClockIcon" Visibility="Collapsed">
+                    </local:AlarmClockIcon>
+                    <local:ClepsidraIcon Height="150" x:Name="MyClepsidraIcon" Visibility="Collapsed">
+                    </local:ClepsidraIcon>
+                    <TextBlock FontSize="75" Name="LblFirst"
                        Foreground="White" VerticalAlignment="Center">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="1" Opacity="0.4"></DropShadowEffect>
-                    </TextBlock.Effect>
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="1" Opacity="0.4"></DropShadowEffect>
+                        </TextBlock.Effect>
                 Time out!
-                </TextBlock>
-            </StackPanel>
-            <TextBlock TextAlignment="Center"
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock TextAlignment="Center"
                        Foreground="White"
                        FontSize="20"
                        Name="TbElapsed">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="3"></DropShadowEffect>
-                </TextBlock.Effect>
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="3"></DropShadowEffect>
+                    </TextBlock.Effect>
                 Ringed for 00:00:00
-            </TextBlock>
-            
-            <TextBlock TextAlignment="Center"
+                </TextBlock>
+
+                <TextBlock TextAlignment="Center"
                        Foreground="Blue"
                        FontSize="20">
                 <LineBreak></LineBreak>
-            </TextBlock>
+                </TextBlock>
 
-            <xceed:RichTextBox Name="rtbTag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Width="Auto">
-                <RichTextBox.Effect>
-                    <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="2"></DropShadowEffect>
-                </RichTextBox.Effect>
-            </xceed:RichTextBox>
+                <xceed:RichTextBox Name="rtbTag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Width="Auto">
 
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <xceed:RichTextBox.Resources>
+                        <Style TargetType="Paragraph">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </xceed:RichTextBox.Resources>
 
-                <Button Name="BtnResetAndClose" Click="BtnResetAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-go-first-view.ico" Height="150" HorizontalAlignment="Center"/>
-                        <AccessText HorizontalAlignment="Center" Name="BtnResetAndCloseAccessText">_Reset &amp; Close</AccessText>
-                    </StackPanel>
-                </Button>
-                <Button Name="BtnRestartAndClose" Grid.Column="1" Click="BtnRestartAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-arrow-right.ico" Height="150" HorizontalAlignment="Center"/>
-                        <AccessText HorizontalAlignment="Center" Name="BtnRestartAndCloseAccessText">R_estart &amp; Close</AccessText>
-                    </StackPanel>
-                </Button>
-                <Button Name="BtnBack" Grid.Column="2" Click="BtnBack_Click" FontSize="25" Template="{DynamicResource GlassButton}">
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-application-exit.ico" Height="150"
+                    <xceed:RichTextBox.TextFormatter>
+                        <xceed:XamlFormatter/>
+                    </xceed:RichTextBox.TextFormatter>
+
+                    <xceed:RichTextBox.Effect>
+                        <DropShadowEffect BlurRadius="1" Opacity="0.4" ShadowDepth="2"></DropShadowEffect>
+                    </xceed:RichTextBox.Effect>
+                </xceed:RichTextBox>
+
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Name="BtnResetAndClose" Click="BtnResetAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-go-first-view.ico" Height="150" HorizontalAlignment="Center"/>
+                            <AccessText HorizontalAlignment="Center" Name="BtnResetAndCloseAccessText">_Reset &amp; Close</AccessText>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="BtnRestartAndClose" Grid.Column="1" Click="BtnRestartAndClose_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-arrow-right.ico" Height="150" HorizontalAlignment="Center"/>
+                            <AccessText HorizontalAlignment="Center" Name="BtnRestartAndCloseAccessText">R_estart &amp; Close</AccessText>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="BtnBack" Grid.Column="2" Click="BtnBack_Click" FontSize="25" Template="{DynamicResource GlassButton}">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/Resources/Oxygen-Icons.org-Oxygen-Actions-application-exit.ico" Height="150"
                                HorizontalAlignment="Center"/>
-                        <AccessText HorizontalAlignment="Center" Name="BtnBackAccessText">_Close without Reset</AccessText>
-                    </StackPanel>
-                </Button>
-            </Grid>
-        </StackPanel>
+                            <AccessText HorizontalAlignment="Center" Name="BtnBackAccessText">_Close without Reset</AccessText>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
 
         <Grid Grid.Column="1" HorizontalAlignment="Right"
               VerticalAlignment="Top"

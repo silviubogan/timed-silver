@@ -216,6 +216,13 @@
                          PreviewDragEnter="MyTextBox_PreviewDragEnter"
                          DragEnter="MyTextBox_DragEnter"
                                  TextChanged="MyTextBox_TextChanged">
+
+                    <xtk:RichTextBox.Resources>
+                        <Style TargetType="Paragraph">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </xtk:RichTextBox.Resources>
                     
                     <local:WatermarkService.Watermark>
                         <TextBlock Foreground="Gray" FontStyle="Italic">Type here...</TextBlock>
