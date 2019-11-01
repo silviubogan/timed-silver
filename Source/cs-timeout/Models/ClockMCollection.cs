@@ -1002,7 +1002,7 @@ namespace cs_timed_silver
 
         public int IndexOf(ClockM cd)
         {
-            return Ms.IndexOf(cd);
+            return Ms.IndexOfReference(cd);
         }
     }
 }

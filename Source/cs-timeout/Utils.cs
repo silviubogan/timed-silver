@@ -1245,7 +1245,7 @@ namespace cs_timed_silver
                     foreach (T item in e.NewItems)
                     {
                         var mItem = (T)item;
-                        int idx = source.IndexOf(mItem);
+                        int idx = source.IndexOfReference(mItem);
 
                         // if it doesn't exist in target, put it in target at idx, not with Add method
                         //int uIdx = target.IndexOf(toTarget(mItem));

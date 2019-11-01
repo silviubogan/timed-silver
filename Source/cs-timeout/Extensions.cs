@@ -336,5 +336,26 @@ namespace cs_timed_silver
             var r = new TextRange(f.ContentStart, f.ContentEnd);
             return r.Text.Trim();
         }
+
+        public static int IndexOfReference<T>(this IEnumerable<T> en, T r)
+        {
+            if (en == null)
+            {
+                throw new ArgumentNullException(nameof(en));
+            }
+
+            int i = 0;
+
+            foreach (T x in en)
+            {
+                if (ReferenceEquals(x, r))
+                {
+                    return i;
+                }
+                ++i;
+            }
+
+            return -1;
+        }
     }
 }
