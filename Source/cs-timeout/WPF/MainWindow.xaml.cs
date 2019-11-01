@@ -28,7 +28,6 @@ namespace cs_timed_silver
         internal JumpList MyJumpList;
 
         internal bool IsFileBeingClosed { get; set; } = false;
-        internal bool IsLoadingSettingsFromFile { get; set; } = false;
         internal bool ApplyWithoutSetting { get; set; } = false;
         internal bool MainFormIsBeingClosed { get; set; } = false;
         internal bool IsBeingLoaded { get; set; } = true;
@@ -231,10 +230,7 @@ namespace cs_timed_silver
                 case "DarkMode":
                     bool v = (bool)VM.Settings.GetValue("DarkMode");
 
-                    if (IsLoadingSettingsFromFile && ApplyWithoutSetting)
-                    {
-                        CbDarkTheme.IsChecked = v;
-                    }
+                    CbDarkTheme.IsChecked = v;
 
                     MyViewsGrid.MyDataGrid.DarkTheme = v;
                     MyViewsGrid.MyFlowView.DarkTheme = v;

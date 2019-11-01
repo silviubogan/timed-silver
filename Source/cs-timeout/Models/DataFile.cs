@@ -681,7 +681,11 @@ namespace cs_timed_silver
 
         internal string ErrorString { get; set; } = "";
 
-        internal bool LoadingFromXmlDocument = false;
+        /// <summary>
+        /// Gets or sets whether the program is currently loading things from the data file.
+        /// </summary>
+        internal bool LoadingFromXmlDocument { get; set; } = false;
+
         public bool LoadFromXmlDocument(XmlDocument doc)
         {
             LoadingFromXmlDocument = true;
@@ -712,15 +716,11 @@ namespace cs_timed_silver
             }
             ClockVMCollection.Model.AddClocks(accumulator.ToArray());
 
-            MainWindow.ApplyWithoutSetting = true;
             Settings.IsUnsavedLocked = true;
-            MainWindow.IsLoadingSettingsFromFile = true;
 
             Settings.ImportFromAttributes(doc);
 
             Settings.IsUnsavedLocked = false;
-            MainWindow.ApplyWithoutSetting = false;
-            MainWindow.IsLoadingSettingsFromFile = false;
 
             ClockVMCollection.Model.IsUnsavedLocked = false;
 
