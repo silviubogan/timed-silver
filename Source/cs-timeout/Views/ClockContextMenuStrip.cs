@@ -270,6 +270,9 @@ namespace cs_timed_silver
 
             tsmiSetToSunrise = new ToolStripMenuItem();
             tsmiSetToSunrise.Text = "Set to Sunrise";
+            tsmiSetToSunrise.Image = Utils.ResizeToFitBoundingBox(
+                Properties.Resources.sunrise,
+                new Rectangle(Point.Empty, new Size(32, 32)));
             tsmiSetToSunrise.Click += TsmiSetToSunrise_Click;
 
             tsmiSetToSunset = new ToolStripMenuItem();

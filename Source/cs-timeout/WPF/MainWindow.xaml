@@ -127,6 +127,7 @@
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo ProgressState="None" ProgressValue="0" x:Name="MyTaskbarItemInfo" x:FieldModifier="public"/>
     </Window.TaskbarItemInfo>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
