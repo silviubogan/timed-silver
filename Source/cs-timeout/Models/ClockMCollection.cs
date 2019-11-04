@@ -513,7 +513,7 @@ namespace cs_timed_silver
         {
             int index = td.GetIndex();
 
-            int removedCount = Ms.Remove(x => ReferenceEquals(x, td));
+            int removedCount = Ms.RemoveReference(x => ReferenceEquals(x, td));
 
             if (removedCount > 0)
             {

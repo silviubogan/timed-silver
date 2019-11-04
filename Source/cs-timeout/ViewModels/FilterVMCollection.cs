@@ -153,7 +153,7 @@ namespace cs_timed_silver
                 prepareDeletion: null,
                 equalsWithinTargetTo: new Func<FilterVM, FilterM, bool>((FilterVM vm, FilterM m) =>
                 {
-                    return vm.M == m;
+                    return object.ReferenceEquals(vm.M, m);
                 }),
                 toTarget: new Func<FilterVM, FilterM>((FilterVM vm) =>
                 {
@@ -184,13 +184,16 @@ namespace cs_timed_silver
                     prepareDeletion: null,
                     equalsWithinTargetTo: new Func<FilterM, FilterVM, bool>((FilterM m, FilterVM vm) =>
                     {
-                        return vm.M == m;
+                        return object.ReferenceEquals(vm.M, m);
                     }),
                     toTarget: new Func<FilterM, FilterVM>((FilterM m) =>
                     {
                         foreach (FilterVM vm in VMs)
                         {
-                            if (vm.M == m) { return vm; }
+                            if (object.ReferenceEquals(vm.M, m))
+                            {
+                                return vm;
+                            }
                         }
 
                         var rv = new FilterVM(m)

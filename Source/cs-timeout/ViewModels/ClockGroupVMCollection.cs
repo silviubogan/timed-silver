@@ -173,7 +173,10 @@ namespace cs_timed_silver
                     {
                         foreach (ClockGroupVM vm in VMs)
                         {
-                            if (vm.M == m) { return vm; }
+                            if (object.ReferenceEquals(vm.M, m))
+                            {
+                                return vm;
+                            }
                         }
 
                         return new ClockGroupVM(m);

@@ -12,7 +12,8 @@
              Focusable="True"
                 Loaded="ContentControl_Loaded"
                 
-                Template="{DynamicResource ClockGroupListViewTemplate}">
+                Template="{DynamicResource ClockGroupListViewTemplate}"
+                x:Name="MyClockGroupListView">
     <ContentControl.Resources>
         <Style TargetType="Image">
             <!-- TODO: to render better, do just like the big-finger heads-up image in Memory Game, there it works that method! -->
@@ -22,7 +23,7 @@
         
         <local:MultipleSelectedToVisibleConverter x:Key="MultipleSelectedToVisibleConv"/>
 
-        <ContextMenu x:Key="MyContextMenu">
+        <ContextMenu x:Key="MyGroupContextMenu">
             <MenuItem Click="ApplyFilters_Click"
                         Visibility="{Binding ElementName=MyListView,
                                     Path=SelectedItems.Count,
@@ -67,9 +68,36 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
+        
+        <ContextMenu x:Key="MyFilterContextMenu">
+            <MenuItem Click="ApplyFilters_Click"
+                        Visibility="{Binding ElementName=MyListView,
+                                    Path=SelectedItems.Count,
+                                    Converter={StaticResource MultipleSelectedToVisibleConv}}"
+                        Header="_Apply filters">
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Ac_tivate All"
+                      Click="ActivateAll_Click">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/on filter.ico"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Deact_ivate All"
+                      Click="DeactivateAll_Click">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/off filter.ico"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <!--<Separator/>-->
+            <!-- TODO: the following needs more complex logic to work -->
+            <!--<MenuItem Header="_Clear groups"
+                      Click="ClearGroup_Click">
+            </MenuItem>-->
+        </ContextMenu>
 
         <local:BoolToInvisibilityConverter x:Key="InvBoolToVisConv"/>
-        
+        <local:FilterVMToContextMenuConverter x:Key="FilterVMToContextMenuConv" GroupsOnlyContextMenu="{StaticResource MyGroupContextMenu}" FilterOnlyContextMenu="{StaticResource MyFilterContextMenu}"/>
 
         <ControlTemplate x:Key="ClockGroupListViewTemplate" TargetType="ContentControl">
             <ControlTemplate.Resources>
@@ -92,7 +120,7 @@
                 <DataTemplate x:Key="LargeIconsWithViewboxTemplate">
                     <Viewbox>
                         <Grid Tag="{Binding Path=MyFilter}"
-                                ContextMenu="{StaticResource MyContextMenu}"
+                                ContextMenu="{Binding ElementName=MyClockGroupListView, Path=ContextMenuForSelection}"
                                 Width="84" Height="60" ToolTip="{Binding Path=DisplayString}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -130,7 +158,7 @@
 
                 <DataTemplate x:Key="LargeIconsTemplate">
                     <Grid Tag="{Binding Path=MyFilter}"
-                                ContextMenu="{StaticResource MyContextMenu}"
+                                ContextMenu="{Binding ElementName=MyClockGroupListView, Path=ContextMenuForSelection}"
                               Width="84" Height="60" ToolTip="{Binding Path=DisplayString}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -167,7 +195,7 @@
 
                 <DataTemplate x:Key="StackTemplate">
                     <Grid Tag="{Binding Path=MyFilter}"
-                  ContextMenu="{StaticResource MyContextMenu}"
+                  ContextMenu="{Binding ElementName=MyClockGroupListView, Path=ContextMenuForSelection}"
                   ToolTip="{Binding Path=DisplayString}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -325,7 +353,8 @@
                               VerticalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
-                              Background="Transparent">
+                              Background="Transparent"
+                              SelectionChanged="MyListView_SelectionChanged">
                         
                         
                         <!-- 

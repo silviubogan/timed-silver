@@ -41,6 +41,19 @@ namespace cs_timed_silver
             return itemsToRemove.Count;
         }
 
+        public static int RemoveReference<T>(
+            this ObservableCollection<T> coll, Func<T, bool> condition)
+        {
+            var itemsToRemove = coll.Where(condition).ToList();
+
+            foreach (var itemToRemove in itemsToRemove)
+            {
+                coll.RemoveAt(coll.IndexOfReference(itemToRemove));
+            }
+
+            return itemsToRemove.Count;
+        }
+
         public static int IndexOf<T>(
             this ObservableCollection<T> coll, Func<T, bool> condition)
         {

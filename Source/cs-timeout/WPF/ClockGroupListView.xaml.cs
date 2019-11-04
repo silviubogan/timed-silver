@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -323,6 +324,17 @@ namespace cs_timed_silver
         //    ReloadGroups();
         //}
 
+
+        public ContextMenu ContextMenuForSelection
+        {
+            get { return (ContextMenu)GetValue(ContextMenuForSelectionProperty); }
+            set { SetValue(ContextMenuForSelectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContextMenuForSelectionProperty =
+            DependencyProperty.Register("ContextMenuForSelection", typeof(ContextMenu), typeof(ClockGroupListView), new PropertyMetadata(null));
+
+
         internal ListView MyListView;
         internal Grid MyGrid;
         internal ZoomableStackPanel MyToolBarContainer;
@@ -572,20 +584,6 @@ namespace cs_timed_silver
 
         private void ContextMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            bool showCms = false;
-            foreach (FilterVM fd in MyListView.SelectedItems)
-            {
-                if (fd.M.GroupNames.Count != 0)
-                {
-                    showCms = true;
-                    break;
-                }
-            }
-
-            if (!showCms)
-            {
-                e.Handled = true;
-            }
         }
 
         private void DeleteGroup_Click(object sender, RoutedEventArgs e)
@@ -1121,6 +1119,13 @@ namespace cs_timed_silver
                     c.ActivateOrDeactivate();
                 }
             }
+        }
+
+        private void MyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ContextMenuForSelection = (ContextMenu)((FilterVMToContextMenuConverter)
+                FindResource("FilterVMToContextMenuConv")).Convert(MyListView, typeof(ContextMenu),
+                null, CultureInfo.InvariantCulture);
         }
 
         void IDragSource.Dropped(IDropInfo dropInfo)

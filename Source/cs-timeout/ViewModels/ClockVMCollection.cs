@@ -288,7 +288,8 @@ namespace cs_timed_silver
             MyDataFile.UpdateGlobalIsUnsaved();
         }
 
-        internal Dictionary<ClockM, ClockVM> MToVM = new Dictionary<ClockM, ClockVM>();
+        internal Dictionary<ClockM, ClockVM> MToVM =
+            new Dictionary<ClockM, ClockVM>(EqualityComparer<ClockM>.Default);
         internal ClockVM VMForM(ClockM td)
         {
             if (MToVM.ContainsKey(td))
@@ -317,7 +318,7 @@ namespace cs_timed_silver
                 null,
                 (ClockVM vm, ClockM m) =>
                 {
-                    return vm.Model == m;
+                    return object.ReferenceEquals(vm.Model, m);
                 },
                 (ClockVM vm) =>
                 {
@@ -364,7 +365,7 @@ namespace cs_timed_silver
                 },
                 (ClockM m, ClockVM vm) =>
                 {
-                    return vm.Model == m;
+                    return ReferenceEquals(vm.Model, m);
                 },
                 (ClockM m) =>
                 {
@@ -401,7 +402,7 @@ namespace cs_timed_silver
             {
                 foreach (ClockM m in e.OldItems)
                 {
-                    SelectedClocks.Remove(VMForM(m));
+                    SelectedClocks.RemoveReference(x => object.ReferenceEquals(VMForM(m), x));
                 }
             }
 
