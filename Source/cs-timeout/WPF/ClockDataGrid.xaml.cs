@@ -61,17 +61,27 @@ namespace cs_timed_silver
             }
             else
             {
-                MyFillColumnsItem = new System.Windows.Forms.ToolStripMenuItem("&Autoresize columns to fill the table width");
-                MyFillColumnsItem.Image = Properties.Resources.fill_columns_icon;
-                MyFillColumnsItem.CheckedChanged += Item_CheckedChanged;
-                MyFillColumnsItem.CheckOnClick = true;
-                MyFillColumnsItem.Checked = false;
+                MyFillColumnsItem = new MenuItem()
+                {
+                    Header = "_Autoresize columns to fill the table width"
+                };
+                MyFillColumnsItem.Icon = Properties.Resources.fill_columns_icon;
+                MyFillColumnsItem.Checked += MyFillColumnsItem_Checked;
+                MyFillColumnsItem.Unchecked += MyFillColumnsItem_Unchecked;
+                MyFillColumnsItem.IsCheckable = true;
+                MyFillColumnsItem.IsChecked = false;
 
-                MyToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+                MyToolStripSeparator = new Separator();
             }
         }
 
-        internal void Item_CheckedChanged(object sender, EventArgs e)
+        private void MyFillColumnsItem_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // resize columns to fill table width
+            Cms_ResizeColumnsToFill(sender, e);
+        }
+
+        internal void MyFillColumnsItem_Checked(object sender, EventArgs e)
         {
             // resize columns to fill table width
             Cms_ResizeColumnsToFill(sender, e);
@@ -81,7 +91,7 @@ namespace cs_timed_silver
         {
             if (Clocks != null)
             {
-                Clocks.MyDataFile.Settings.SetValue("AutoresizeTableColumns", MyFillColumnsItem.Checked);
+                Clocks.MyDataFile.Settings.SetValue("AutoresizeTableColumns", MyFillColumnsItem.IsChecked);
             }
         }
 
@@ -193,7 +203,7 @@ namespace cs_timed_silver
 
             if (MyFillColumnsItem != null) // not in design mode
             {
-                MyFillColumnsItem.Checked = AutoresizeTableColumns;
+                MyFillColumnsItem.IsChecked = AutoresizeTableColumns;
             }
         }
 
@@ -204,7 +214,12 @@ namespace cs_timed_silver
 
             if (e.NewValue != null)
             {
-                o.MyClockContextMenuStrip = new ClockContextMenuStrip();
+                o.MyClockContextMenuStrip = new ClockContextMenuStrip(); // TODO: is this necessary? check for null and only then do this.
+
+                var hs = new HashSet<ClockVM>(o.Clocks.VMs);
+                o.MyClockContextMenuStrip.MyClocks = hs;
+
+                o.MyClockContextMenuStrip.UpdateContents();
             }
         }
 
@@ -223,8 +238,8 @@ namespace cs_timed_silver
             ShowContextMenu(Utils.GetMousePositionWindowsForms(), System.Windows.Forms.ToolStripDropDownDirection.BelowRight);
         }
 
-        internal System.Windows.Forms.ToolStripSeparator MyToolStripSeparator;
-        internal System.Windows.Forms.ToolStripMenuItem MyFillColumnsItem;
+        internal Separator MyToolStripSeparator;
+        internal MenuItem MyFillColumnsItem;
         internal ClockContextMenuStrip MyClockContextMenuStrip;
         internal void ShowContextMenu(System.Drawing.Point screenPosition,
             System.Windows.Forms.ToolStripDropDownDirection dir = System.Windows.Forms.ToolStripDropDownDirection.BelowRight)
@@ -239,9 +254,11 @@ namespace cs_timed_silver
             }
             if (cc.Count == 0) // only takes place in multiselect mode (header)
             {
-                var cms = new System.Windows.Forms.ContextMenuStrip();
+                var cms = new ContextMenu();
                 cms.Items.Add(MyFillColumnsItem);
-                cms.Show(screenPosition, dir);
+                //cms.Show(screenPosition, dir);
+                cms.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+                cms.IsOpen = true;
                 return;
             }
 
@@ -251,11 +268,14 @@ namespace cs_timed_silver
             }
 
             MyClockContextMenuStrip.MyClocks = cc;
+            MyClockContextMenuStrip.UpdateContents();
             MyClockContextMenuStrip.Items.Remove(MyToolStripSeparator);
             MyClockContextMenuStrip.Items.Remove(MyFillColumnsItem);
             MyClockContextMenuStrip.Items.Add(MyToolStripSeparator);
             MyClockContextMenuStrip.Items.Add(MyFillColumnsItem);
-            MyClockContextMenuStrip.Show(screenPosition, dir);
+            MyClockContextMenuStrip.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+            //MyClockContextMenuStrip.Show(screenPosition, dir);
+            MyClockContextMenuStrip.IsOpen = true;
         }
 
         private void MyDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)

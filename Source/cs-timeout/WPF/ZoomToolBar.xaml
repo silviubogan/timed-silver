@@ -7,7 +7,7 @@
          xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
          mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="600.6" Name="MyZoomToolBar"
+             d:DesignHeight="40" d:DesignWidth="700" Name="MyZoomToolBar"
          Loaded="MyZoomToolBar_Loaded">
     
     <Label Content="{Binding ElementName=MyZoomToolBar, Path=Title}" Name="LblTitle"

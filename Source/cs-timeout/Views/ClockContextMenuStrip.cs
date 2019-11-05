@@ -9,24 +9,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Markup;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using Image = System.Windows.Controls.Image;
 
 namespace cs_timed_silver
 {
-    internal class ClockContextMenuStrip : ContextMenuStrip
+    internal class ClockContextMenuStrip : ContextMenu
     {
-        private ToolStripMenuItem tsmiSelectColor;
-        private ToolStripMenuItem tsmiRemoveCustomColor;
-        private ToolStripMenuItem tsmiGroupName;
-        private ToolStripMenuItem tsmiResetTo;
-        private ToolStripMenuItem tsmiSelectIcon;
-        private ToolStripMenuItem tsmiSelectSuggestedColor;
-        private ToolStripSeparator tss1, tss2, tss3, tss4, tss5;
-        private ToolStripMenuItem tsmiRemoveIcon;
+        private MenuItem tsmiSelectColor;
+        private MenuItem tsmiRemoveCustomColor;
+        private MenuItem tsmiGroupName;
+        private MenuItem tsmiResetTo;
+        private MenuItem tsmiSelectIcon;
+        private MenuItem tsmiSelectSuggestedColor;
+        private Separator tss1, tss2, tss3, tss4, tss5;
+        private MenuItem tsmiRemoveIcon;
         //private ToolStripMenuItem tsmiAlwaysShowID;
-        private ToolStripMenuItem tsmiUndock;
-        internal ToolStripMenuItem tsmiDelete, tsmiRename,
+        private MenuItem tsmiUndock;
+        internal MenuItem tsmiDelete, tsmiRename,
             tsmiActivateDezactivate, tsmiSetCurrentValue,
             tsmiSetRandomColors, tsmiConvertToOtherType,
             tsmiAdvanced, tsmiSaveIconAs, tsmiOpenTimeOutBackgroundImageFile,
@@ -59,7 +62,7 @@ namespace cs_timed_silver
                     return null;
                 }
 
-                return MyClocks.First();
+                return MyClocks.FirstOrDefault();
             }
         }
 
@@ -78,136 +81,145 @@ namespace cs_timed_silver
         private void Initialize()
         {
             //ImageScalingSize = new Size(28, 28);
-            ShowCheckMargin = false;
-            ShowImageMargin = true;
+            //ShowCheckMargin = false;
+            //ShowImageMargin = true;
 
 
-            tsmiUndock = new ToolStripMenuItem();
+            tsmiUndock = new MenuItem();
 
-            tss1 = new ToolStripSeparator();
+            tss1 = new Separator();
 
-            tsmiResetTo = new ToolStripMenuItem();
-            tsmiGroupName = new ToolStripMenuItem();
+            tsmiResetTo = new MenuItem();
+            tsmiGroupName = new MenuItem();
 
-            tss2 = new ToolStripSeparator();
+            tss2 = new Separator();
 
-            tsmiSelectColor = new ToolStripMenuItem();
-            tsmiRemoveCustomColor = new ToolStripMenuItem();
+            tsmiSelectColor = new MenuItem();
+            tsmiRemoveCustomColor = new MenuItem();
 
-            tss3 = new ToolStripSeparator();
+            tss3 = new Separator();
 
-            tsmiSelectIcon = new ToolStripMenuItem();
-            tsmiRemoveIcon = new ToolStripMenuItem();
+            tsmiSelectIcon = new MenuItem();
+            tsmiRemoveIcon = new MenuItem();
             //tsmiAlwaysShowID = new ToolStripMenuItem();
 
-            tss4 = new ToolStripSeparator();
+            tss4 = new Separator();
 
-            tsmiDelete = new ToolStripMenuItem();
-            tsmiRename = new ToolStripMenuItem();
-            tsmiActivateDezactivate = new ToolStripMenuItem();
-            tsmiSetCurrentValue = new ToolStripMenuItem();
-            tsmiSetRandomColors = new ToolStripMenuItem();
-            tsmiConvertToOtherType = new ToolStripMenuItem();
+            tsmiDelete = new MenuItem();
+            tsmiRename = new MenuItem();
+            tsmiActivateDezactivate = new MenuItem();
+            tsmiSetCurrentValue = new MenuItem();
+            tsmiSetRandomColors = new MenuItem();
+            tsmiConvertToOtherType = new MenuItem();
 
-            tss5 = new ToolStripSeparator();
+            tss5 = new Separator();
 
-            tsmiAdvanced = new ToolStripMenuItem();
-            tsmiSaveIconAs = new ToolStripMenuItem();
-            tsmiSelectSuggestedColor = new ToolStripMenuItem();
+            tsmiAdvanced = new MenuItem();
+            tsmiSaveIconAs = new MenuItem();
+            tsmiSelectSuggestedColor = new MenuItem();
 
-            Items.AddRange(new ToolStripItem[] {
-                tsmiUndock,
+            Items.Add(tsmiUndock);
 
-                tss1,
+            Items.Add(tss1);
 
-                tsmiResetTo,
-                tsmiGroupName,
+            Items.Add(tsmiResetTo);
+            Items.Add(tsmiGroupName);
 
-                tss2,
+            Items.Add(tss2);
 
-                tsmiSelectColor,
-                tsmiRemoveCustomColor,
+            Items.Add(tsmiSelectColor);
+            Items.Add(tsmiRemoveCustomColor);
 
-                tss3,
+            Items.Add(tss3);
 
-                tsmiSelectIcon,
-                tsmiRemoveIcon,
-                //tsmiAlwaysShowID,
+            Items.Add(tsmiSelectIcon);
+            Items.Add(tsmiRemoveIcon);
 
-                tss4,
+            Items.Add(tss4);
 
-                tsmiActivateDezactivate,
-                tsmiSetCurrentValue,
-                tsmiDelete,
-                tsmiRename,
-                tsmiSetRandomColors,
-                tsmiConvertToOtherType,
+            Items.Add(tsmiActivateDezactivate);
+            Items.Add(tsmiSetCurrentValue);
+            Items.Add(tsmiDelete);
+            Items.Add(tsmiRename);
+            Items.Add(tsmiSetRandomColors);
+            Items.Add(tsmiConvertToOtherType);
 
-                tss5,
+            Items.Add(tss5);
 
-                tsmiAdvanced
-            });
+            Items.Add(tsmiAdvanced);
 
-            ImageList = new ImageList();
-            ImageList.ColorDepth = ColorDepth.Depth32Bit;
-            ImageList.TransparentColor = Color.Empty;
-            ImageList.ImageSize = new Size(128, 128);
-            ImageList.Images.Add(Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_window_new, 16));
-            ImageList.Images.Add(Utils.ResizeToFitBoundingBox(Properties.Resources.reset_icon, new Rectangle(Point.Empty, new Size(32, 32))));
+
 
             // 
             // tsmiUndock
             // 
-            tsmiUndock.Text = "&Undock...";
-            tsmiUndock.Click += new EventHandler(tsmiUndock_Click);
-            tsmiUndock.ImageTransparentColor = Color.Empty;
-            tsmiUndock.ImageIndex = 0;
+            tsmiUndock.Header = "_Undock...";
+            tsmiUndock.Click += tsmiUndock_Click;
+            tsmiUndock.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-window-new.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiResetTo
             // 
-            tsmiResetTo.Text = "Reset t&o";
-            tsmiResetTo.DropDownOpening += new EventHandler(tsmiResetTo_DropDownOpening);
-            tsmiResetTo.Click += new EventHandler(tsmiResetTo_Click);
-            tsmiResetTo.ImageTransparentColor = Color.Empty;
-            tsmiResetTo.ImageIndex = 1;
+            tsmiResetTo.Header = "Reset t_o";
+            //tsmiResetTo.ContextMenuOpening += tsmiResetTo_DropDownOpening;
+            tsmiResetTo.PreviewMouseDown += tsmiResetTo_Click;
+            tsmiResetTo.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1092.png", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiGroupName
             // 
-            tsmiGroupName.Name = "tsmiGroupName";
-            tsmiGroupName.Text = "&Group...";
-            tsmiGroupName.DropDownOpening += new EventHandler(tsmiGroupName_DropDownOpening);
-            tsmiGroupName.Image = Utils.IconResourceVersionBySize(Properties.Resources.folder_menuitem, 32);
+            tsmiGroupName.Header = "_Group...";
+            //tsmiGroupName.ContextMenuOpening += tsmiGroupName_DropDownOpening;
+            tsmiGroupName.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/folder.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiSelectColor
             // 
-            tsmiSelectColor.Name = "tsmiSelectColor";
-            tsmiSelectColor.Text = "Sele&ct color...";
-            tsmiSelectColor.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_format_stroke_color, 16);
+            tsmiSelectColor.Header = "Sele_ct color...";
+            tsmiSelectColor.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiRemoveCustomColor
             // 
-            tsmiRemoveCustomColor.Name = "tsmiRemoveCustomColor";
-            tsmiRemoveCustomColor.Text = "Dele&te user color";
-            tsmiRemoveCustomColor.Image = Utils.IconResourceVersionBySize(Properties.Resources.remove_custom_color, 16);
+            tsmiRemoveCustomColor.Header = "Dele_te user color";
+            tsmiRemoveCustomColor.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/remove_custom_color.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiSelectIcon
             // 
-            tsmiSelectIcon.Name = "tsmiSelectIcon";
-            tsmiSelectIcon.Text = "Se&lect icon...";
-            tsmiSelectIcon.Click += new EventHandler(tsmiSelectIcon_Click);
-            tsmiSelectIcon.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_document_edit, 16);
+            tsmiSelectIcon.Header = "Se_lect icon...";
+            tsmiSelectIcon.Click += tsmiSelectIcon_Click;
+            tsmiSelectIcon.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-document-edit.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiRemoveIcon
             // 
-            tsmiRemoveIcon.Name = "tsmiRemoveIcon";
-            tsmiRemoveIcon.Text = "R&emove icon";
-            tsmiRemoveIcon.Click += new EventHandler(tsmiRemoveIcon_Click);
+            tsmiRemoveIcon.Header = "R_emove icon";
+            tsmiRemoveIcon.Click += tsmiRemoveIcon_Click;
 
             // 
             // tsmiAlwaysShowID
@@ -222,76 +234,100 @@ namespace cs_timed_silver
             // 
             // tsmiDelete
             // 
-            tsmiDelete.Text = "&Delete...";
+            tsmiDelete.Header = "_Delete...";
             tsmiDelete.Click += tsmiDelete_Click;
-            tsmiDelete.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_edit_delete, 16);
+            tsmiDelete.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
             // 
             // tsmiRename
             // 
-            tsmiRename.Text = "&Rename...";
+            tsmiRename.Header = "_Rename...";
             tsmiRename.Click += tsmiRename_Click;
-            tsmiRename.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_edit_rename, 16);
+            tsmiRename.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/set_current_value.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
-            tsmiSetCurrentValue.Text = "Set curre&nt value...";
+            tsmiSetCurrentValue.Header = "Set curre_nt value...";
             tsmiSetCurrentValue.Click += TsmiSetCurrentValue_Click;
-            tsmiSetCurrentValue.Image = Utils.IconResourceVersionBySize(Properties.Resources.set_current_value, 16);
+            tsmiSetCurrentValue.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-edit-rename.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
-            tsmiSetRandomColors.Text = "Set random &colors";
+            tsmiSetRandomColors.Header = "Set random _colors";
             tsmiSetRandomColors.Click += TsmiSetRandomColors_Click;
-            tsmiSetRandomColors.Image = Utils.ResizeToFitBoundingBox(Properties.Resources.random, new Rectangle(Point.Empty, new Size(16, 16)));
+            tsmiSetRandomColors.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1129.png", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
 
-            tsmiConvertToOtherType.Text = "T&oggle Types";
-            tsmiConvertToOtherType.ToolTipText =
+            tsmiConvertToOtherType.Header = "T_oggle Types";
+            tsmiConvertToOtherType.ToolTip =
                 "From Alarm to Timer, and from Timer to Alarm";
             tsmiConvertToOtherType.Click += TsmiConvertToOtherType_Click;
 
-            tsmiSaveIconAs.Text = "Save &icon as...";
-            tsmiSaveIconAs.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_document_save_as, 16);
+            tsmiSaveIconAs.Header = "Save _icon as...";
+            tsmiSaveIconAs.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
             tsmiSaveIconAs.Click += TsmiSaveIconAs_Click;
 
-            tsmiSelectSuggestedColor.Text = "Select suggested color";
+            tsmiSelectSuggestedColor.Header = "Select suggested color";
             tsmiSelectSuggestedColor.Click += TsmiSelectSuggestedColor_Click;
 
             tsmiSelectColor.Click += TsmiChangeColor_Click;
             tsmiRemoveCustomColor.Click += TsmiRemoveCustomColor_Click;
             tsmiActivateDezactivate.Click += TsmiActivateDezactivate_Click;
 
-            tsmiOpenTimeOutBackgroundImageFile = new ToolStripMenuItem();
+            tsmiOpenTimeOutBackgroundImageFile = new MenuItem();
             tsmiOpenTimeOutBackgroundImageFile.Click += TsmiOpenTimeOutBackgroundImageFile_Click;
 
-            tsmiRemoveTimeOutBackgroundImageFile = new ToolStripMenuItem();
-            tsmiRemoveTimeOutBackgroundImageFile.Text = "Remove Time-out Background Image File";
+            tsmiRemoveTimeOutBackgroundImageFile = new MenuItem();
+            tsmiRemoveTimeOutBackgroundImageFile.Header = "Remove Time-out Background Image File";
             tsmiRemoveTimeOutBackgroundImageFile.Click += TsmiRemoveTimeOutBackgroundImageFile_Click;
 
-            tsmiChooseTimeOutBackgroundImageFile = new ToolStripMenuItem();
-            tsmiChooseTimeOutBackgroundImageFile.Text = "Choose a Time-out Background Image File...";
+            tsmiChooseTimeOutBackgroundImageFile = new MenuItem();
+            tsmiChooseTimeOutBackgroundImageFile.Header = "Choose a Time-out Background Image File...";
             tsmiChooseTimeOutBackgroundImageFile.Click += TsmiChooseTimeOutBackgroundImageFile_Click;
 
-            tsmiSetToSunrise = new ToolStripMenuItem();
-            tsmiSetToSunrise.Text = "Set to Sunrise";
-            tsmiSetToSunrise.Image = Utils.ResizeToFitBoundingBox(
-                Properties.Resources.sunrise,
-                new Rectangle(Point.Empty, new Size(32, 32)));
+            tsmiSetToSunrise = new MenuItem();
+            tsmiSetToSunrise.Header = "Set to Sunrise";
+            tsmiSetToSunrise.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sunrise.png", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
             tsmiSetToSunrise.Click += TsmiSetToSunrise_Click;
 
-            tsmiSetToSunset = new ToolStripMenuItem();
-            tsmiSetToSunset.Text = "Set to Sunset";
-            tsmiSetToSunset.Image = Utils.ResizeToFitBoundingBox(
-                Properties.Resources.sunset,
-                new Rectangle(Point.Empty, new Size(32, 32)));
+            tsmiSetToSunset = new MenuItem();
+            tsmiSetToSunset.Header = "Set to Sunset";
+            tsmiSetToSunset.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sunset.png", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
             tsmiSetToSunset.Click += TsmiSetToSunset_Click;
 
-            tsmiAdvanced.Text = "Advanced...";
-            tsmiAdvanced.DropDownItems.Add(tsmiSaveIconAs);
-            tsmiAdvanced.DropDownItems.Add(tsmiSelectSuggestedColor);
-            tsmiAdvanced.DropDownItems.Add(new ToolStripSeparator());
-            tsmiAdvanced.DropDownItems.Add(tsmiOpenTimeOutBackgroundImageFile);
-            tsmiAdvanced.DropDownItems.Add(tsmiRemoveTimeOutBackgroundImageFile);
-            tsmiAdvanced.DropDownItems.Add(tsmiChooseTimeOutBackgroundImageFile);
-            tsmiAdvanced.DropDownItems.Add(new ToolStripSeparator());
-            tsmiAdvanced.DropDownItems.Add(tsmiSetToSunrise);
-            tsmiAdvanced.DropDownItems.Add(tsmiSetToSunset);
+            tsmiAdvanced.Header = "Advanced...";
+            tsmiAdvanced.Items.Add(tsmiSaveIconAs);
+            tsmiAdvanced.Items.Add(tsmiSelectSuggestedColor);
+            tsmiAdvanced.Items.Add(new Separator());
+            tsmiAdvanced.Items.Add(tsmiOpenTimeOutBackgroundImageFile);
+            tsmiAdvanced.Items.Add(tsmiRemoveTimeOutBackgroundImageFile);
+            tsmiAdvanced.Items.Add(tsmiChooseTimeOutBackgroundImageFile);
+            tsmiAdvanced.Items.Add(new Separator());
+            tsmiAdvanced.Items.Add(tsmiSetToSunrise);
+            tsmiAdvanced.Items.Add(tsmiSetToSunset);
         }
 
         private void TsmiSetToSunset_Click(object sender, EventArgs e)
@@ -363,23 +399,47 @@ namespace cs_timed_silver
 
             if (!string.IsNullOrEmpty(MyClock.TimeOutBackgroundImageRelativePath))
             {
-                tsmiOpenTimeOutBackgroundImageFile.Text = Path.GetFileName(MyClock.TimeOutBackgroundImageRelativePath);
-                tsmiOpenTimeOutBackgroundImageFile.ToolTipText = MyClock.TimeOutBackgroundImageRelativePath;
-                tsmiOpenTimeOutBackgroundImageFile.Font = new Font(tsmiOpenTimeOutBackgroundImageFile.Font, FontStyle.Regular);
-                tsmiOpenTimeOutBackgroundImageFile.ForeColor = SystemColors.ControlText;
-                tsmiOpenTimeOutBackgroundImageFile.Enabled = true;
+                var ui = new StackPanel()
+                {
+                    Orientation = Orientation.Vertical,
+                    HorizontalAlignment = HorizontalAlignment.Stretch
+                };
+                ui.Children.Add(
+                    new TextBlock(
+                        new Run(
+                            Path.GetFileName(MyClock.TimeOutBackgroundImageRelativePath)))
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(5)
+                    });
+                ui.Children.Add(new Image()
+                {
+                    Source = new BitmapImage(
+                        new Uri(MyClock.TimeOutBackgroundImageRelativePath,
+                            UriKind.RelativeOrAbsolute)),
+                    MaxHeight = 200,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(5, 0, 5, 5)
+                });
 
-                tsmiRemoveTimeOutBackgroundImageFile.Enabled = true;
+                // TODO: what if the file name has _ in it? it is shown as accelerator, and the _ is removed from the actual string shown in the UI
+                tsmiOpenTimeOutBackgroundImageFile.Header = ui;
+                tsmiOpenTimeOutBackgroundImageFile.ToolTip = MyClock.TimeOutBackgroundImageRelativePath;
+                tsmiOpenTimeOutBackgroundImageFile.FontStyle = System.Windows.FontStyles.Normal;
+                tsmiOpenTimeOutBackgroundImageFile.Foreground = System.Windows.SystemColors.ControlTextBrush;
+                tsmiOpenTimeOutBackgroundImageFile.IsEnabled = true;
+
+                tsmiRemoveTimeOutBackgroundImageFile.IsEnabled = true;
             }
             else
             {
-                tsmiOpenTimeOutBackgroundImageFile.Text = "No Specific Time-out Background";
-                tsmiOpenTimeOutBackgroundImageFile.ToolTipText = "";
-                tsmiOpenTimeOutBackgroundImageFile.Font = new Font(tsmiOpenTimeOutBackgroundImageFile.Font, FontStyle.Italic);
-                tsmiOpenTimeOutBackgroundImageFile.ForeColor = SystemColors.GrayText;
-                tsmiOpenTimeOutBackgroundImageFile.Enabled = false;
+                tsmiOpenTimeOutBackgroundImageFile.Header = "No Specific Time-out Background";
+                tsmiOpenTimeOutBackgroundImageFile.ToolTip = null;
+                tsmiOpenTimeOutBackgroundImageFile.FontStyle = System.Windows.FontStyles.Italic;
+                tsmiOpenTimeOutBackgroundImageFile.Foreground = System.Windows.SystemColors.GrayTextBrush;
+                tsmiOpenTimeOutBackgroundImageFile.IsEnabled = false;
 
-                tsmiRemoveTimeOutBackgroundImageFile.Enabled = false;
+                tsmiRemoveTimeOutBackgroundImageFile.IsEnabled = false;
             }
         }
 
@@ -390,8 +450,8 @@ namespace cs_timed_silver
                 return;
             }
 
-            OpenFileDialog d = Utils.GetImageChooser();
-            if (d.ShowDialog() == DialogResult.OK)
+            System.Windows.Forms.OpenFileDialog d = Utils.GetImageChooser();
+            if (d.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 foreach (ClockVM vm in MyClocks)
                 {
@@ -465,9 +525,10 @@ namespace cs_timed_silver
 
             if (ico != null)
             {
-                SaveFileDialog fd = Utils.GetImageSaveChooser();
+                System.Windows.Forms.SaveFileDialog fd = Utils.GetImageSaveChooser();
 
-                if (fd.ShowDialog(this) == DialogResult.OK &&
+                // TODO: pass MainWindow somehow to ShowDialog:
+                if (fd.ShowDialog(/*MainWindow*/) == System.Windows.Forms.DialogResult.OK &&
                     fd.FileName != "")
                 {
                     var fs = (FileStream)fd.OpenFile();
@@ -533,13 +594,21 @@ namespace cs_timed_silver
             }
         }
 
-        internal static Image iconStop = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_media_playback_pause, 16);
-        internal static Image iconStart = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_media_playback_start, 16);
-
-        protected override void OnOpening(CancelEventArgs e)
+        internal static Image iconStop = new Image()
         {
-            base.OnOpening(e);
+            Source = new BitmapImage(
+                new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-pause.ico", UriKind.RelativeOrAbsolute)),
+            Width = 16
+        };
+        internal static Image iconStart = new Image()
+        {
+            Source = new BitmapImage(
+                new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico", UriKind.RelativeOrAbsolute)),
+            Width = 16
+        };
 
+        public void UpdateContents()
+        {
             if (MyClocks.Count != 0)
             {
                 MainWindow = MyClock.Model.MyDataFile.MainWindow;
@@ -547,35 +616,35 @@ namespace cs_timed_silver
 
             if (MyClocks.Count >= 1)
             {
-                tss4.Visible = true;
-                tsmiDelete.Visible = true;
-                tsmiRename.Visible = true;
-                tsmiActivateDezactivate.Visible = true;
-                tsmiSetCurrentValue.Visible = true;
+                tss4.Visibility = System.Windows.Visibility.Visible;
+                tsmiDelete.Visibility = System.Windows.Visibility.Visible;
+                tsmiRename.Visibility = System.Windows.Visibility.Visible;
+                tsmiActivateDezactivate.Visibility = System.Windows.Visibility.Visible;
+                tsmiSetCurrentValue.Visibility = System.Windows.Visibility.Visible;
 
                 if (MyClock.Model is TimerData td)
                 {
-                    tsmiActivateDezactivate.Text = td.Running ? "&Stop" : "&Start";
-                    tsmiActivateDezactivate.Image = td.Running ? iconStop : iconStart;
+                    tsmiActivateDezactivate.Header = td.Running ? "_Stop" : "_Start";
+                    tsmiActivateDezactivate.Icon = td.Running ? iconStop : iconStart;
                 }
                 else
                 {
                     var ad = MyClock.Model as AlarmData;
-                    tsmiActivateDezactivate.Text = ad.Enabled ? "&Deactivate" : "&Activate";
-                    tsmiActivateDezactivate.Image = ad.Enabled ? iconStop : iconStart;
+                    tsmiActivateDezactivate.Header = ad.Enabled ? "_Deactivate" : "_Activate";
+                    tsmiActivateDezactivate.Icon = ad.Enabled ? iconStop : iconStart;
                 }
 
                 Bitmap ico = GetFirstClockIcon();
 
-                tsmiSaveIconAs.Enabled = ico != null;
+                tsmiSaveIconAs.IsEnabled = ico != null;
             }
             else
             {
-                tss4.Visible = false;
-                tsmiDelete.Visible = false;
-                tsmiRename.Visible = false;
-                tsmiActivateDezactivate.Visible = false;
-                tsmiSetCurrentValue.Visible = false;
+                tss4.Visibility = System.Windows.Visibility.Collapsed;
+                tsmiDelete.Visibility = System.Windows.Visibility.Collapsed;
+                tsmiRename.Visibility = System.Windows.Visibility.Collapsed;
+                tsmiActivateDezactivate.Visibility = System.Windows.Visibility.Collapsed;
+                tsmiSetCurrentValue.Visibility = System.Windows.Visibility.Collapsed;
             }
 
             //bool AlwaysShowID = true;
@@ -591,7 +660,7 @@ namespace cs_timed_silver
 
             if (MyClocks.Count == 0)
             {
-                tsmiResetTo.Text = $"Reset to...";
+                tsmiResetTo.Header = $"Reset to...";
             }
             else
             {
@@ -604,31 +673,47 @@ namespace cs_timed_silver
                     }
                 }
 
-                tsmiResetTo.Text = $"Reset to {rtv}";
+                tsmiResetTo.Header = $"Reset to {rtv}";
 
 
-                tsmiConvertToOtherType.Image =
-                    Utils.IconResourceVersionBySize(
-                        (MyClocks.First().ClockType == ClockVM.ClockTypes.Alarm ?
-                        Properties.Resources.timers_filter__clepsidra_4_ :
-                        Properties.Resources.alarms_filter__alarm_clock_5_),
-                    32);
-                tsmiConvertToOtherType.Text =
+                tsmiConvertToOtherType.Icon =
                     MyClocks.First().ClockType == ClockVM.ClockTypes.Alarm ?
-                    "C&onvert to Timer" : "C&onvert to Alarm";
+                    new Image()
+                    {
+                        Source = new BitmapImage(new Uri("pack://application:,,,/Resources/timers filter (clepsidra 4).ico", UriKind.RelativeOrAbsolute)),
+                        Width = 16
+                    } :
+                    new Image()
+                    {
+                        Source = new BitmapImage(new Uri("pack://application:,,,/Resources/alarms filter (alarm clock 5).ico", UriKind.RelativeOrAbsolute)),
+                        Width = 16
+                    };
+
+                tsmiConvertToOtherType.Header =
+                    MyClocks.First().ClockType == ClockVM.ClockTypes.Alarm ?
+                    "C_onvert to Timer" : "C_onvert to Alarm";
             }
 
             UpdateTimeOutBackgroundItems();
+
+            UpdateGroupsSubmenuContents();
+            UpdateResetSubmenuContents();
         }
 
-        internal static ContextMenuStrip MyEmptyContextMenu;
+        internal static ContextMenu MyEmptyContextMenu;
 
+        // TODO: make a special method to create the empty context menu and remove the static c-tor
         static ClockContextMenuStrip()
         {
-            var cms = new ContextMenuStrip();
-            ToolStripItem item = cms.Items.Add("No selected clocks.");
-            item.Font = new Font(item.Font, FontStyle.Italic);
-            item.ForeColor = SystemColors.GrayText;
+            var cms = new ContextMenu();
+            MenuItem item = new MenuItem()
+            {
+                Header = "No selected clocks."
+            };
+            cms.Items.Add(item);
+
+            item.FontStyle = System.Windows.FontStyles.Italic;
+            item.Foreground = System.Windows.SystemColors.GrayTextBrush;
 
             MyEmptyContextMenu = cms;
         }
@@ -678,7 +763,7 @@ namespace cs_timed_silver
             }
             else
             {
-                MessageBox.Show(this, "Cannot set current value because there are clocks of different types selected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MainWindow, "Cannot set current value because there are clocks of different types selected.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -724,7 +809,7 @@ namespace cs_timed_silver
                 return;
             }
 
-            if (MessageBox.Show(this, $"Are you sure you want to delete the {MyClocks.Count} selected clocks?", "Confirmation request", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show(MainWindow, $"Are you sure you want to delete the {MyClocks.Count} selected clocks?", "Confirmation request", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
                 var hs = new HashSet<ClockVM>(MyClocks);
                 foreach (ClockVM c in hs)
@@ -734,21 +819,37 @@ namespace cs_timed_silver
             }
         }
 
-        private void tsmiGroupName_DropDownOpening(object sender, EventArgs e)
+        //private void tsmiGroupName_DropDownOpening(object sender, EventArgs e)
+        //{
+        //    UpdateGroupsSubmenuContents();
+        //}
+
+        public void UpdateGroupsSubmenuContents()
         {
-            tsmiGroupName.DropDownItems.Clear();
+            if (MyClock == null)
+            {
+                return;
+            }
+
+            tsmiGroupName.Items.Clear();
 
             if (MyClock.Model.MyDataFile.ClockVMCollection.Model.Groups.Ms.Count == 0)
             {
-                var tsmiNoGroups = new ToolStripMenuItem("No groups available");
-                tsmiNoGroups.Font = new Font(Font, FontStyle.Italic);
-                tsmiNoGroups.Enabled = false;
-                tsmiGroupName.DropDownItems.Add(tsmiNoGroups);
+                var tsmiNoGroups = new MenuItem()
+                {
+                    Header = "No groups available"
+                };
+                tsmiNoGroups.FontStyle = System.Windows.FontStyles.Italic;
+                tsmiNoGroups.IsEnabled = false;
+                tsmiGroupName.Items.Add(tsmiNoGroups);
             }
 
             foreach (ClockGroupM g in MainWindow.VM.ClockVMCollection.Model.Groups.Ms)
             {
-                var tsmi = new ToolStripMenuItem(g.Name);
+                var tsmi = new MenuItem()
+                {
+                    Header = g.Name
+                };
 
                 bool chk = true;
                 foreach (ClockVM c in MyClocks)
@@ -759,17 +860,24 @@ namespace cs_timed_silver
                         break;
                     }
                 }
-                tsmi.Checked = chk;
+                tsmi.IsChecked = chk;
 
-                tsmiGroupName.DropDownItems.Add(tsmi);
+                tsmiGroupName.Items.Add(tsmi);
                 tsmi.Click += Tsmi_Click;
             }
 
-            var tsmiNew = new ToolStripMenuItem("Add to new group...");
-            tsmiNew.Font = new Font(Font, FontStyle.Bold);
-            tsmiNew.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_list_add, 16);
+            var tsmiNew = new MenuItem()
+            {
+                Header = "Add to new group..."
+            };
+            tsmiNew.FontWeight = System.Windows.FontWeights.Bold;
+            tsmiNew.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-list-add.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
             tsmiNew.Click += TsmiNew_Click;
-            tsmiGroupName.DropDownItems.Add(tsmiNew);
+            tsmiGroupName.Items.Add(tsmiNew);
         }
 
         private void TsmiNew_Click(object sender, EventArgs e)
@@ -806,17 +914,30 @@ namespace cs_timed_silver
                 c.CurrentValue = c.ResetToValue;
             }
 
-            Hide();
+            //Hide();
         }
 
-        private void tsmiResetTo_DropDownOpening(object sender, EventArgs e)
-        {
-            tsmiResetTo.DropDownItems.Clear();
+        //private void tsmiResetTo_DropDownOpening(object sender, EventArgs e)
+        //{
+        //    UpdateGroupsSubmenuContents();
+        //}
 
-            var tsmiUpdateToCurrent = new ToolStripMenuItem("Update to current");
+        public void UpdateResetSubmenuContents()
+        {
+            if (MyClock == null)
+            {
+                return;
+            }
+
+            tsmiResetTo.Items.Clear();
+
+            var tsmiUpdateToCurrent = new MenuItem()
+            {
+                Header = "Update to current"
+            };
             tsmiUpdateToCurrent.Click += TsmiUpdateToCurrent_Click;
 
-            ToolStripMenuItem tsmiUpdateToCustom = null;
+            MenuItem tsmiUpdateToCustom = null;
             // TODO: optimize:
             if (
                 ((from c in MyClocks
@@ -827,7 +948,10 @@ namespace cs_timed_silver
                   select c).Count() == MyClocks.Count())
             )
             {
-                tsmiUpdateToCustom = new ToolStripMenuItem("Update to custom...");
+                tsmiUpdateToCustom = new MenuItem()
+                {
+                    Header = "Update to custom..."
+                };
                 tsmiUpdateToCustom.Click += TsmiUpdateToCustom_Click;
             }
             else
@@ -835,26 +959,33 @@ namespace cs_timed_silver
                 // TODO: [VISUAL] maybe just italic grayed out instead of removed from the menu?
             }
 
-            var tsmiLockResetToValue = new ToolStripMenuItem("Lock reset-to value");
-            tsmiLockResetToValue.CheckOnClick = true;
-            tsmiLockResetToValue.Image = Utils.IconResourceVersionBySize(Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_system_lock_screen, 16);
-            tsmiLockResetToValue.Checked = MyClock.ResetToValueLocked;
+            var tsmiLockResetToValue = new MenuItem()
+            {
+                Header = "Lock reset-to value"
+            };
+            tsmiLockResetToValue.IsCheckable = true;
+            tsmiLockResetToValue.Icon = new Image()
+            {
+                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
+            tsmiLockResetToValue.IsChecked = MyClock.ResetToValueLocked;
             tsmiLockResetToValue.Click += TsmiLockResetToValue_Click;
 
-            tsmiResetTo.DropDownItems.Add(tsmiUpdateToCurrent);
+            tsmiResetTo.Items.Add(tsmiUpdateToCurrent);
             if (tsmiUpdateToCustom != null)
             {
-                tsmiResetTo.DropDownItems.Add(tsmiUpdateToCustom);
+                tsmiResetTo.Items.Add(tsmiUpdateToCustom);
             }
-            tsmiResetTo.DropDownItems.Add(tsmiLockResetToValue);
+            tsmiResetTo.Items.Add(tsmiLockResetToValue);
         }
 
         private void TsmiLockResetToValue_Click(object sender, EventArgs e)
         {
-            var tsmi = (ToolStripMenuItem)sender;
+            var tsmi = (MenuItem)sender;
             foreach (ClockVM c in MyClocks)
             {
-                c.ResetToValueLocked = tsmi.Checked;
+                c.ResetToValueLocked = tsmi.IsChecked;
             }
         }
 
@@ -921,7 +1052,7 @@ namespace cs_timed_silver
                     DarkTheme = (bool)((System.Windows.Application.Current.MainWindow as MainWindow).VM.Settings.GetValue("DarkMode"))
                 };
                 System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(cw);
-                cw.MyClockData = c.Model;
+                cw.MyClockData = c;
                 cw.Show();
             }
         }
@@ -948,8 +1079,9 @@ namespace cs_timed_silver
                 return;
             }
 
-            OpenFileDialog fd = Utils.GetImageChooser();
-            if (fd.ShowDialog(this) == DialogResult.OK)
+            System.Windows.Forms.OpenFileDialog fd = Utils.GetImageChooser();
+            // TODO: pass MainWindow to ShowDialog somehow:
+            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // 1. resize image in memory
                 float maxHeight = 200;
@@ -1001,7 +1133,8 @@ namespace cs_timed_silver
             {
                 var cd = Utils.GetColorChooser(MyClock.UserBackColor);
 
-                if (cd.ShowDialog(FindForm()) == DialogResult.OK)
+                // TODO: pass MainWindow to ShowDialog somehow:
+                if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     foreach (ClockVM c in MyClocks)
                     {
@@ -1020,8 +1153,8 @@ namespace cs_timed_silver
                 return;
             }
 
-            var tsmi = sender as ToolStripMenuItem;
-            if (tsmi.Checked)
+            var tsmi = sender as MenuItem;
+            if (tsmi.IsChecked)
             {
                 var hs = new HashSet<ClockVM>(MyClocks);
                 foreach (ClockVM c in hs)
@@ -1030,7 +1163,7 @@ namespace cs_timed_silver
                 }
 
                 DontFireTsmiClick = true;
-                tsmi.Checked = false;
+                tsmi.IsChecked = false;
                 DontFireTsmiClick = false;
             }
             else
@@ -1038,11 +1171,11 @@ namespace cs_timed_silver
                 var hs = new HashSet<ClockVM>(MyClocks);
                 foreach (ClockVM c in hs)
                 {
-                    c.GroupName = tsmi.Text;
+                    c.GroupName = tsmi.Header.ToString(); // TODO: what about the '_' char?
                 }
 
                 DontFireTsmiClick = true;
-                tsmi.Checked = true;
+                tsmi.IsChecked = true;
                 DontFireTsmiClick = false;
             }
         }

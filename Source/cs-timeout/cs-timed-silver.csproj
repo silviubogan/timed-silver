@@ -543,8 +543,8 @@
     <Content Include="Resources\Docs\Images\very-old.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\sunrise.png" />
-    <None Include="Resources\sunset.png" />
+    <Resource Include="Resources\sunrise.png" />
+    <Resource Include="Resources\sunset.png" />
     <Resource Include="Resources\zoom reset icon based on zoom out from oxygen icons.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-stop.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-help-about.ico" />
@@ -561,19 +561,19 @@
     <Resource Include="Resources\icons8-move-50.png" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-find.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico" />
-    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico" />
     <Resource Include="Resources\multiselect.ico" />
-    <None Include="Resources\set_current_value.ico" />
-    <None Include="Resources\remove_custom_color.ico" />
+    <Resource Include="Resources\set_current_value.ico" />
+    <Resource Include="Resources\remove_custom_color.ico" />
     <None Include="Resources\folder-menuitem.ico" />
     <None Include="Resources\path1092 16.png" />
-    <None Include="Resources\path1129.png" />
+    <Resource Include="Resources\path1129.png" />
     <None Include="Resources\image990.png" />
     <None Include="Resources\Iconsmind-Outline-ID-2.ico" />
-    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-edit.ico" />
-    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico" />
-    <None Include="Resources\path1092.png" />
-    <None Include="Resources\Oxygen-Icons.org-Oxygen-Actions-window-new.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-edit.ico" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico" />
+    <Resource Include="Resources\path1092.png" />
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-window-new.ico" />
     <Resource Include="Resources\rect833.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Status-audio-volume-muted.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Status-audio-volume-high.ico" />

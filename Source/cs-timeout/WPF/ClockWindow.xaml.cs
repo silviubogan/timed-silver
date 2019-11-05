@@ -25,8 +25,8 @@ namespace cs_timed_silver
             InitializeComponent();
         }
 
-        internal ClockM _MyClockData = null;
-        public ClockM MyClockData // TODO: make this a dependency property
+        internal ClockVM _MyClockData = null;
+        public ClockVM MyClockData // TODO: make this a dependency property
         {
             get
             {
@@ -45,7 +45,7 @@ namespace cs_timed_silver
         private void OnMyClockDataChanged()
         {
             DataContext = MyClockData;
-            MyClockData.Deleted += MyClockData_Deleted;
+            MyClockData.Model.Deleted += MyClockData_Deleted;
         }
 
         private void MyClockData_Deleted(object sender, EventArgs e)

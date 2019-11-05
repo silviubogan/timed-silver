@@ -303,12 +303,15 @@ namespace cs_timed_silver
         {
             if (cc.Count == 0) // only takes place in multiselect mode (header)
             {
-                ClockContextMenuStrip.MyEmptyContextMenu.Show(screenPosition, dir);
+                ClockContextMenuStrip.MyEmptyContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+                ClockContextMenuStrip.MyEmptyContextMenu.IsOpen = true;
                 return;
             }
 
             MyClockContextMenuStrip.MyClocks = cc;
-            MyClockContextMenuStrip.Show(screenPosition, dir);
+            MyClockContextMenuStrip.UpdateContents();
+            MyClockContextMenuStrip.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+            MyClockContextMenuStrip.IsOpen = true;
         }
 
         public event ScrollChangedEventHandler ScrollChanged;
