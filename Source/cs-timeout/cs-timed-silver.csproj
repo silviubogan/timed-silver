@@ -255,6 +255,7 @@
     <Compile Include="WPF\Converters\DrawingColorToSolidColorBrushConverter.cs" />
     <Compile Include="WPF\Converters\FilterClocksByTypeConverter.cs" />
     <Compile Include="WPF\Converters\FilterVMToContextMenuConverter.cs" />
+    <Compile Include="WPF\Converters\FlowDocToStringConverter.cs" />
     <Compile Include="WPF\Converters\RootClockUserControlGridActualHeightToInnerGridHeightConverter.cs" />
     <Compile Include="WPF\Converters\FlowDocToStringListConverter.cs" />
     <Compile Include="WPF\Converters\StringToStringListConverter.cs" />

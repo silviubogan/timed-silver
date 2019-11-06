@@ -134,6 +134,7 @@
                     <local:ClockDataToUserClockTypeConverter x:Key="ClockDataToUserClockTypeConv"/>
                     <local:InverseBooleanConverter x:Key="InverseBoolConv"/>
                     <local:BoolToInvisibilityConverter x:Key="BoolToInvisibilityConv"/>
+                    <local:FlowDocToStringConverter x:Key="FlowDocToStringConv"/>
 
                     <!--<local:ClockToButtonIconPathConverter x:Key="ClockToBtn"/>-->
                     <local:ClockDataToClockTypeConverter x:Key="ClockToType"/>
@@ -438,7 +439,36 @@ private void ApplyImportMode()
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+                <DataGridTemplateColumn Header="Tag">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xceed:RichTextBox Grid.Column="2" Margin="0,7,7,0"
+                         AcceptsReturn="True" Name="MyTextBox"
+                         AllowDrop="True" Text="{Binding Tag, Converter={StaticResource FlowDocToStringConv}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Transparent"
+                                               BorderThickness="0" Background="Transparent">
+                                
+                                <xceed:RichTextBox.Resources>
+                                    <Style TargetType="Paragraph">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                    </Style>
+                                </xceed:RichTextBox.Resources>
+
+                                <local:WatermarkService.Watermark>
+                                    <TextBlock Foreground="Gray" FontStyle="Italic">Type here...</TextBlock>
+                                </local:WatermarkService.Watermark>
+
+                                <xceed:RichTextBoxFormatBarManager.FormatBar>
+                                    <xceed:RichTextBoxFormatBar/>
+                                </xceed:RichTextBoxFormatBarManager.FormatBar>
+
+                                <xceed:RichTextBox.TextFormatter>
+                                    <xceed:XamlFormatter/>
+                                </xceed:RichTextBox.TextFormatter>
+                            </xceed:RichTextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="User Back Color">
                     <DataGridTemplateColumn.CellTemplate>
