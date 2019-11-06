@@ -329,6 +329,14 @@ namespace cs_timed_silver
                     MyViewsGrid.MyDataGrid.AutoresizeTableColumns =
                         (bool)VM.Settings.GetValue("AutoresizeTableColumns");
                     break;
+
+                case "MinimizeOnOpen":
+                    if (VM.LoadingFromXmlDocument &&
+                        (bool)VM.Settings.GetValue("MinimizeOnOpen"))
+                    {
+                        WindowState = WindowState.Minimized;
+                    }
+                    break;
             }
         }
 

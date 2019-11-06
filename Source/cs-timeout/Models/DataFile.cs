@@ -380,6 +380,13 @@ namespace cs_timed_silver
                 Header = "Show global status bar",
                 Priority = 14f
             });
+            // TODO: apply this before applying the WindowState saved setting and if it is the case,
+            // do not apply the WindowState setting anymore
+            Settings.Add(new SettingDataM(typeof(bool), typeof(CheckBoxSettingDataVM), "MinimizeOnOpen", false)
+            {
+                Header = "Minimize on open",
+                Priority = 14f
+            });
 
             CreateSettingsVMs();
         }
