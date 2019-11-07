@@ -862,6 +862,14 @@ namespace cs_timed_silver
                 }
                 tsmi.IsChecked = chk;
 
+                if (g.Icon != null)
+                {
+                    tsmi.Icon = new Image()
+                    {
+                        Source = g.Icon
+                    };
+                }
+
                 tsmiGroupName.Items.Add(tsmi);
                 tsmi.Click += Tsmi_Click;
             }
