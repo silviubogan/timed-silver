@@ -387,6 +387,11 @@ namespace cs_timed_silver
                 Header = "Minimize on open",
                 Priority = 14f
             });
+            Settings.Add(new SettingDataM(typeof(bool), typeof(CheckBoxSettingDataVM), "MinimizeToTray", false)
+            {
+                Header = "Minimize to tray",
+                Priority = 14f
+            });
 
             CreateSettingsVMs();
         }

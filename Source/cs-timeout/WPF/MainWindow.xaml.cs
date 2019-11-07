@@ -337,6 +337,10 @@ namespace cs_timed_silver
                         WindowState = WindowState.Minimized;
                     }
                     break;
+
+                case "MinimizeToTray":
+                    ShowInTaskbar = !(bool)VM.Settings.GetValue("MinimizeToTray");
+                    break;
             }
         }
 
