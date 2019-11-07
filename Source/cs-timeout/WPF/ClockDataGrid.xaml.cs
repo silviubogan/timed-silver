@@ -65,7 +65,12 @@ namespace cs_timed_silver
                 {
                     Header = "_Autoresize columns to fill the table width"
                 };
-                MyFillColumnsItem.Icon = Properties.Resources.fill_columns_icon;
+                MyFillColumnsItem.Icon = new Image()
+                {
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Resources/fill-columns-icon.png",
+                        UriKind.RelativeOrAbsolute)),
+                    Height = 16
+                };
                 MyFillColumnsItem.Checked += MyFillColumnsItem_Checked;
                 MyFillColumnsItem.Unchecked += MyFillColumnsItem_Unchecked;
                 MyFillColumnsItem.IsCheckable = true;

@@ -595,7 +595,7 @@
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-clear-locationbar-rtl.ico" />
     <Resource Include="Resources\Apps-oxygen-icon.png" />
-    <None Include="Resources\fill-columns-icon.png" />
+    <Resource Include="Resources\fill-columns-icon.png" />
     <Resource Include="Resources\data-grid-view.png" />
     <Resource Include="Resources\horizontal-split-view.png" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-view-list-icons.ico" />
