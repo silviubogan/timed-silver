@@ -566,11 +566,7 @@
     <Resource Include="Resources\multiselect.ico" />
     <Resource Include="Resources\set_current_value.ico" />
     <Resource Include="Resources\remove_custom_color.ico" />
-    <None Include="Resources\folder-menuitem.ico" />
-    <None Include="Resources\path1092 16.png" />
     <Resource Include="Resources\path1129.png" />
-    <None Include="Resources\image990.png" />
-    <None Include="Resources\Iconsmind-Outline-ID-2.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-document-edit.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico" />
     <Resource Include="Resources\path1092.png" />
@@ -582,7 +578,6 @@
     <Resource Include="Resources\on filter.ico" />
     <Resource Include="Resources\off filter.ico" />
     <Resource Include="Resources\folder.ico" />
-    <None Include="Resources\desen pictograma 09.12.2018.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-go-first-view.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-arrow-right.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-edit-rename.ico" />
@@ -606,7 +601,6 @@
   <ItemGroup>
     <Resource Include="Resources\alarms filter %28alarm clock 5%29.ico" />
     <Resource Include="Resources\02.10.2018 final.ico" />
-    <Content Include="Resources\Apps-clock-icon.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-list-add.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-window-close.ico" />
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico" />
