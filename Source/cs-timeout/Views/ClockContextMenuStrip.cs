@@ -155,11 +155,7 @@ namespace cs_timed_silver
             // 
             tsmiUndock.Header = "_Undock...";
             tsmiUndock.Click += tsmiUndock_Click;
-            tsmiUndock.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-window-new.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiUndock.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-window-new.ico");
 
             // 
             // tsmiResetTo
@@ -167,53 +163,33 @@ namespace cs_timed_silver
             tsmiResetTo.Header = "Reset t_o";
             //tsmiResetTo.ContextMenuOpening += tsmiResetTo_DropDownOpening;
             tsmiResetTo.PreviewMouseDown += tsmiResetTo_Click;
-            tsmiResetTo.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1092.png", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiResetTo.Icon = CreateIcon("path1092.png");
 
             // 
             // tsmiGroupName
             // 
             tsmiGroupName.Header = "_Group...";
             //tsmiGroupName.ContextMenuOpening += tsmiGroupName_DropDownOpening;
-            tsmiGroupName.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/folder.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiGroupName.Icon = CreateIcon("folder.ico");
 
             // 
             // tsmiSelectColor
             // 
             tsmiSelectColor.Header = "Sele_ct color...";
-            tsmiSelectColor.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSelectColor.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-format-stroke-color.ico");
 
             // 
             // tsmiRemoveCustomColor
             // 
             tsmiRemoveCustomColor.Header = "Dele_te user color";
-            tsmiRemoveCustomColor.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/remove_custom_color.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiRemoveCustomColor.Icon = CreateIcon("remove_custom_color.ico");
 
             // 
             // tsmiSelectIcon
             // 
             tsmiSelectIcon.Header = "Se_lect icon...";
             tsmiSelectIcon.Click += tsmiSelectIcon_Click;
-            tsmiSelectIcon.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-document-edit.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSelectIcon.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-document-edit.ico");
 
             // 
             // tsmiRemoveIcon
@@ -236,38 +212,22 @@ namespace cs_timed_silver
             // 
             tsmiDelete.Header = "_Delete...";
             tsmiDelete.Click += tsmiDelete_Click;
-            tsmiDelete.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiDelete.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico");
 
             // 
             // tsmiRename
             // 
             tsmiRename.Header = "_Rename...";
             tsmiRename.Click += tsmiRename_Click;
-            tsmiRename.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/set_current_value.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiRename.Icon = CreateIcon("set_current_value.ico");
 
             tsmiSetCurrentValue.Header = "Set curre_nt value...";
             tsmiSetCurrentValue.Click += TsmiSetCurrentValue_Click;
-            tsmiSetCurrentValue.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-edit-rename.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSetCurrentValue.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-edit-rename.ico");
 
             tsmiSetRandomColors.Header = "Set random _colors";
             tsmiSetRandomColors.Click += TsmiSetRandomColors_Click;
-            tsmiSetRandomColors.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1129.png", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSetRandomColors.Icon = CreateIcon("path1129.png");
 
             tsmiConvertToOtherType.Header = "T_oggle Types";
             tsmiConvertToOtherType.ToolTip =
@@ -275,11 +235,7 @@ namespace cs_timed_silver
             tsmiConvertToOtherType.Click += TsmiConvertToOtherType_Click;
 
             tsmiSaveIconAs.Header = "Save _icon as...";
-            tsmiSaveIconAs.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSaveIconAs.Icon = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico");
             tsmiSaveIconAs.Click += TsmiSaveIconAs_Click;
 
             tsmiSelectSuggestedColor.Header = "Select suggested color";
@@ -302,20 +258,13 @@ namespace cs_timed_silver
 
             tsmiSetToSunrise = new MenuItem();
             tsmiSetToSunrise.Header = "Set to Sunrise";
-            tsmiSetToSunrise.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sunrise.png", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSetToSunrise.Icon = CreateIcon("sunrise.png");
+
             tsmiSetToSunrise.Click += TsmiSetToSunrise_Click;
 
             tsmiSetToSunset = new MenuItem();
             tsmiSetToSunset.Header = "Set to Sunset";
-            tsmiSetToSunset.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sunset.png", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            tsmiSetToSunset.Icon = CreateIcon("sunset.png");
             tsmiSetToSunset.Click += TsmiSetToSunset_Click;
 
             tsmiAdvanced.Header = "Advanced...";
@@ -351,7 +300,7 @@ namespace cs_timed_silver
                             new Func<DateTime, DateTime>((DateTime dt) =>
                             {
                                 return dt.ToLocalTime();
-                            }), 91.0);
+                            }), 91.0d);
 
                     c.CurrentDateTime = sunriseOrSunset;
                 }
@@ -367,32 +316,34 @@ namespace cs_timed_silver
         {
             double Lat = -1, Long = -1;
 
-            if (MyClocks.Count > 0)
+            if (!ThereIsAtLeastAClock())
             {
-                var w = new GeoCoordinateWatcher();
-
-                w.PositionChanged += (object s2, GeoPositionChangedEventArgs<GeoCoordinate> e2) =>
-                {
-                    GeoCoordinate coord = e2.Position.Location;
-                    if (coord.IsUnknown)
-                    {
-                        return;
-                    }
-                    Lat = coord.Latitude;
-                    Long = coord.Longitude;
-
-                    ApplySunriseSunset(sunrise, Lat, Long);
-
-                    w.Dispose();
-                };
-
-                w.TryStart(false, TimeSpan.FromMilliseconds(10000));
+                return;
             }
+
+            var w = new GeoCoordinateWatcher();
+
+            w.PositionChanged += (object s2, GeoPositionChangedEventArgs<GeoCoordinate> e2) =>
+            {
+                GeoCoordinate coord = e2.Position.Location;
+                if (coord.IsUnknown)
+                {
+                    return;
+                }
+                Lat = coord.Latitude;
+                Long = coord.Longitude;
+
+                ApplySunriseSunset(sunrise, Lat, Long);
+
+                w.Dispose();
+            };
+
+            w.TryStart(false, TimeSpan.FromSeconds(10));
         }
 
         private void UpdateTimeOutBackgroundItems()
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -443,9 +394,17 @@ namespace cs_timed_silver
             }
         }
 
+        private void SetTimeOutBackGroundImageRelativePath(string s)
+        {
+            foreach (ClockVM vm in MyClocks)
+            {
+                vm.TimeOutBackgroundImageRelativePath = s;
+            }
+        }
+
         private void TsmiChooseTimeOutBackgroundImageFile_Click(object sender, EventArgs e)
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -453,29 +412,23 @@ namespace cs_timed_silver
             System.Windows.Forms.OpenFileDialog d = Utils.GetImageChooser();
             if (d.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                foreach (ClockVM vm in MyClocks)
-                {
-                    vm.TimeOutBackgroundImageRelativePath = d.FileName;
-                }
+                SetTimeOutBackGroundImageRelativePath(d.FileName);
             }
         }
 
         private void TsmiRemoveTimeOutBackgroundImageFile_Click(object sender, EventArgs e)
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
 
-            foreach (ClockVM vm in MyClocks)
-            {
-                vm.TimeOutBackgroundImageRelativePath = null;
-            }
+            SetTimeOutBackGroundImageRelativePath(null);
         }
 
         private void TsmiOpenTimeOutBackgroundImageFile_Click(object sender, EventArgs e)
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -499,6 +452,11 @@ namespace cs_timed_silver
         {
             foreach (ClockVM cm in MyClocks)
             {
+                if (cm.ClockType == ClockVM.ClockTypes.Stopwatch)
+                {
+                    throw new NotImplementedException();
+                }
+
                 cm.ClockType =
                     cm.ClockType == ClockVM.ClockTypes.Timer ?
                         ClockVM.ClockTypes.Alarm : ClockVM.ClockTypes.Timer;
@@ -578,7 +536,7 @@ namespace cs_timed_silver
 
         private void TsmiSetRandomColors_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -594,22 +552,12 @@ namespace cs_timed_silver
             }
         }
 
-        internal static Image iconStop = new Image()
-        {
-            Source = new BitmapImage(
-                new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-pause.ico", UriKind.RelativeOrAbsolute)),
-            Width = 16
-        };
-        internal static Image iconStart = new Image()
-        {
-            Source = new BitmapImage(
-                new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico", UriKind.RelativeOrAbsolute)),
-            Width = 16
-        };
+        internal static Image iconStop = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-media-playback-pause.ico");
+        internal static Image iconStart = CreateIcon("Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico");
 
         public void UpdateContents()
         {
-            if (MyClocks.Count != 0)
+            if (ThereIsAtLeastAClock())
             {
                 MainWindow = MyClock.Model.MyDataFile.MainWindow;
             }
@@ -627,11 +575,19 @@ namespace cs_timed_silver
                     tsmiActivateDezactivate.Header = td.Running ? "_Stop" : "_Start";
                     tsmiActivateDezactivate.Icon = td.Running ? iconStop : iconStart;
                 }
-                else
+                else if (MyClock.Model is AlarmData ad)
                 {
-                    var ad = MyClock.Model as AlarmData;
                     tsmiActivateDezactivate.Header = ad.Enabled ? "_Deactivate" : "_Activate";
                     tsmiActivateDezactivate.Icon = ad.Enabled ? iconStop : iconStart;
+                }
+                else if (MyClock.Model is StopwatchData sd)
+                {
+                    tsmiActivateDezactivate.Header = sd.Running ? "_Stop" : "_Start";
+                    tsmiActivateDezactivate.Icon = sd.Running ? iconStop : iconStart;
+                }
+                else
+                {
+                    throw new NotImplementedException();
                 }
 
                 Bitmap ico = GetFirstClockIcon();
@@ -664,6 +620,7 @@ namespace cs_timed_silver
             }
             else
             {
+                // TODO: handle below stopwatches
                 object rtv = MyClock.ResetToValue;
                 foreach (ClockVM c in MyClocks)
                 {
@@ -678,19 +635,12 @@ namespace cs_timed_silver
 
                 tsmiConvertToOtherType.Icon =
                     MyClocks.First().ClockType == ClockVM.ClockTypes.Alarm ?
-                    new Image()
-                    {
-                        Source = new BitmapImage(new Uri("pack://application:,,,/Resources/timers filter (clepsidra 4).ico", UriKind.RelativeOrAbsolute)),
-                        Width = 16
-                    } :
-                    new Image()
-                    {
-                        Source = new BitmapImage(new Uri("pack://application:,,,/Resources/alarms filter (alarm clock 5).ico", UriKind.RelativeOrAbsolute)),
-                        Width = 16
-                    };
+                    CreateIcon("timers filter (clepsidra 4).ico") :
+                    CreateIcon("alarms filter (alarm clock 5).ico");
 
+                // TODO: a new submenu: Convert to... (with 2 options, 3 excluding the current type)
                 tsmiConvertToOtherType.Header =
-                    MyClocks.First().ClockType == ClockVM.ClockTypes.Alarm ?
+                    MyClock.ClockType == ClockVM.ClockTypes.Alarm ?
                     "C_onvert to Timer" : "C_onvert to Alarm";
             }
 
@@ -700,38 +650,50 @@ namespace cs_timed_silver
             UpdateResetSubmenuContents();
         }
 
-        internal static ContextMenu MyEmptyContextMenu;
+        internal static ContextMenu MyEmptyContextMenu = CreateEmptyContextMenu();
 
-        // TODO: make a special method to create the empty context menu and remove the static c-tor
-        static ClockContextMenuStrip()
+        private static ContextMenu CreateEmptyContextMenu()
         {
             var cms = new ContextMenu();
-            MenuItem item = new MenuItem()
-            {
-                Header = "No selected clocks."
-            };
+            MenuItem item = CreateMenuItem("No selected clocks.");
             cms.Items.Add(item);
 
             item.FontStyle = System.Windows.FontStyles.Italic;
             item.Foreground = System.Windows.SystemColors.GrayTextBrush;
 
-            MyEmptyContextMenu = cms;
+            return cms;
         }
 
-        private void TsmiSetCurrentValue_Click(object sender, EventArgs e)
+        private void ClockTypeScan(out bool allTimers, out bool allAlarms, out bool allStopwatches)
         {
-            bool allTimers = true, allAlarms = true;
+            allTimers = true;
+            allAlarms = true;
+            allStopwatches = true;
+
             foreach (ClockVM c in MyClocks)
             {
                 if (c.Model is TimerData)
                 {
                     allAlarms = false;
                 }
-                else
+                else if (c.Model is AlarmData)
                 {
                     allTimers = false;
                 }
+                else if (c.Model is StopwatchData)
+                {
+                    allStopwatches = false;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
+        }
+
+        private void TsmiSetCurrentValue_Click(object sender, EventArgs e)
+        {
+            ClockTypeScan(out bool allTimers, out bool allAlarms, out bool allStopwatches);
 
             if (allTimers)
             {
@@ -739,7 +701,7 @@ namespace cs_timed_silver
                 d.Owner = MainWindow;
                 d.UserTimeSpan = (TimeSpan)MyClock.CurrentValue;
 
-                if ((bool)d.ShowDialog())
+                if (d.ShowDialog() == true)
                 {
                     foreach (ClockVM c in MyClocks)
                     {
@@ -753,7 +715,7 @@ namespace cs_timed_silver
                 d.Owner = MainWindow;
                 d.UserDateTime = (DateTime)MyClock.CurrentValue;
 
-                if ((bool)d.ShowDialog())
+                if (d.ShowDialog() == true)
                 {
                     foreach (ClockVM c in MyClocks)
                     {
@@ -781,7 +743,7 @@ namespace cs_timed_silver
 
         private void tsmiRename_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -792,30 +754,35 @@ namespace cs_timed_silver
             p.Owner = System.Windows.Application.Current.MainWindow;
             p.UserString = XamlWriter.Save(MyClock.Tag);
 
-            if ((bool)p.ShowDialog())
+            if (p.ShowDialog() == true)
             {
                 var hs = new HashSet<ClockVM>(MyClocks);
                 foreach (ClockVM c in hs)
                 {
-                    c.Tag = XamlReader.Parse(p.UserString) as FlowDocument;
+                    c.Tag = (FlowDocument)XamlReader.Parse(p.UserString);
                 }
+            }
+        }
+
+        private void DeleteClocks()
+        {
+            var hs = new HashSet<ClockVM>(MyClocks);
+            foreach (ClockVM c in hs)
+            {
+                c.Model.Delete();
             }
         }
 
         private void tsmiDelete_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
 
             if (MessageBox.Show(MainWindow, $"Are you sure you want to delete the {MyClocks.Count} selected clocks?", "Confirmation request", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
-                var hs = new HashSet<ClockVM>(MyClocks);
-                foreach (ClockVM c in hs)
-                {
-                    c.Model.Delete();
-                }
+                DeleteClocks();
             }
         }
 
@@ -826,7 +793,7 @@ namespace cs_timed_silver
 
         public void UpdateGroupsSubmenuContents()
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -835,10 +802,7 @@ namespace cs_timed_silver
 
             if (MyClock.Model.MyDataFile.ClockVMCollection.Model.Groups.Ms.Count == 0)
             {
-                var tsmiNoGroups = new MenuItem()
-                {
-                    Header = "No groups available"
-                };
+                MenuItem tsmiNoGroups = CreateMenuItem("No groups available");
                 tsmiNoGroups.FontStyle = System.Windows.FontStyles.Italic;
                 tsmiNoGroups.IsEnabled = false;
                 tsmiGroupName.Items.Add(tsmiNoGroups);
@@ -846,10 +810,7 @@ namespace cs_timed_silver
 
             foreach (ClockGroupM g in MainWindow.VM.ClockVMCollection.Model.Groups.Ms)
             {
-                var tsmi = new MenuItem()
-                {
-                    Header = g.Name
-                };
+                MenuItem tsmi = CreateMenuItem(g.Name);
 
                 bool chk = true;
                 foreach (ClockVM c in MyClocks)
@@ -874,55 +835,52 @@ namespace cs_timed_silver
                 tsmi.Click += Tsmi_Click;
             }
 
-            var tsmiNew = new MenuItem()
-            {
-                Header = "Add to new group..."
-            };
-            tsmiNew.FontWeight = System.Windows.FontWeights.Bold;
-            tsmiNew.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-list-add.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
+            MenuItem tsmiNew = CreateMenuItem("Add to new group...",
+                CreateIcon("Oxygen-Icons.org-Oxygen-Actions-list-add.ico"));
+            tsmiNew.FontWeight = FontWeights.Bold;
             tsmiNew.Click += TsmiNew_Click;
+
             tsmiGroupName.Items.Add(tsmiNew);
         }
 
         private void TsmiNew_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
 
-            string g;
-            g = ClockGroupListView.ShowAddNewGroupPrompt(MainWindow.VM);
+            string g = ClockGroupListView.ShowAddNewGroupPrompt(MainWindow.VM);
             if (!string.IsNullOrEmpty(g))
             {
-                foreach (ClockVM c in MyClocks)
-                {
-                    c.GroupName = g;
-                }
+                SetGroupName("");
             }
         }
 
-        private void tsmiResetTo_Click(object sender, EventArgs e)
+        private void StopAndResetAllTimeSpanClocks()
         {
-            if (MyClocks.Count == 0)
-            {
-                return;
-            }
-
             foreach (ClockVM c in MyClocks)
             {
                 if (c.Model is TimerData td)
                 {
                     td.Stop();
                 }
+                else if (c.Model is StopwatchData sd)
+                {
+                    sd.Stop();
+                }
                 c.CurrentValue = c.ResetToValue;
             }
+        }
 
-            //Hide();
+        private void tsmiResetTo_Click(object sender, EventArgs e)
+        {
+            if (!ThereIsAtLeastAClock())
+            {
+                return;
+            }
+
+            StopAndResetAllTimeSpanClocks();
         }
 
         //private void tsmiResetTo_DropDownOpening(object sender, EventArgs e)
@@ -930,36 +888,65 @@ namespace cs_timed_silver
         //    UpdateGroupsSubmenuContents();
         //}
 
+        private bool AllClocksAreTimers()
+        {
+            // TODO: optimize:
+            return ((from c in MyClocks
+                     where c.Model is TimerData
+                     select c).Count() == MyClocks.Count());
+        }
+
+        private bool AllClocksAreAlarms()
+        {
+            // TODO: optimize:
+            return ((from c in MyClocks
+                     where c.Model is AlarmData
+                     select c).Count() == MyClocks.Count());
+        }
+
+        private static MenuItem CreateMenuItem(string str, Image icon = null)
+        {
+            var mi = new MenuItem()
+            {
+                Header = str
+            };
+            if (icon != null)
+            {
+                mi.Icon = icon;
+            }
+            return mi;
+        }
+
+        private static Image CreateIcon(string name)
+        {
+            return new Image()
+            {
+                Source = new BitmapImage(new Uri($"pack://application:,,,/Resources/{name}", UriKind.RelativeOrAbsolute)),
+                Width = 16
+            };
+        }
+
+        private bool ThereIsAtLeastAClock()
+        {
+            return MyClock != null;
+        }
+
         public void UpdateResetSubmenuContents()
         {
-            if (MyClock == null)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
 
             tsmiResetTo.Items.Clear();
 
-            var tsmiUpdateToCurrent = new MenuItem()
-            {
-                Header = "Update to current"
-            };
+            var tsmiUpdateToCurrent = CreateMenuItem("Update to current");
             tsmiUpdateToCurrent.Click += TsmiUpdateToCurrent_Click;
 
             MenuItem tsmiUpdateToCustom = null;
-            // TODO: optimize:
-            if (
-                ((from c in MyClocks
-                  where c.Model is TimerData
-                  select c).Count() == MyClocks.Count()) ||
-                ((from c in MyClocks
-                  where c.Model is AlarmData
-                  select c).Count() == MyClocks.Count())
-            )
+            if (AllClocksAreTimers() || AllClocksAreAlarms())
             {
-                tsmiUpdateToCustom = new MenuItem()
-                {
-                    Header = "Update to custom..."
-                };
+                tsmiUpdateToCustom = CreateMenuItem("Update to custom...");
                 tsmiUpdateToCustom.Click += TsmiUpdateToCustom_Click;
             }
             else
@@ -967,16 +954,9 @@ namespace cs_timed_silver
                 // TODO: [VISUAL] maybe just italic grayed out instead of removed from the menu?
             }
 
-            var tsmiLockResetToValue = new MenuItem()
-            {
-                Header = "Lock reset-to value"
-            };
+            var tsmiLockResetToValue = CreateMenuItem("Lock reset-to value",
+                CreateIcon("Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico"));
             tsmiLockResetToValue.IsCheckable = true;
-            tsmiLockResetToValue.Icon = new Image()
-            {
-                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Oxygen-Icons.org-Oxygen-Actions-system-lock-screen.ico", UriKind.RelativeOrAbsolute)),
-                Width = 16
-            };
             tsmiLockResetToValue.IsChecked = MyClock.ResetToValueLocked;
             tsmiLockResetToValue.Click += TsmiLockResetToValue_Click;
 
@@ -988,45 +968,52 @@ namespace cs_timed_silver
             tsmiResetTo.Items.Add(tsmiLockResetToValue);
         }
 
+        private void SetResetToValueLocked(bool locked)
+        {
+            foreach (ClockVM c in MyClocks)
+            {
+                c.ResetToValueLocked = locked;
+            }
+        }
+
         private void TsmiLockResetToValue_Click(object sender, EventArgs e)
         {
             var tsmi = (MenuItem)sender;
+            SetResetToValueLocked(tsmi.IsChecked);
+        }
+
+        private void SetResetToValue(TimeSpan v)
+        {
             foreach (ClockVM c in MyClocks)
             {
-                c.ResetToValueLocked = tsmi.IsChecked;
+                c.ResetToValue = v;
+            }
+        }
+
+        private void SetResetToValue(DateTime v)
+        {
+            foreach (ClockVM c in MyClocks)
+            {
+                c.ResetToValue = v;
             }
         }
 
         private void TsmiUpdateToCustom_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
 
-            bool allTimers = true, allAlarms = true;
-            foreach (ClockVM c in MyClocks)
-            {
-                if (c.Model is TimerData)
-                {
-                    allAlarms = false;
-                }
-                else
-                {
-                    allTimers = false;
-                }
-            }
+            ClockTypeScan(out bool allTimers, out bool allAlarms, out bool allStopwatches);
 
-            if (allTimers)
+            if (allTimers || allStopwatches)
             {
                 var tspd = new TimeSpanPromptWindow();
                 tspd.Owner = MainWindow;
                 if ((bool)tspd.ShowDialog())
                 {
-                    foreach (ClockVM c in MyClocks)
-                    {
-                        c.ResetToValue = tspd.UserTimeSpan;
-                    }
+                    SetResetToValue(tspd.UserTimeSpan);
                 }
             }
             else if (allAlarms)
@@ -1035,15 +1022,17 @@ namespace cs_timed_silver
                 dtp.Owner = MainWindow;
                 if ((bool)dtp.ShowDialog())
                 {
-                    foreach (ClockVM c in MyClocks)
-                    {
-                        c.ResetToValue = dtp.UserDateTime;
-                    }
+                    SetResetToValue(dtp.UserDateTime);
                 }
             }
         }
 
         private void TsmiUpdateToCurrent_Click(object sender, EventArgs e)
+        {
+            SetResetToValueToCurrentValue();
+        }
+
+        private void SetResetToValueToCurrentValue()
         {
             foreach (ClockVM c in MyClocks)
             {
@@ -1059,7 +1048,6 @@ namespace cs_timed_silver
                 {
                     DarkTheme = (bool)((System.Windows.Application.Current.MainWindow as MainWindow).VM.Settings.GetValue("DarkMode"))
                 };
-                System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(cw);
                 cw.MyClockData = c;
                 cw.Show();
             }
@@ -1080,9 +1068,20 @@ namespace cs_timed_silver
         //    }
         //}
 
+        private void SetIcon(Bitmap bmp)
+        {
+            foreach (ClockVM c in MyClocks)
+            {
+                // TODO: is this sentinel variable needed & correctly used?
+                c.Model.ChangeFromClockControlView = true;
+                c.Icon = bmp;
+                c.Model.ChangeFromClockControlView = false;
+            }
+        }
+
         private void tsmiSelectIcon_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count == 0)
+            if (!ThereIsAtLeastAClock())
             {
                 return;
             }
@@ -1091,38 +1090,15 @@ namespace cs_timed_silver
             // TODO: pass MainWindow to ShowDialog somehow:
             if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // 1. resize image in memory
-                float maxHeight = 200;
-                float maxWidth = 200;
+                var bmp = new Bitmap(fd.FileName);
 
-                var r = new Rectangle(0,
-                    0,
-                    (int)Math.Round(maxWidth),
-                    (int)Math.Round(maxHeight)
-                );
-                Bitmap bmp = Utils.ResizeToFitBoundingBox(
-                    new Bitmap(fd.FileName),
-                    r);
-
-                foreach (ClockVM c in MyClocks)
-                {
-                    // TODO: is this sentinel variable needed & correctly used?
-                    c.Model.ChangeFromClockControlView = true;
-                    c.Icon = bmp;
-                    c.Model.ChangeFromClockControlView = false;
-                }
+                SetIcon(bmp);
             }
         }
 
         private void tsmiRemoveIcon_Click(object sender, EventArgs e)
         {
-            foreach (ClockVM c in MyClocks)
-            {
-                // TODO: is this sentinel variable needed & correctly used?
-                c.Model.ChangeFromClockControlView = true;
-                c.Icon = null;
-                c.Model.ChangeFromClockControlView = false;
-            }
+            SetIcon(null);
         }
 
         private void TsmiRemoveCustomColor_Click(object sender, EventArgs e)
@@ -1135,20 +1111,36 @@ namespace cs_timed_silver
             }
         }
 
+        private void SetUserBackColor(Color c)
+        {
+            foreach (ClockVM cvm in MyClocks)
+            {
+                cvm.UserBackColor = c;
+            }
+        }
+
         private void TsmiChangeColor_Click(object sender, EventArgs e)
         {
-            if (MyClocks.Count > 0)
+            if (!ThereIsAtLeastAClock())
             {
-                var cd = Utils.GetColorChooser(MyClock.UserBackColor);
+                return;
+            }
 
-                // TODO: pass MainWindow to ShowDialog somehow:
-                if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    foreach (ClockVM c in MyClocks)
-                    {
-                        c.UserBackColor = cd.Color;
-                    }
-                }
+            var cd = Utils.GetColorChooser(MyClock.UserBackColor);
+
+            // TODO: pass MainWindow to ShowDialog somehow:
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                SetUserBackColor(cd.Color);
+            }
+        }
+
+        private void SetGroupName(string gn)
+        {
+            var hs = new HashSet<ClockVM>(MyClocks);
+            foreach (ClockVM c in hs)
+            {
+                c.GroupName = gn;
             }
         }
 
@@ -1161,14 +1153,10 @@ namespace cs_timed_silver
                 return;
             }
 
-            var tsmi = sender as MenuItem;
+            var tsmi = (MenuItem)sender;
             if (tsmi.IsChecked)
             {
-                var hs = new HashSet<ClockVM>(MyClocks);
-                foreach (ClockVM c in hs)
-                {
-                    c.GroupName = "";
-                }
+                SetGroupName("");
 
                 DontFireTsmiClick = true;
                 tsmi.IsChecked = false;
@@ -1176,11 +1164,7 @@ namespace cs_timed_silver
             }
             else
             {
-                var hs = new HashSet<ClockVM>(MyClocks);
-                foreach (ClockVM c in hs)
-                {
-                    c.GroupName = tsmi.Header.ToString(); // TODO: what about the '_' char?
-                }
+                SetGroupName(tsmi.Header.ToString()); // TODO: what about the '_' char?
 
                 DontFireTsmiClick = true;
                 tsmi.IsChecked = true;

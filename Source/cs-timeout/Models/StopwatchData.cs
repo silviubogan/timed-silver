@@ -8,13 +8,13 @@ using System.Windows.Threading;
 
 namespace cs_timed_silver
 {
-    internal class TimerData : ClockM, ITimeSpanClock
+    internal class StopwatchData : ClockM, ITimeSpanClock
     {
         public event EventHandler<ClockEventArgs>
             TimerStopped, TimerStartedByUser, TimerStoppedByUser;
         public DispatcherTimer FormsTimer { get; set; } = null;
 
-        internal TimerData(DataFile df, MultiAudioPlayer map) : base(df, map)
+        internal StopwatchData(DataFile df, MultiAudioPlayer map) : base(df, map)
         {
             // second by second timer
             FormsTimer = new DispatcherTimer(DispatcherPriority.Send)
@@ -31,9 +31,9 @@ namespace cs_timed_silver
             IsUnsavedLocked = false;
         }
 
-        internal void SubstractSeconds(int s)
+        internal void AddSeconds(int s)
         {
-            CurrentTimeSpan -= TimeSpan.FromSeconds(s);
+            CurrentTimeSpan += TimeSpan.FromSeconds(s);
         }
 
         public int GetSeconds()
@@ -44,12 +44,12 @@ namespace cs_timed_silver
 
         internal BeepTimerCollection MyBeepTimers;
 
-        internal void UpdateBeepTimers()
-        {
-            DestroyBeepTimers();
+        //internal void UpdateBeepTimers()
+        //{
+        //    DestroyBeepTimers();
 
-            MyBeepTimers = MyDataFile.Beeps.CreateBeepTimerCollection(this);
-        }
+        //    MyBeepTimers = MyDataFile.Beeps.CreateBeepTimerCollection(this);
+        //}
         
         internal void T_Tick(object sender, EventArgs e)
         {
@@ -64,34 +64,34 @@ namespace cs_timed_silver
         /// </summary>
         internal void HandleTick()
         {
-            SubstractSeconds(1);
+            AddSeconds(1);
 
-            if (GetSeconds() == 0)
-            {
-                Running = false;
-                t2.Start();
-                TimerStopped?.Invoke(this, new ClockEventArgs()
-                {
-                    Clock = this
-                });
-            }
+            //if (GetSeconds() == 0)
+            //{
+            //    Running = false;
+            //    t2.Start();
+            //    TimerStopped?.Invoke(this, new ClockEventArgs()
+            //    {
+            //        Clock = this
+            //    });
+            //}
         }
 
         internal bool StartOrStop()
         {
-            if (GetSeconds() == 0)
-            {
-                return false;
-            }
+            //if (GetSeconds() == 0)
+            //{
+            //    return false;
+            //}
 
-            if (Running)
-            {
-                DestroyBeepTimers();
-            }
-            else
-            {
-                UpdateBeepTimers();
-            }
+            //if (Running)
+            //{
+            //    DestroyBeepTimers();
+            //}
+            //else
+            //{
+            //    UpdateBeepTimers();
+            //}
 
             if (Running)
             {
@@ -117,14 +117,14 @@ namespace cs_timed_silver
             }
         }
 
-        internal void DestroyBeepTimers()
-        {
-            if (MyBeepTimers != null)
-            {
-                MyBeepTimers.Delete();
-                MyBeepTimers = null;
-            }
-        }
+        //internal void DestroyBeepTimers()
+        //{
+        //    if (MyBeepTimers != null)
+        //    {
+        //        MyBeepTimers.Delete();
+        //        MyBeepTimers = null;
+        //    }
+        //}
 
         bool disposed = false;
         protected override void Dispose(bool disposing)
@@ -137,7 +137,7 @@ namespace cs_timed_silver
             if (disposing)
             {
                 // dispose managed
-                DestroyBeepTimers();
+                //DestroyBeepTimers();
 
                 Running = false;
             }
@@ -155,7 +155,7 @@ namespace cs_timed_silver
                 StartOrStop();
             }
         }
-        
+
         public TimeSpan CurrentTimeSpan
         {
             get

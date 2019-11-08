@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Documents;
@@ -545,7 +546,7 @@ namespace cs_timed_silver
             if (CurrentValue != null &&
                 other.CurrentValue != null)
             {
-                if (GetType() == typeof(TimerData))
+                if (GetType() == typeof(TimerData) || GetType() == typeof(StopwatchData))
                 {
                     e &= (TimeSpan)CurrentValue == (TimeSpan)other.CurrentValue;
                 }
@@ -564,7 +565,7 @@ namespace cs_timed_silver
             if (ResetToValue != null &&
                 other.ResetToValue != null)
             {
-                if (GetType() == typeof(TimerData))
+                if (GetType() == typeof(TimerData) || GetType() == typeof(StopwatchData))
                 {
                     e &= (TimeSpan)ResetToValue == (TimeSpan)other.ResetToValue;
                 }
@@ -697,9 +698,17 @@ namespace cs_timed_silver
             {
                 td.StartOrStop();
             }
+            else if (this is StopwatchData sd)
+            {
+                sd.StartOrStop();
+            }
             else if (this is AlarmData ad)
             {
                 ad.EnableOrDisable();
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -712,8 +721,20 @@ namespace cs_timed_silver
         {
             get
             {
-                return (this is TimerData td && td.Running) ||
-                       (this is AlarmData && Enabled);
+                if (this is TimerData td)
+                {
+                    return td.Running;
+                }
+                if (this is StopwatchData sd)
+                {
+                    return sd.Running;
+                }
+                if (this is AlarmData ad)
+                {
+                    return ad.Enabled;
+                }
+                Debugger.Break();
+                return false;
             }
         }
 

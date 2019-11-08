@@ -778,9 +778,17 @@ namespace cs_timed_silver
             {
                 cd = InitializeTimer(el);
             }
-            else // if (type == "Alarm")
+            else if (type == "Alarm")
             {
                 cd = InitializeAlarm(el);
+            }
+            else if (type == "Stopwatch")
+            {
+                cd = InitializeStopwatch(el);
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
 
             cd.IsUnsavedLocked = true;
@@ -896,6 +904,36 @@ namespace cs_timed_silver
             }
 
             cd = new TimerData(this, MultiAudioPlayer);
+            cd.IsUnsavedLocked = true;
+            cd.CurrentValue = ts;
+            cd.ResetToValue = resetTo;
+            return cd;
+        }
+
+        internal ClockM InitializeStopwatch(XmlElement el)
+        {
+            ClockM cd;
+            TimeSpan ts;
+            try
+            {
+                ts = TimeSpan.Parse(el.GetAttribute("CurrentValue"));
+            }
+            catch (Exception /*ex*/)
+            {
+                ts = TimeSpan.FromMinutes(0);
+            }
+
+            TimeSpan resetTo;
+            try
+            {
+                resetTo = TimeSpan.Parse(el.GetAttribute("ResetToValue"));
+            }
+            catch (Exception /*ex*/)
+            {
+                resetTo = TimeSpan.FromMinutes(0);
+            }
+
+            cd = new StopwatchData(this, MultiAudioPlayer);
             cd.IsUnsavedLocked = true;
             cd.CurrentValue = ts;
             cd.ResetToValue = resetTo;
@@ -1166,7 +1204,18 @@ namespace cs_timed_silver
                 XmlElement elNode = doc.CreateElement("Clock");
 
                 XmlAttribute attrType = doc.CreateAttribute("Type");
-                attrType.Value = td is TimerData ? "Timer" : "Alarm";
+
+                bool isOfExistingClockType = td is TimerData ||
+                    td is StopwatchData ||
+                    td is AlarmData;
+
+                if (!isOfExistingClockType)
+                {
+                    throw new NotImplementedException();
+                }
+
+                attrType.Value = td is TimerData ? "Timer" :
+                    (td is AlarmData ? "Alarm" : "Stopwatch");
 
                 XmlAttribute attrEnabled = null;
                 if (attrType.Value == "Alarm")
@@ -1179,7 +1228,7 @@ namespace cs_timed_silver
                     doc.CreateAttribute("CurrentValue");
                 attrSeconds.Value = td.CurrentValue == null ?
                     "" :
-                    (td is TimerData ?
+                    (td is TimerData || td is StopwatchData ?
                         td.CurrentValue.ToString() :
                         ((DateTime)td.CurrentValue).ToString
                             (CultureInfo.InvariantCulture)
@@ -1194,7 +1243,7 @@ namespace cs_timed_silver
                 XmlAttribute attrResetToValue = doc.CreateAttribute("ResetToValue");
                 attrResetToValue.Value = td.ResetToValue == null ?
                     "" :
-                    (td is TimerData ?
+                    (td is TimerData || td is StopwatchData ?
                         td.ResetToValue.ToString() :
                         ((DateTime)td.ResetToValue).ToString
                             (CultureInfo.InvariantCulture)

@@ -205,7 +205,7 @@ namespace cs_timed_silver
                     //throw new InvalidOperationException();
                 }
 
-                return (Model as TimerData).CurrentTimeSpan;
+                return (Model as ITimeSpanClock).CurrentTimeSpan;
             }
             set
             {
@@ -215,7 +215,7 @@ namespace cs_timed_silver
                     //throw new InvalidOperationException();
                 }
 
-                var t = Model as TimerData;
+                var t = Model as ITimeSpanClock;
                 if (value == t.CurrentTimeSpan)
                 {
                     return;
@@ -380,11 +380,18 @@ namespace cs_timed_silver
         public enum ClockTypes
         {
             Alarm,
-            Timer
+            Timer,
+            Stopwatch
         }
 
         internal void ChangeTypeOfClock(ClockM cd, Type newType)
         {
+            // TODO: implement this
+            if (newType == typeof(StopwatchData))
+            {
+                throw new NotImplementedException();
+            }
+
             Model.PropertyChanged -= Model_PropertyChanged;
 
             if (newType == typeof(TimerData))
@@ -451,12 +458,14 @@ namespace cs_timed_silver
         {
             get
             {
-                return Model is TimerData ? ClockTypes.Timer : ClockTypes.Alarm;
+                return Model is TimerData ? ClockTypes.Timer :
+                    (Model is AlarmData ? ClockTypes.Alarm : ClockTypes.Stopwatch);
             }
             set
             {
                 bool change = Model is TimerData && value == ClockTypes.Alarm ||
-                              Model is AlarmData && value == ClockTypes.Timer;
+                              Model is AlarmData && value == ClockTypes.Timer ||
+                              Model is StopwatchData && value == ClockTypes.Stopwatch;
 
                 if (!change)
                 {
@@ -467,9 +476,17 @@ namespace cs_timed_silver
                 {
                     ChangeTypeOfClock(Model, typeof(TimerData));
                 }
-                else
+                else if (value == ClockTypes.Alarm)
                 {
                     ChangeTypeOfClock(Model, typeof(AlarmData));
+                }
+                else if (value == ClockTypes.Stopwatch)
+                {
+                    throw new NotImplementedException();
+                }
+                else
+                {
+                    throw new NotImplementedException();
                 }
 
                 RaisePropertyChanged();
@@ -480,11 +497,11 @@ namespace cs_timed_silver
         {
             get
             {
-                if (!(Model is TimerData))
+                if (!(Model is ITimeSpanClock))
                 {
                     return -1;
                 }
-                return (Model as TimerData).GetSeconds();
+                return (Model as ITimeSpanClock).GetSeconds();
             }
         }
 

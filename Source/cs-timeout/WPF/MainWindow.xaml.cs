@@ -1085,6 +1085,16 @@ namespace cs_timed_silver
             VM.ClockVMCollection.Model.AddClock(td);
         }
 
+        internal void AddNewStopwatch()
+        {
+            var td = new StopwatchData(VM, VM.MultiAudioPlayer);
+
+            td.GroupName = GetFirstGroupNameInFilter(VM.ClockVMCollection.Model.AppliedFilter);
+            td.Checkable = IsMultipleSelectionMenuItemCheckable;
+
+            VM.ClockVMCollection.Model.AddClock(td);
+        }
+
         private void CanExecute_ApplicationCommands_Properties(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -1928,7 +1938,8 @@ namespace cs_timed_silver
             for (int i = VM.ClockVMCollection.VMs.Count - 1; i >= 0; --i)
             {
                 ClockVM vm = VM.ClockVMCollection.VMs[i];
-                if (vm.ClockType == ClockVM.ClockTypes.Timer)
+                if (vm.ClockType == ClockVM.ClockTypes.Timer ||
+                    vm.ClockType == ClockVM.ClockTypes.Stopwatch)
                 {
                     if (vm.IsActive)
                     {
@@ -2164,6 +2175,14 @@ namespace cs_timed_silver
             //TbZoomDataGrid.LinkedZoomableControl = MyViewsGrid.MyDataGrid;
             //TbZoomGroupList.LinkedZoomableControl = MyViewsGrid.MyClockGroupListView;
             //TbZoomList.LinkedZoomableControl = MyViewsGrid.MyFlowView;
+        }
+
+        private void NewStopwatches_CustomSplitButton_CountRequested(object sender, IntEventArgs e)
+        {
+            for (int i = 0; i < e.Value; ++i)
+            {
+                AddNewStopwatch();
+            }
         }
     }
 }

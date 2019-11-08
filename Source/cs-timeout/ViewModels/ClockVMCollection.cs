@@ -649,7 +649,7 @@ namespace cs_timed_silver
                     RemainingTimeStatusString = (s.CurrentDateTime - DateTime.Now).ToString() + " remaining";
                 }
             }
-            else // Timer
+            else if (s.ClockType == ClockVM.ClockTypes.Timer)
             {
                 if (s.CurrentTimeSpan == TimeSpan.Zero)
                 {
@@ -659,6 +659,19 @@ namespace cs_timed_silver
                 {
                     RemainingTimeStatusString = s.CurrentTimeSpan.ToString() + " remaining";
                 }
+            }
+            else if (s.ClockType == ClockVM.ClockTypes.Stopwatch)
+            {
+                // TODO: implement this (laps, target time span)
+
+                //if (s.CurrentTimeSpan == TimeSpan.Zero)
+                //{
+                //    RemainingTimeStatusString = "";
+                //}
+                //else
+                //{
+                //    RemainingTimeStatusString = s.CurrentTimeSpan.ToString() + " remaining";
+                //}
             }
         }
 

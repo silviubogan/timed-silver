@@ -38,7 +38,7 @@ namespace cs_timed_silver
                     path = "/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico";
                 }
             }
-            else // ClockVM.ClockTypes.Alarm
+            else if (type == ClockVM.ClockTypes.Alarm)
             {
                 var enabled = (bool)values[1];
                 if (enabled)
@@ -49,6 +49,22 @@ namespace cs_timed_silver
                 {
                     path = "/Resources/off filter.ico";
                 }
+            }
+            else if (type == ClockVM.ClockTypes.Stopwatch)
+            {
+                var running = (bool)values[1];
+                if (running)
+                {
+                    path = "/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-pause.ico";
+                }
+                else
+                {
+                    path = "/Resources/Oxygen-Icons.org-Oxygen-Actions-media-playback-start.ico";
+                }
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
 
             return new BitmapImage(new Uri(path, UriKind.Relative));

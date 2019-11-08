@@ -60,6 +60,11 @@
                 </DataTrigger>
 
                 <DataTrigger Binding="{Binding Path=ClockType, Mode=OneWay}"
+                             Value="Stopwatch">
+                    <Setter Property="Template" Value="{StaticResource timeSpanTemplate}"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Path=ClockType, Mode=OneWay}"
                              Value="Alarm">
                     <Setter Property="Template" Value="{StaticResource dateTimeTemplate}"/>
                 </DataTrigger>

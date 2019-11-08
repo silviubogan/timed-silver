@@ -28,6 +28,10 @@ namespace cs_timed_silver
             {
                 return cvm.ClockType == ClockVM.ClockTypes.Timer ? Visibility.Visible : Visibility.Collapsed;
             }
+            else if (parameter.ToString() == "Stopwatch")
+            {
+                return cvm.ClockType == ClockVM.ClockTypes.Stopwatch ? Visibility.Visible : Visibility.Collapsed;
+            }
             else
             {
                 throw new NotImplementedException();

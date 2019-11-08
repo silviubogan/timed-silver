@@ -337,6 +337,13 @@
                         <AccessText VerticalAlignment="Center" Text="New _Alarm"/>
                     </StackPanel>
                 </local:CustomSplitButton>
+                <local:CustomSplitButton Margin="0,3,3,3" ToolTip="Click here to add a new stopwatch at the end of the list below." CountRequested="NewStopwatches_CustomSplitButton_CountRequested">
+                    <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                        <!-- TODO: icon here -->
+                        <!--<local:AlarmClockIcon Height="22"/>-->
+                        <AccessText VerticalAlignment="Center" Text="New _Stopwatch"/>
+                    </StackPanel>
+                </local:CustomSplitButton>
             </ToolBar>
             <ToolBar x:Name="TbSort" Band="2" Style="{DynamicResource ToolBarStyle}">
                 <Label VerticalAlignment="Center" Content="Sort"/>

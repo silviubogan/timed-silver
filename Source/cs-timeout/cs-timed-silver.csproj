@@ -169,6 +169,7 @@
     <Compile Include="Models\FilterMCollection.cs" />
     <Compile Include="Models\LogMessageM.cs" />
     <Compile Include="Models\TimeOutWindowM.cs" />
+    <Compile Include="Models\StopwatchData.cs" />
     <Compile Include="ObservableCollectionSynchronizer.cs" />
     <Compile Include="OcPropertyChangedListener{T}.cs" />
     <Compile Include="PictureAnalysis.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="ViewModels\ClockVMCollection.cs" />
     <Compile Include="ViewModels\FilterVMCollection.cs" />
     <Compile Include="ViewModels\ImportWindowVM.cs" />
+    <Compile Include="ViewModels\ITimeSpanClock.cs" />
     <Compile Include="ViewModels\LogMessageVM.cs" />
     <Compile Include="ViewModels\NamedCommandVM.cs" />
     <Compile Include="ViewModels\SettingDataVMs\IntegerSettingDataVM.cs" />
@@ -201,9 +203,7 @@
     <Compile Include="ViewModels\SettingDataVMs\AudioFileSettingDataVM.cs" />
     <Compile Include="ViewModels\SettingDataVMs\TimeSpanSettingDataVM.cs" />
     <Compile Include="ViewModels\SettingDataVMs\CheckBoxSettingDataVM.cs" />
-    <Compile Include="Views\ClockContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Views\ClockContextMenuStrip.cs" />
     <Compile Include="DailyBackupSystem.cs" />
     <Compile Include="Models\BeepCollection.cs" />
     <Compile Include="EventArgs subclasses\ContextMenuRequestedEventArgs.cs" />
