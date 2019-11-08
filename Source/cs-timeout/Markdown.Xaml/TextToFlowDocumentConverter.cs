@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 
 namespace Markdown.Xaml
 {
@@ -37,6 +38,23 @@ namespace Markdown.Xaml
             var text = (string)value;
 
             var engine = Markdown ?? mMarkdown.Value;
+
+
+            engine.Heading1Style = new Style(typeof(Block), null);
+            engine.Heading1Style.Setters.Add(new Setter(Block.FontSizeProperty, 30d));
+
+
+            engine.Heading2Style = new Style(typeof(Block), null);
+            engine.Heading2Style.Setters.Add(new Setter(Block.FontSizeProperty, 27d));
+
+
+            engine.Heading3Style = new Style(typeof(Block), null);
+            engine.Heading3Style.Setters.Add(new Setter(Block.FontSizeProperty, 24d));
+
+
+            engine.Heading4Style = new Style(typeof(Block), null);
+            engine.Heading4Style.Setters.Add(new Setter(Block.FontSizeProperty, 21d));
+
 
             engine.AssetPathRoot = "Resources\\Docs";
 
