@@ -544,6 +544,7 @@
     <Content Include="Resources\Docs\Images\very-old.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\stopwatch.png" />
     <Resource Include="Resources\sunrise.png" />
     <Resource Include="Resources\sunset.png" />
     <Resource Include="Resources\zoom reset icon based on zoom out from oxygen icons.ico" />

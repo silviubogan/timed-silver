@@ -339,8 +339,8 @@
                 </local:CustomSplitButton>
                 <local:CustomSplitButton Margin="0,3,3,3" ToolTip="Click here to add a new stopwatch at the end of the list below." CountRequested="NewStopwatches_CustomSplitButton_CountRequested">
                     <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
-                        <!-- TODO: icon here -->
-                        <!--<local:AlarmClockIcon Height="22"/>-->
+                        <Image Source="/Resources/stopwatch.png" Height="22" RenderOptions.EdgeMode="Aliased"
+                               RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="HighQuality"/>
                         <AccessText VerticalAlignment="Center" Text="New _Stopwatch"/>
                     </StackPanel>
                 </local:CustomSplitButton>
