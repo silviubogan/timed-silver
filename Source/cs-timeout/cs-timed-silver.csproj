@@ -185,7 +185,7 @@
       <DependentUpon>TextPromptWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SingleInstanceApplicationWrapper.cs" />
-    <Compile Include="Sun.cs" />
+    <Compile Include="OxyPlot\Sun.cs" />
     <Compile Include="TimeOutFormsManager.cs" />
     <Compile Include="Beep.cs" />
     <Compile Include="ViewModels\ClockGroupVMCollection.cs" />
@@ -201,9 +201,7 @@
     <Compile Include="ViewModels\SettingDataVMs\AudioFileSettingDataVM.cs" />
     <Compile Include="ViewModels\SettingDataVMs\TimeSpanSettingDataVM.cs" />
     <Compile Include="ViewModels\SettingDataVMs\CheckBoxSettingDataVM.cs" />
-    <Compile Include="Views\ClockContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Views\ClockContextMenuStrip.cs" />
     <Compile Include="DailyBackupSystem.cs" />
     <Compile Include="Models\BeepCollection.cs" />
     <Compile Include="EventArgs subclasses\ContextMenuRequestedEventArgs.cs" />
@@ -472,6 +470,7 @@
     <Content Include="chimes.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="OxyPlot\LICENSE" />
     <Content Include="Resources\Docs\Images\2019-10-15_15-59-41.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
